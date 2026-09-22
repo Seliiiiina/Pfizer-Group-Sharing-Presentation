@@ -1,0 +1,12 @@
+USUBJID,TRT01A,SAFFL,AESOC,AEDECOD,AESEV,AEREL,AEOUT
+SUBJ001,Drug A,Y,Gastrointestinal disorders,Nausea,Mild,Related,Recovered
+SUBJ001,Drug A,Y,Gastrointestinal disorders,Vomiting,Mild,Related,Recovered
+SUBJ002,Drug A,Y,Nervous system disorders,Headache,Moderate,Related,Recovered
+SUBJ003,Drug A,Y,Gastrointestinal disorders,Nausea,Mild,Not Related,Recovered
+SUBJ005,Drug A,Y,Infections and infestations,Upper respiratory tract infection,Mild,Not Related,Recovered
+SUBJ006,Drug A,Y,Nervous system disorders,Dizziness,Mild,Related,Recovering
+SUBJ007,Placebo,Y,Nervous system disorders,Headache,Mild,Not Related,Recovered
+SUBJ008,Placebo,Y,Gastrointestinal disorders,Nausea,Mild,Related,Recovered
+SUBJ009,Placebo,Y,Infections and infestations,Upper respiratory tract infection,Moderate,Not Related,Recovered
+SUBJ011,Placebo,Y,Nervous system disorders,Headache,Mild,Not Related,Recovered
+SUBJ012,Placebo,N,Gastrointestinal disorders,Nausea,Mild,Related,Recovered

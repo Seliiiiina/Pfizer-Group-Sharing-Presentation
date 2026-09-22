@@ -1,0 +1,10 @@
+Program: t_ae_summary.sas
+Run date: 2026-09-18 15:12
+
+NOTE: Input ADSL records read: 12
+NOTE: Input ADAE records read: 11
+NOTE: Safety population filter applied to ADSL.
+WARNING: Treatment denominator for Placebo was derived before SAFFL filter.
+WARNING: 1 ADAE record has SAFFL=N and was excluded from event counts.
+NOTE: Table output written to t_ae_summary.rtf
+NOTE: Program completed with warnings.

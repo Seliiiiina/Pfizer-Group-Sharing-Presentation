@@ -1,7 +1,0 @@
-Action ID,Action,Owner,Deadline,Status,Related Task,Notes
-A-101,Confirm missing field definitions with vendor,Alice Chen,2026-09-18,Open,T-002,Needed before Data Validation can close
-A-102,Assign owner for cutover checklist,Unassigned,2026-09-19,Open,T-007,No owner listed in tracker
-A-103,Provide QA environment availability window,Carlos Reed,2026-09-18,In Progress,T-004,Testing depends on environment access
-A-104,Draft management decision list,Frank Moore,2026-09-19,Open,T-006,Needed for Project Review
-A-105,Resolve defect retest priority order,Dina Patel,2026-09-17,Open,T-008,Deadline already passed
-A-106,Confirm SME support for training material,Emily Wong,2026-09-20,In Progress,T-005,Resource constraint noted
