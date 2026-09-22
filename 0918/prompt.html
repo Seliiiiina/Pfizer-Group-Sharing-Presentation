@@ -308,6 +308,34 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
 .conclusion-slide .content{display:grid;place-items:center;height:100%}
 .conclusion-statement{max-width:980px;color:var(--ink);font-size:28px;line-height:1.25;font-weight:850;text-align:center}
 @media(max-height:650px){:root{--pad:36px}.slide{padding-top:24px;padding-bottom:34px;gap:12px}h1{font-size:48px}.content{transform:scale(.95);transform-origin:center center;width:105%;margin-left:-2.5%}}
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  html,body{width:auto;height:auto;overflow:visible;background:#fff}
+  .deck{position:static;display:block;background:#fff;overflow:visible}
+  .stage{position:static;width:auto;height:auto;aspect-ratio:auto;overflow:visible;background:#fff;box-shadow:none}
+  .slide,.slide.active{
+    position:relative;
+    display:grid;
+    width:14.8144in;
+    height:8.3333in;
+    zoom:.9;
+    inset:auto;
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    transition:none;
+    pointer-events:auto;
+    page-break-after:always;
+    break-after:page;
+    background:var(--paper);
+  }
+  .slide:last-of-type{page-break-after:auto;break-after:auto}
+  .reveal,.active .reveal.shown,.ai-mark.reveal,.active .ai-mark.reveal.shown{opacity:1;transform:none;transition:none}
+  .ai-mark.reveal,.active .ai-mark.reveal.shown,.ai-mark.shown{color:#19734b;font-weight:850}
+  .nav,.counter,.progress{display:none}
+  .deck-logo{position:fixed;left:18px;bottom:6px}
+  .logo-caption{position:fixed;left:94px;bottom:15px}
+}
 </style> </head> <body> <main class="deck"><div class="stage" id="stage"> <section class="slide active" data-section="Opening"><div class="content"><h1>From Chatting with AI to <span class="blue">Working with AI</span></h1><p class="opening-subtitle">Part 1 — From Clear Instructions to Verifiable Output</p><div class="title-meta"><div><span class="muted">Speaker:</span> <strong>xingyu you</strong></div><div><span class="muted">Date:</span> <strong>2026-09-18</strong></div></div></div></section>
 
 <section class="slide merged-slide workflow-evolution-slide workflow-future-slide roadmap-slide" data-section="From Workflow to Agent"><div class="topline"><span class="section">SECTION 0</span><span class="num">18</span></div><div class="content"><h2>From Chat to Reliable Work</h2><div class="merged-pane reveal" data-reveal-order="1"><div class="evolution-path"><span>Chat</span><i></i><div class="reliability-frame"><span>Structured Prompt</span><span>Managed Context</span><span>Verifiable Output</span></div><i></i><span>Reusable Template</span><i></i><span>Workflow</span><i></i><span>Agent</span></div></div><div class="roadmap-questions reveal" data-reveal-order="2"><div class="question-card primary"><strong>1</strong><span>How do we give AI better instructions?</span></div><div class="question-card"><strong>2</strong><span>How do we manage context before it becomes messy?</span></div><div class="question-card"><strong>3</strong><span>How do we turn a good AI interaction into a repeatable workflow — or an agent?</span></div></div></div></section>
