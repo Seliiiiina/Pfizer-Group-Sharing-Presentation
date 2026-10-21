@@ -1,6 +1,7 @@
 <!doctype html>
-
-<html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"> <title>Building Agent Hub with AI</title> <style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Building Agent Hub with AI · English</title><style>
 :root{
   --blue:#0067b1;
   --blue-soft:#edf7fe;
@@ -386,79 +387,1064 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
 .detail-path{font:16px/1.38 Verdana,Arial,sans-serif;color:var(--blue);margin-top:16px}
 
 .workflow-explain{display:grid;grid-template-columns:1.12fr 1fr;gap:36px;margin-top:18px;align-items:start}
-.workflow-map{width:100%;height:390px;display:block}
+.workflow-map{width:100%;height:390px;display:block}.workflow-map text{font-size:13px}
 .workflow-notes{padding-top:12px}.workflow-notes h3{color:var(--blue);font-size:22px;margin-bottom:16px}
 .workflow-notes p{margin-bottom:16px;line-height:1.38}
 .workflow-file{padding:12px 14px;background:var(--blue-soft);font-size:16px;line-height:1.38;overflow-wrap:anywhere}
 
 .visual-stack{display:grid;gap:12px;margin-top:20px}.visual-row{display:grid;grid-template-columns:1fr 32px 1fr;align-items:center;gap:12px}.visual-box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);padding:14px 18px;font-size:16px;line-height:1.38}.visual-box strong{color:var(--blue)}.visual-link{text-align:center;color:var(--blue);font-size:22px}
 .file-map{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}.file-tile{border:1px solid var(--line);background:#fff;padding:16px 18px;font-size:16px;line-height:1.38}.file-tile b{display:block;color:var(--blue);margin-bottom:8px}.file-tile.wide{grid-column:1/-1;background:var(--blue-soft)}
-.talk-cue{display:none}.stage.show-notes .talk-cue{display:block;position:absolute;left:180px;right:175px;bottom:46px;background:#fff;border:1px solid #9fc9e6;border-left:4px solid var(--blue);padding:12px 16px;z-index:110;max-height:35%;overflow:auto;font-size:16px;line-height:1.38;box-shadow:0 8px 24px #0002}.talk-cue b{color:var(--blue)}
-@media print{.talk-cue{display:none!important}}
-</style> </head> <body>
-<main class="deck"><div class="stage" id="stage">
-<section class="slide active" data-section="Opening"><div class="content"><h1>Building Agent Hub <span class="blue">with AI</span></h1><p class="opening-subtitle">从想法到文件：我们如何与 AI 沟通、约定格式并迭代</p><div class="title-meta"><div><span class="muted">Speaker:</span> <strong>xingyu you</strong></div><div><span class="muted">Date:</span> <strong>2026-10-20</strong></div></div></div><aside class="talk-cue"><b>讲述提示 · 1/24</b><br>今天沿着需求、角色、流程、文件和迭代，分享如何与 AI 一起把想法做具体。</aside></section>
 
-<section class="slide" data-section="01 · IDEA TO FILES"><div class="topline"><span class="section">01 · IDEA</span><span class="num"></span></div><div class="content"><h2>从想法到实现：这次分享沿着什么顺序展开？</h2><div class="story-quote">想法：用户描述任务后，由 Hub 找到合适的 Agent，需要时组织多个 Agent 协作。</div><div class="story-flow"><div class="story-step"><b>明确需求</b>用户会怎么问<br>希望完成什么</div><div class="story-arrow">→</div><div class="story-step"><b>设计协作</b>如何划分角色<br>怎样组织流程</div><div class="story-arrow">→</div><div class="story-step"><b>落实到文件</b>用 README 约定<br>生成指令与索引</div><div class="story-arrow">→</div><div class="story-step"><b>检查与迭代</b>推演用户提问<br>修正规则与文件</div></div><p class="story-note">本次以仓库文件解释协作方式；提示词为依据现有规则整理的示例，原始对话可后续补充。</p></div><aside class="talk-cue"><b>讲述提示 · 2/24</b><br>先解释想解决什么，再说明如何设计协作，最后落实到文件并检查。</aside></section>
+/* English layout adjustments */
+.story-step{padding:14px 10px;white-space:normal}
+.story-flow{gap:6px}.story-table th,.story-table td{padding:10px}
+.detail-prompt{margin-top:16px;padding:14px 18px}
+.workflow-explain{gap:24px}.workflow-notes p{margin-bottom:12px}
+.visual-box{padding:12px 14px}.file-tile{padding:13px 16px}
 
-<section class="slide" data-section="02 · ROLE DESIGN"><div class="topline"><span class="section">02 · ROLE DESIGN</span><span class="num"></span></div><div class="content"><h2>先拆需求，再确定主 Agent、功能 Agent 和业务 Agent</h2><p class="story-note">从用户需求中提取工作，再决定由谁承担。</p><div class="visual-stack"><div class="visual-row"><div class="visual-box">“我想描述目标，由一个入口带我完成任务。”</div><div class="visual-link">→</div><div class="visual-box"><strong>主 Agent · Hub</strong><br>理解、路由、确认与汇总</div></div><div class="visual-row"><div class="visual-box">“找谁做？怎么组合？谁来执行？缺能力怎么办？”</div><div class="visual-link">→</div><div class="visual-box"><strong>功能 Agent</strong><br>Finder / Builder / Executor / Creator</div></div><div class="visual-row"><div class="visual-box">“比较两版 SOP，分析影响，再写简报。”</div><div class="visual-link">→</div><div class="visual-box"><strong>业务 Agent</strong><br>版本比较 / 影响分析 / 简报草拟</div></div></div><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>按用户需求拆出角色，逐个说明输入、输出、职责边界和交接对象；检查是否有职责重复或无人负责的步骤。</p></div></div><aside class="talk-cue"><b>讲述提示 · 3/24</b><br>指左侧用户问法，再指右侧三层角色；角色来自工作需要。</aside></section>
+.present-lead{font-size:22px;line-height:1.3;color:var(--blue);margin:18px 0 26px;max-width:950px}
+.present-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:22px}
+.present-card{background:#fff;border:1px solid var(--line);padding:24px;min-width:0;font-size:16px;line-height:1.38}
+.present-card strong{display:block;font-size:22px;color:var(--blue);margin-bottom:18px}
+.present-card.soft{background:var(--blue-soft);border-color:#9fc9e6}
+.present-card .label{display:block;font-size:16px;color:var(--muted);margin-bottom:14px}
+.present-flow{display:flex;align-items:stretch;gap:12px;margin:28px 0}.present-node{flex:1;min-width:0;padding:24px 16px;background:#fff;border-top:4px solid var(--blue);font-size:16px;line-height:1.38}.present-node b{display:block;color:var(--blue);font-size:22px;margin-bottom:20px}.present-arrow{align-self:center;color:var(--blue);font-size:22px}
+.present-band{margin-top:24px;padding:16px 20px;background:var(--blue-soft);border-left:4px solid var(--blue);font-size:16px;line-height:1.38}
+.file-preview{background:white;border:1px solid var(--line);margin-top:20px;box-shadow:8px 8px 0 #edf7fe}.file-preview header{padding:12px 20px;background:#edf7fe;color:var(--blue);font-size:16px}.file-preview .file-section{display:grid;grid-template-columns:190px 1fr;gap:24px;padding:18px 22px;border-bottom:1px solid var(--line);font-size:16px;line-height:1.38}.file-section b{color:var(--blue)}
+@media(max-height:650px){.present-card{padding:18px}.present-node{padding:18px 12px}}
 
-<section class="slide" data-section="02 · ROLE DESIGN"><div class="topline"><span class="section">02 · ROLE DESIGN</span><span class="num"></span></div><div class="content"><h2>职责怎样划分：Hub 管整体，功能 Agent 各自交付</h2><div class="workflow-explain"><svg class="workflow-map" viewBox="0 0 520 390" role="img" aria-label="Agent Hub 与四个功能 Agent 及业务 Agent 的分工"><rect x="145" y="10" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6"/><text x="260" y="38" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">用户：提出目标、补充与确认</text><path d="M260 54V88M254 82L260 88L266 82" fill="none" stroke="#697177"/><rect x="105" y="88" width="310" height="56" rx="8" fill="#0067b1"/><text x="260" y="112" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="white">Hub · 唯一用户交互入口</text><text x="260" y="133" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="white">理解、路由、确认、汇总</text><rect x="10" y="174" width="500" height="108" rx="10" fill="#edf7fe" stroke="#0067b1" stroke-dasharray="7 4"/><path d="M260 144V169" fill="none" stroke="#697177"/><text x="260" y="200" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#0067b1">功能 Agent · 向 Hub 返回结构化结果</text><text x="135" y="231" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">Finder → 候选与理由</text><text x="385" y="231" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">Builder → 工作流蓝图</text><text x="135" y="260" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">Creator → 缺口与方案</text><text x="385" y="260" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">Executor → 状态与结果</text><path d="M385 282V315M379 309L385 315L391 309" fill="none" stroke="#697177"/><rect x="160" y="316" width="340" height="58" rx="6" fill="white" stroke="#9fc9e6"/><text x="330" y="340" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">业务 Agent · 完成具体任务</text><text x="330" y="362" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">由 Executor 按授权调度并回收结果</text></svg><div class="workflow-notes"><h3>每个角色用四个问题定边界</h3><p><b>输入是什么？</b>接收需求、候选能力、工作流，还是具体业务材料？</p><p><b>输出是什么？</b>交付推荐、蓝图、执行状态，还是具体分析结果？</p><p><b>哪些工作交给别人？</b>Finder 不执行，Builder 不调度；业务 Agent 的澄清需求返回上游，由 Hub 询问用户。</p><div class="workflow-file">先在 README 的 Core Architecture 约定分工，再写入 Agent-Hub.txt 与 functional-agents/*.txt。Registry 为能力发现提供目录。</div></div></div></div><aside class="talk-cue"><b>讲述提示 · 4/24</b><br>从用户向下讲 Hub、功能 Agent、业务 Agent；强调每层交付与边界。</aside></section>
+.evidence-layout{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:18px;align-items:start}
+.evidence-slot{border:2px dashed #9fc9e6;background:#edf7fe;min-height:300px;padding:24px;display:flex;flex-direction:column;justify-content:center;gap:18px;text-align:center;font-size:16px;line-height:1.38}
+.evidence-slot b{color:var(--blue);font-size:22px}.evidence-slot code{font-size:14px;overflow-wrap:anywhere}.evidence-slot small{font-size:16px;color:var(--muted)}
+.evidence-slot img{max-width:100%;max-height:330px;object-fit:contain;display:block;margin:auto}
 
-<section class="slide" data-section="07 · WORKFLOW"><div class="topline"><span class="section">03 · WORKFLOW</span><span class="num"></span></div><div class="content"><h2>Workflow：先画主线，再补关键判断</h2><div class="workflow-explain"><svg class="workflow-map" viewBox="0 0 520 390" role="img" aria-label="Hub 理解、匹配与编排流程"><rect x="125" y="72" width="270" height="212" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4"/><path d="M260 56 L260 84" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 78 L260 84 L264 78" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 128 L260 156" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 150 L260 156 L264 150" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 200 L260 228" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 222 L260 228 L264 222" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 272 L260 300" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 294 L260 300 L264 294" fill="none" stroke="#697177" stroke-width="1.6"/><rect x="145" y="12" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">用户提出需求</text><rect x="145" y="84" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub 理解与判断</text><rect x="145" y="156" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="183.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder 匹配能力</text><rect x="145" y="228" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="255.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">必要时编排 Workflow</text><rect x="145" y="300" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="327.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">确认 → 执行 → 审核</text></svg><div class="workflow-notes"><h3>把想法变成可以讨论的流程</h3><p>先画出从用户需求到结果的主线，再和 AI 讨论每一步需要判断什么。</p><p>蓝框是重点设计区域：理解需求、寻找能力，以及决定是否需要多 Agent 编排。</p><p>接下来只展开三个关键片段，说明如何把判断写成规则。</p><div class="workflow-file">总体约定：README.md → Task Routing Logic<br>入口规则：Agent-Hub.txt</div></div></div></div><aside class="talk-cue"><b>讲述提示 · 5/24</b><br>沿主线向下指，停在蓝框：理解、匹配和编排是重点。</aside></section>
+.source-tree{white-space:pre-wrap;font:16px/1.55 Verdana,Arial,sans-serif;background:#fff;border:1px solid var(--line);padding:20px;margin:0;overflow-wrap:anywhere}
+.source-label{font-size:13px;line-height:1.38;color:var(--muted);margin-top:12px}
+.source-rule{padding:16px 18px;border-left:4px solid var(--blue);background:#edf7fe;font-size:16px;line-height:1.45;margin-bottom:16px}.source-rule b{display:block;color:var(--blue);margin-bottom:10px}
 
-<section class="slide" data-section="07 · WORKFLOW"><div class="topline"><span class="section">03 · WORKFLOW</span><span class="num"></span></div><div class="content"><h2>片段 1：先判断用户到底想做什么</h2><div class="workflow-explain"><svg class="workflow-map" viewBox="0 0 520 390" role="img" aria-label="用户意图判断流程"><rect x="8" y="72" width="504" height="182" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4"/><path d="M260 56 L260 84" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 78 L260 84 L264 78" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 136 L130 182" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M126 176 L130 182 L134 176" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 136 L390 182" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M386 176 L390 182 L394 176" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M390 240 L390 294" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M386 288 L390 294 L394 288" fill="none" stroke="#697177" stroke-width="1.6"/><rect x="145" y="12" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">用户提出问题</text><rect x="145" y="84" width="230" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="115.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub 判断用户意图</text><rect x="20" y="182" width="220" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="130.0" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">了解 / 寻找 Agent</text><text x="130.0" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder 返回概览或推荐</text><rect x="280" y="182" width="220" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="390.0" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">希望执行任务</text><text x="390.0" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">检查目标、输入与约束</text><rect x="280" y="294" width="220" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="390.0" y="325.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">进入能力选择与规划</text></svg><div class="workflow-notes"><h3>这个部分包含什么？</h3><p><b>用户可能怎么问：</b><br>“有哪些 Agent？”<br>“帮我比较这两份文件。”</p><p><b>要写清楚的判断：</b><br>用户是在了解能力，还是要求执行？任务目标和必需材料是否足够？</p><p><b>告诉 AI 的规则：</b><br>浏览时返回概览；执行时检查输入。缺少目标就先澄清，不自行补造。</p><div class="workflow-file">README.md → Clarification Rules / Task Routing Logic<br>Agent-Hub.txt → Core responsibilities</div></div></div></div><aside class="talk-cue"><b>讲述提示 · 6/24</b><br>对比“有哪些 Agent”和“帮我处理”，说明两种意图的不同路径。</aside></section>
+.slide[data-section="04 · IMPLEMENT WITH AI"] .structure-reason .visual-stack{gap:8px;margin-top:12px}.structure-reason .visual-box{padding:10px 14px}.structure-reason .present-band{margin-top:14px;padding:12px 16px}
 
-<section class="slide" data-section="07 · WORKFLOW"><div class="topline"><span class="section">03 · WORKFLOW</span><span class="num"></span></div><div class="content"><h2>片段 2：决定怎么找到合适的 Agent</h2><div class="workflow-explain"><svg class="workflow-map" viewBox="0 0 520 390" role="img" aria-label="指定 Agent 核验与 Finder 推荐流程"><rect x="8" y="72" width="504" height="180" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4"/><path d="M260 56 L260 84" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 78 L260 84 L264 78" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 134 L130 180" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M126 174 L130 180 L134 174" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 134 L390 180" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M386 174 L390 180 L394 174" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M130 238 L260 300" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 294 L260 300 L264 294" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M390 238 L260 300" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 294 L260 300 L264 294" fill="none" stroke="#697177" stroke-width="1.6"/><rect x="145" y="12" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">用户希望执行任务</text><rect x="145" y="84" width="230" height="50" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="114.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">是否指定 Agent？</text><rect x="20" y="180" width="220" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="130.0" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">已指定：核验</text><text x="130.0" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">存在、适配、可运行</text><rect x="280" y="180" width="220" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="390.0" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">未指定 / 核验未通过</text><text x="390.0" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder 检索并推荐</text><rect x="145" y="300" width="230" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="329.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">确定候选与任务范围</text></svg><div class="workflow-notes"><h3>这个部分包含什么？</h3><p><b>两条入口：</b><br>用户指定了 Agent，先核验；用户没有指定，交给 Finder 推荐。</p><p><b>需要考虑的条件：</b><br>名称是否存在、能力是否适合、输入是否匹配，以及实际可用性和权限。</p><p><b>告诉 AI 的规则：</b><br>指定对象无效时推荐替代；无合适匹配时明确返回缺口，再考虑组合或创建方案。</p><div class="workflow-file">README.md → Subagent Selection Rules<br>Agent-Hub.txt / functional-agents/Agent-Finder.txt</div></div></div></div><aside class="talk-cue"><b>讲述提示 · 7/24</b><br>先讲已指定，再讲未指定；核验与推荐最后汇合到明确候选和范围。</aside></section>
+.case-slide{--blue:#19734b;--blue-soft:#eef7f1}.case-slide .section{color:#19734b}
+.case-request{padding:18px 22px;background:#fff9e6;border:1px solid #ead28a;border-left:4px solid #d39b00;font-size:16px;line-height:1.38;margin:18px 0}.case-request b{display:block;color:#8a6500;margin-bottom:10px}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}.case-panel{padding:18px 20px;background:#fff;border-top:3px solid #19734b;font-size:16px;line-height:1.38}.case-panel h3{color:#19734b;font-size:22px;margin-bottom:14px}.case-panel p+p{margin-top:14px}
+.deck-icon{display:inline-block;width:28px;height:28px;vertical-align:middle;margin-right:10px;flex:none;color:var(--blue)}.case-panel .deck-icon{color:#19734b}
+.case-slide .present-node{padding:20px 16px}.case-tag{display:inline-block;padding:5px 10px;background:#eef7f1;color:#19734b;font-size:16px;margin-right:8px}
 
-<section class="slide" data-section="07 · WORKFLOW"><div class="topline"><span class="section">03 · WORKFLOW</span><span class="num"></span></div><div class="content"><h2>片段 3：把复杂任务拆成可以交接的步骤</h2><div class="workflow-explain"><svg class="workflow-map" viewBox="0 0 520 390" role="img" aria-label="简单任务与复杂工作流的编排流程"><rect x="270" y="154" width="240" height="84" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4"/><path d="M260 56 L260 82" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 76 L260 82 L264 76" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 130 L130 168" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M126 162 L130 168 L134 162" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 130 L390 168" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M386 162 L390 168 L394 162" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M130 224 L260 268" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 262 L260 268 L264 262" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M390 224 L260 268" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 262 L260 268 L264 262" fill="none" stroke="#697177" stroke-width="1.6"/><path d="M260 314 L260 338" fill="none" stroke="#697177" stroke-width="1.6"/> <path d="M256 332 L260 338 L264 332" fill="none" stroke="#697177" stroke-width="1.6"/><rect x="145" y="12" width="230" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">已明确目标与候选能力</text><rect x="145" y="82" width="230" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">简单任务 / 多步骤任务？</text><rect x="20" y="168" width="220" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="130.0" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">简单任务</text><text x="130.0" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">准备单 Agent 执行计划</text><rect x="280" y="168" width="220" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="390.0" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">复杂任务 → Builder</text><text x="390.0" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">步骤、依赖与输入输出</text><rect x="145" y="268" width="230" height="46" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="296.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub 展示并取得确认</text><rect x="145" y="338" width="230" height="40" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4"/><text x="260.0" y="363.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Executor 执行 → Hub 汇总</text></svg><div class="workflow-notes"><h3>框内重点：Workflow Builder</h3><p><b>复杂请求举例：</b><br>“比较两版 SOP，分析影响，再形成培训简报。”</p><p><b>蓝图要包含：</b><br>每一步由谁负责、接收什么输入、输出什么结果，以及依赖哪一步。</p><p><b>告诉 AI 的规则：</b><br>差异清单交给影响分析；差异与影响再交给简报草拟。明确确认节点，按确认后的蓝图执行。</p><div class="workflow-file">README.md → Complex Workflow Execution<br>functional-agents/Workflow-Builder.txt → steps<br>input / output / dependencies / permission_scope</div></div></div></div><aside class="talk-cue"><b>讲述提示 · 8/24</b><br>指 Builder 蓝框：比较结果交给影响分析，再一起交给简报草拟。</aside></section>
+/* Agent Hub is the running project case throughout the talk. */
+.project-case{--blue:#19734b;--blue-soft:#eef7f1}
+.project-case .section{color:#19734b}
+.project-case .detail-prompt{border-left-color:#d39b00;background:#fff9e6}
+.project-case .detail-prompt>b{color:#8a6500}
+.project-case .visual-row>.visual-box:first-child{border-left-color:#d39b00;background:#fff9e6}
+.project-case .visual-row>.visual-box:first-child strong{color:#8a6500}
+.project-case .visual-row>.visual-box:last-child{border-left-color:#19734b;background:#eef7f1}
 
-<section class="slide" data-section="02 · README"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>把前面的设计写进 README，让 AI 有据可依</h2><div class="story-grid"><div class="story-card"><h3>让 AI 理解整体</h3><p>Product Vision：用户描述需求后走什么路径。<br><br>Core Architecture：Hub、4 个功能 Agent、业务 Agent 和 Registry 如何分工。</p></div><div class="story-card"><h3>让 AI 按约定实现</h3><p>Interaction / Routing Rules：谁与用户沟通，什么时候检索、编排或执行。<br><br>Definition Standard：文件类型、字段、长度和返回格式。</p></div></div><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>先阅读 agent hub/README.md，理解项目目标、角色分工和文件规范。先说明准备新增或修改哪些文件，再按现有结构实现。</p></div><p class="detail-path">位置：agent hub/README.md</p></div><aside class="talk-cue"><b>讲述提示 · 9/24</b><br>设计清楚之后，用 README 保存共同约定；每轮明确让 AI 先读。</aside></section>
+.chart-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;margin-top:16px}.chart-svg{width:100%;height:390px;display:block}.chart-copy h3{color:var(--blue);font-size:22px;margin-bottom:18px}.chart-copy p{margin-bottom:16px;font-size:16px;line-height:1.38}.chart-copy .metric{display:block;font-size:46px;color:var(--blue);font-weight:700;line-height:1.1;margin-bottom:8px}.chart-svg text{font-family:Verdana,Arial,sans-serif}.chart-wide{width:100%;height:360px;display:block}.chart-wide text{font-family:Verdana,Arial,sans-serif}
 
-<section class="slide" data-section="02 · README"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>README 也记录“为什么这样做”和“还有什么没定”</h2><div class="story-grid"><div class="story-card"><h3>Decision Log · 已确定</h3><p>记录决策、理由和状态。例如：Hub 是唯一用户入口；定义使用 TXT；Registry 作为统一索引。</p></div><div class="story-card"><h3>Open Questions · 待确定</h3><p>把未定事项单独记录。例如执行运行环境仍为 Open，避免 AI 自行当作已有结论。</p></div></div><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>这次确定的规则请同步写入 README 的 Decision Log；尚未确定的配置写入 Open Questions。后续生成文件时遵循已经接受的决策。</p></div><p class="detail-path">位置：README.md → Decision Log / Open Questions / Initial Implementation Plan</p></div><aside class="talk-cue"><b>讲述提示 · 10/24</b><br>左侧是接受的决策，右侧是未定事项；避免把猜测变成要求。</aside></section>
+.decision-root{width:max-content;max-width:100%;margin:24px auto 0;padding:16px 28px;background:#fff;border:1px solid #9fc9e6;text-align:center}
+.decision-split{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:40px}.decision-split:before{content:"";position:absolute;top:-24px;left:25%;right:25%;height:22px;border-top:2px solid #9fc9e6;border-left:2px solid #9fc9e6;border-right:2px solid #9fc9e6}.decision-root:after{content:"";display:block;position:absolute;left:50%;height:16px;border-left:2px solid #9fc9e6;margin-top:16px}
+.decision-branch{padding:22px;background:#edf7fe;border-top:4px solid #0067b1;line-height:1.45}.decision-branch.open{background:#fff9e6;border-color:#d39b00}.decision-branch b{display:block;margin-bottom:14px;color:#0067b1}.decision-branch.open b{color:#8a6500}
+.rule-layers{display:grid;gap:12px;margin-top:24px}.rule-layer{display:grid;grid-template-columns:44px 200px 1fr;gap:20px;align-items:center;padding:18px 20px;border:1px solid #d9dde0;border-left:4px solid #0067b1;background:#fff}.rule-layer:nth-child(2){margin-left:28px}.rule-layer:nth-child(3){margin-left:56px}.rule-layer:nth-child(4){margin-left:84px}.rule-number{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#edf7fe;color:#0067b1}.rule-layer b{color:#0067b1}
+.validation-track{display:grid;grid-template-columns:1fr 30px 1fr 30px 1fr;gap:12px;align-items:stretch;margin-top:36px}.validation-step{padding:22px 18px;background:#fff;border:1px solid #d9dde0;border-top:4px solid #0067b1}.validation-step b{display:block;color:#0067b1;margin-bottom:18px}.validation-step.pending{border-top-color:#d39b00;background:#fff9e6}.validation-step.pending b{color:#8a6500}.validation-arrow{align-self:center;text-align:center;color:#697177}.validation-badge{display:inline-block;border:1px solid currentColor;padding:5px 8px;margin-top:22px;color:#697177}
+/* Body typography: all presentation content is 16px; cover and footnotes are separate. */
+.slide:not([data-section="Opening"]) .content,.slide:not([data-section="Opening"]) .content *{font-size:16px!important}
+.slide:not([data-section="Opening"]) .content .source-label,.slide:not([data-section="Opening"]) .content .source-label *,.slide:not([data-section="Opening"]) .content .story-note,.slide:not([data-section="Opening"]) .content .story-note *{font-size:12px!important}
 
-<section class="slide" data-section="03 · FILE STRUCTURE"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>告诉 AI：每类内容具体存在哪里</h2><div class="file-map"><div class="file-tile wide"><b>agent hub/ · 项目工作区</b>把设计、具体定义、能力目录和验证事项分别保存。</div><div class="file-tile"><b>README.md</b>项目目标、角色、流程、格式与决策</div><div class="file-tile"><b>Agent-Hub.txt</b>主 Agent 的入口判断与交互指令</div><div class="file-tile"><b>functional-agents/</b>寻找、规划、执行与缺口分析的定义</div><div class="file-tile"><b>business-subagents/</b>目录 README 保存细则；各 TXT 保存业务能力</div><div class="file-tile"><b>Agent-Registry.txt</b>发现能力所需的名称、分类、标签和状态</div><div class="file-tile"><b>TODO.md / submission-materials/</b>待办、测试输入、通过标准与记录</div></div></div><aside class="talk-cue"><b>讲述提示 · 11/24</b><br>按目标与规则、指令与能力、待办与验证三组介绍文件。</aside></section>
+/* Card headings are 18px. Diagram labels remain 16px. */
+.slide:not([data-section="Opening"]) .content .story-card h3,
+.slide:not([data-section="Opening"]) .content .story-step>b,
+.slide:not([data-section="Opening"]) .content .visual-box>strong,
+.slide:not([data-section="Opening"]) .content .present-card>strong,
+.slide:not([data-section="Opening"]) .content .present-node>b,
+.slide:not([data-section="Opening"]) .content .file-tile>b,
+.slide:not([data-section="Opening"]) .content .decision-branch>b,
+.slide:not([data-section="Opening"]) .content .rule-layer>b,
+.slide:not([data-section="Opening"]) .content .validation-step>b,
+.slide:not([data-section="Opening"]) .content .source-rule>b,
+.slide:not([data-section="Opening"]) .content .evidence-slot>b,
+.slide:not([data-section="Opening"]) .content .shot>b{font-size:18px!important}
+.slide:not([data-section="Opening"]) .content svg text{font-size:16px!important}
 
-<section class="slide" data-section="04 · FORMAT"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>“我的格式放在哪里？”——先给 AI 一份可引用的规范</h2><table class="story-table"><tr><th>位置</th><th>规定什么</th></tr><tr><td>README.md → Plain Text Agent Definition Standard</td><td>Name / Description / Instruction；文件类型、长度限制和模板</td></tr><tr><td>business-subagents/README.md</td><td>中英文名称、缺输入行为、元数据一致性、业务 Agent 返回规则</td></tr><tr><td>具体 Agent 的 TXT → Return format</td><td>这个 Agent 的结构化返回字段与状态</td></tr><tr><td>README.md → User-Facing Output Style</td><td>Hub 向用户展示的推荐表、工作流表及简短解释</td></tr></table><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>新增 Agent 前先阅读通用规范和 business-subagents/README.md，再参考同类 TXT 的写法。缺少的任务细节先指出，不自行补成已确定的要求。</p></div></div><aside class="talk-cue"><b>讲述提示 · 12/24</b><br>区分四个规范位置：通用规范、业务细则、内部返回、用户展示。</aside></section>
+/* Consistent 1280 × 720 composition, scaled as one unit to the viewport. */
+:root{--pad:48px}
+.stage{width:1280px;height:720px;min-width:1280px;min-height:720px;aspect-ratio:16/9;transform-origin:center center}
+.slide{grid-template-rows:26px minmax(0,1fr);gap:16px;padding:28px 48px 66px}
+.slide .content{width:100%;height:100%;min-height:0;align-self:stretch;transform:none;margin:0;display:flex;flex-direction:column;gap:18px}
+.slide .content>h2{flex:none;max-width:none;margin:0;padding-bottom:14px;border-bottom:1px solid var(--line);font-weight:700;line-height:1.4}
+.slide .content>p{margin:0}
+.slide .content>.story-note,.slide .content>.source-label{margin:0;flex:none;line-height:1.4}
+.slide .content>.source-label:last-child{margin-top:auto;padding-top:4px}
+.slide .content>.story-grid,.slide .content>.present-grid,.slide .content>.file-map{margin:0;gap:24px;align-items:stretch}
+.slide .content>.story-flow,.slide .content>.present-flow{margin:12px 0;gap:14px}
+.story-step,.present-node{padding:22px 20px;min-height:180px}
+.present-node>b,.story-step>b{margin-bottom:16px}
+.present-card,.story-card{padding:26px;min-height:200px}
+.present-card strong,.story-card h3{margin-bottom:18px;line-height:1.4}
+.present-band,.detail-prompt{margin:0;padding:16px 20px;line-height:1.45}
+.detail-prompt>b{margin-bottom:10px}
+.workflow-explain,.chart-layout,.evidence-layout{margin:0;gap:32px;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);align-items:center;min-height:0}
+.workflow-map,.chart-svg{height:430px;width:100%;min-width:0}
+.workflow-notes{padding:0 0 0 24px;border-left:1px solid var(--line)}
+.workflow-notes h3,.chart-copy h3{margin-bottom:18px;line-height:1.4}
+.workflow-notes p,.chart-copy p{margin-bottom:16px;line-height:1.45}
+.workflow-file{margin-top:20px;padding:14px 16px}
+.chart-copy{padding:0 0 0 24px;border-left:1px solid var(--line)}
+.chart-copy .present-band{margin-top:18px}
+.chart-wide{height:380px;flex:none;margin-top:0}
+.visual-stack{gap:14px;margin:0}
+.visual-row{grid-template-columns:minmax(0,1fr) 32px minmax(0,1fr);gap:14px;align-items:stretch}
+.visual-link{align-self:center}
+.visual-box{padding:16px 18px;line-height:1.45;display:flex;flex-direction:column;justify-content:center}
+.visual-box strong{display:block;margin-bottom:8px}
+.structure-reason .visual-stack{gap:12px!important;margin:0!important}
+.structure-reason .visual-box{padding:12px 16px!important}
+.structure-reason .present-band{margin:0!important}
+.evidence-layout .source-tree{padding:22px;line-height:1.65;margin:0}
+.evidence-layout .present-lead{margin:0 0 20px}
+.source-rule{padding:18px 20px;margin-bottom:18px}
+.evidence-slot{min-height:390px;gap:22px;padding:28px}
+.evidence-slot img{max-height:330px}
+.rule-layers{margin:0;gap:14px}
+.rule-layer{grid-template-columns:44px 200px minmax(0,1fr);padding:18px 20px}
+.file-preview{margin:0;box-shadow:6px 6px 0 var(--blue-soft)}
+.file-preview .file-section{grid-template-columns:210px minmax(0,1fr);padding:24px;gap:28px}
+.decision-root{margin:12px auto 0;padding:18px 28px}
+.decision-split{margin-top:38px;gap:40px}
+.decision-branch{padding:24px;line-height:1.45}
+.validation-track{margin:24px 0;gap:14px;grid-template-columns:1fr 24px 1fr 24px 1fr}
+.validation-step{padding:26px 22px;min-height:280px}
+.validation-badge{margin-top:24px}
+.deck-logo{left:22px;bottom:10px}.logo-caption{left:98px;bottom:20px}
+.counter{bottom:28px}.nav{bottom:18px}
+.slide[data-section="Opening"]{padding:42px 56px 74px}
+.slide[data-section="Opening"] .content{justify-content:center;gap:0}
+.slide[data-section="Opening"] h1{max-width:1100px}
+.slide[data-section="Opening"] .opening-subtitle{max-width:1050px}
+.conclusion-slide .content{justify-content:center;align-items:center}
+@media print{
+.stage{transform:none!important;min-width:0;min-height:0}
+.slide .content{height:auto}
+}
 
-<section class="slide" data-section="04 · FORMAT"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>一个 Agent 文件，最外层固定三部分</h2><div class="story-grid"><div><pre class="detail-code"># English Name
+/* Diagram labels and source-tree previews use a smaller, consistent scale. */
+.slide:not([data-section="Opening"]) .content svg text,
+.slide:not([data-section="Opening"]) .content svg text tspan{font-size:14px!important}
+.slide:not([data-section="Opening"]) .content .source-tree{font-family:Menlo,Consolas,monospace;font-size:14px!important;font-weight:400;line-height:1.85;white-space:pre;padding:22px 24px;overflow-wrap:normal}
+.workflow-explain,.chart-layout{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:36px}
+.workflow-map,.chart-svg{height:400px}
+.workflow-notes,.chart-copy{padding-left:26px}
+.evidence-layout{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:36px}
+.evidence-layout .source-tree{box-shadow:none;border-left:3px solid var(--blue)}
+.evidence-layout .present-lead{margin:0 0 18px}
+.chart-wide{height:360px}
 
-英文名称：English Name
-中文名称：中文名称
+/* Card headings: same size as body, distinguished by weight. */
+.slide:not([data-section="Opening"]) .content .story-card h3,
+.slide:not([data-section="Opening"]) .content .story-step>b,
+.slide:not([data-section="Opening"]) .content .visual-box>strong,
+.slide:not([data-section="Opening"]) .content .present-card>strong,
+.slide:not([data-section="Opening"]) .content .present-node>b,
+.slide:not([data-section="Opening"]) .content .file-tile>b,
+.slide:not([data-section="Opening"]) .content .decision-branch>b,
+.slide:not([data-section="Opening"]) .content .rule-layer>b,
+.slide:not([data-section="Opening"]) .content .validation-step>b,
+.slide:not([data-section="Opening"]) .content .source-rule>b,
+.slide:not([data-section="Opening"]) .content .evidence-slot>b,
+.slide:not([data-section="Opening"]) .content .shot>b{font-size:16px!important;font-weight:700}
 
-## Description
-核心能力、适用场景、主要输出或边界。
+/* Center the fixed design canvas independently of its unscaled layout size. */
+@media screen{
+ .deck{display:block}
+ .stage{position:absolute;left:50%;top:50%;margin:0;transform-origin:center center}
+}
+@media print{
+ .stage{position:static;left:auto;top:auto;transform:none!important}
+}
 
-## Instruction
-职责、输入、执行规则、输出与限制。</pre></div><div class="story-card"><h3>把要求写成可检查的条件</h3><p>Description：简洁英文段落，最多 800 字符。<br><br>整个 TXT：少于 8000 字符。<br><br>业务 Agent：包含中英文名称。<br><br>使用 UTF-8 纯文本，便于手动配置时复制。</p></div></div><p class="story-note">以上是本项目的格式约定；具体说明和代码块仍可保留在 TXT 文本中。</p></div><aside class="talk-cue"><b>讲述提示 · 13/24</b><br>沿 Name、Description、Instruction 三段讲；这是本项目约定。</aside></section>
+.compact-two{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.compact-file{background:#fff;border:1px solid var(--line);padding:22px}
+.compact-file header{color:var(--blue);font-weight:700;margin-bottom:20px}
+.compact-row{padding:14px 0;border-bottom:1px solid var(--line);line-height:1.45}.compact-row b{display:block;color:var(--blue);margin-bottom:8px}
+.compact-flow{display:grid;gap:12px}.compact-flow>div{padding:16px 18px;background:var(--blue-soft);border-left:3px solid var(--blue);line-height:1.45}.compact-flow b{display:block;margin-bottom:8px}
+.compact-chip{display:inline-block;padding:8px 12px;background:var(--blue-soft);color:var(--blue);margin:0 8px 10px 0}
 
-<section class="slide" data-section="05 · INSTRUCTION"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>Instruction：从“你是谁”写到“你该怎么做”</h2><div class="story-grid three"><div class="story-card"><h3>触发与输入</h3><p>什么时候使用？必须提供什么材料？缺少输入时返回 needs_clarification，列出最少必需字段。</p></div><div class="story-card"><h3>执行与边界</h3><p>按什么步骤处理？依据哪些材料？哪些动作超出职责？结果交给谁？</p></div><div class="story-card"><h3>输出与失败</h3><p>需要返回哪些结果字段？如何表示完成、澄清和失败？怎样保留来源及未解决事项？</p></div></div><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>请完善 Document Version Comparison Agent：要求两版可读文本和明确的新旧顺序；输出带位置引用的差异。缺少必需输入时返回澄清状态，不推断版本顺序，也不修改原文。</p></div><p class="detail-path">真实文件：business-subagents/Document-Version-Comparison-Agent.txt</p></div><aside class="talk-cue"><b>讲述提示 · 14/24</b><br>用“缺了两版文本怎么办”说明输入、边界和状态必须具体。</aside></section>
+.wide-diagram{display:block;width:100%;height:410px}.wide-diagram text{font-family:Verdana,Arial,sans-serif}
+.diff-layout{display:grid;grid-template-columns:1fr 1fr;gap:28px}.diff-pane{background:#fff;border:1px solid var(--line);min-width:0}.diff-pane header{padding:14px 18px;background:#f4f6f7;font-weight:700}.diff-line{display:grid;grid-template-columns:24px 1fr;gap:10px;padding:14px 18px;line-height:1.5;min-height:88px}.diff-line.removed{background:#fff9e6;border-left:3px solid #d39b00}.diff-line.added{background:#eef7f1;border-left:3px solid #19734b}.diff-symbol{font-weight:700}.diff-pane .diff-caption{padding:14px 18px;color:var(--muted);line-height:1.45}
 
-<section class="slide" data-section="05 · INSTRUCTION"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>真实例子：让差异比较结果能交给下一个 Agent</h2><pre class="detail-code">{
-  &quot;status&quot;: &quot;completed | needs_clarification | failed&quot;,
-  &quot;assumptions&quot;: [],
-  &quot;missing_fields&quot;: [],
-  &quot;versions&quot;: {&quot;a&quot;: &quot;&quot;, &quot;b&quot;: &quot;&quot;, &quot;direction&quot;: &quot;a_to_b | b_to_a | neutral&quot;},
-  &quot;coverage&quot;: &quot;&quot;,
-  &quot;changes&quot;: [{&quot;observed_change&quot;: &quot;&quot;, &quot;possible_implication&quot;: null}],
-  &quot;unresolved_questions&quot;: []
-}</pre><p class="story-note">节选自 Document Version Comparison Agent 的 Return format，已省略部分字段。</p><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>观察到的文本变化放在 observed_change，可能影响放在 possible_implication；不要混在一起。保留版本、覆盖范围与未解决问题，供后续影响分析使用。</p></div></div><aside class="talk-cue"><b>讲述提示 · 15/24</b><br>挑 status、missing_fields、observed_change 与 possible_implication 四个字段讲。</aside></section>
+.trace-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:12px}.trace-step{position:relative;padding:18px 16px;border:1px solid var(--line);background:#fff;line-height:1.45}.trace-step:not(:last-child):after{content:"→";position:absolute;right:-16px;top:50%;color:#697177}.trace-step b{display:block;color:var(--blue);margin-bottom:16px}.trace-step:first-child{border-top:4px solid #d39b00;background:#fff9e6}.trace-step:last-child{border-top:4px solid #19734b;background:#eef7f1}
+.prompt-template{display:grid;grid-template-columns:180px minmax(0,1fr);gap:0;background:#fff;border:1px solid var(--line)}.prompt-template dt,.prompt-template dd{margin:0;padding:16px 20px;border-bottom:1px solid var(--line);line-height:1.4}.prompt-template dt{color:var(--blue);font-weight:700;background:var(--blue-soft)}.prompt-template dd:last-child,.prompt-template dt:nth-last-child(2){border-bottom:0}
 
-<section class="slide" data-section="06 · REGISTRY"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>文件写好了，还要让其他 Agent 找得到它</h2><div class="story-grid"><div class="story-card"><h3>定义文件：能力怎么执行</h3><p>各 Agent 的 TXT 保存职责、输入要求、处理规则和返回格式。</p></div><div class="story-card"><h3>Registry：能力怎么发现</h3><p>Agent-Registry.txt 保存名称、分类、标签、描述、能力、限制、权限和状态。</p></div></div><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>新增业务 Agent 后，请同步 Agent-Registry.txt。核对名称、描述、分类、标签、权限和状态与定义一致，并检查目录计数及引用。不要只生成一个孤立的 TXT 文件。</p></div><p class="story-note">本项目以 Registry 作为分类、计数和推荐元数据的统一来源。Active 表示定义可发现，运行可用性需要另行验证。</p></div><aside class="talk-cue"><b>讲述提示 · 16/24</b><br>TXT 说明能力怎么做，Registry 说明能力怎么被发现，修改时需同步。</aside></section>
+/* Diagram text restored to 16px, source-tree previews stay at 14px. */
+.slide:not([data-section="Opening"]) .content svg text,
+.slide:not([data-section="Opening"]) .content svg text tspan{font-size:16px!important}
 
-<section class="slide" data-section="10 · WORKING WITH AI"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content"><h2>流程怎么补漏：用一个追问发现缺失的分支</h2><div class="workflow-explain"><svg class="workflow-map" viewBox="0 0 520 390" role="img" aria-label="从简化主线到补充指定 Agent 核验分支"><text x="30" y="28" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#697177">简化主线 · 讲解示例</text><rect x="30" y="44" width="460" height="50" rx="6" fill="white" stroke="#d9dde0"/><text x="260" y="75" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">用户需求 → Finder 推荐 → 确认执行</text><path d="M260 102V136M254 129L260 136L266 129" fill="none" stroke="#697177"/><rect x="18" y="150" width="484" height="218" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4"/><text x="260" y="182" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#0067b1">补充：用户已经指定 Agent 怎么办？</text><rect x="100" y="204" width="320" height="44" rx="6" fill="white" stroke="#9fc9e6"/><text x="260" y="232" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">先核验：存在、适配、可运行</text><path d="M260 248L140 285M260 248L380 285" fill="none" stroke="#697177"/><rect x="40" y="286" width="205" height="56" rx="6" fill="white" stroke="#9fc9e6"/><rect x="275" y="286" width="205" height="56" rx="6" fill="white" stroke="#9fc9e6"/><text x="142" y="311" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">有效 → 确认执行</text><text x="378" y="311" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16">无效 → Finder 替代</text></svg><div class="workflow-notes"><h3>把追问变成一条明确规则</h3><p><b>发现问题：</b><br>“如果用户已经说了 Agent 名字，还需要重新推荐吗？选错了又怎么办？”</p><p><b>给 AI 的反馈 · 示例：</b><br>补充指定 Agent 的核验分支；有效时跳过推荐，无效时说明原因并推荐替代，执行前仍需确认。</p><div class="workflow-file">落实到：README → Subagent Selection Rules<br>以及 Agent-Hub.txt 的对应路由规则。</div></div></div><p class="story-note">前后对比为依据现有规则构造的讲解示例；真实修改顺序和原始反馈可用历史对话替换。</p></div><aside class="talk-cue"><b>讲述提示 · 17/24</b><br>这是补漏讲解示例，非历史第一版；用指定 Agent 的追问补充分支。</aside></section>
+.merge-layout{display:grid;grid-template-columns:minmax(0,1fr) 32px minmax(0,1.2fr);gap:20px;align-items:center}.merge-stack{display:grid;gap:14px}.merge-block{padding:18px 20px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);line-height:1.45}.merge-block b{display:block;margin-bottom:10px;color:var(--blue)}.merge-link{text-align:center;color:var(--blue)}.merge-checks{display:grid;grid-template-columns:1fr 1fr;gap:22px}.merge-check{padding:16px 20px;border:1px solid var(--line);background:#fff;line-height:1.45}.merge-check b{display:block;color:var(--blue);margin-bottom:8px}
 
-<section class="slide" data-section="10 · WORKING WITH AI"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content"><h2>怎么检查流程：用用户提问走一遍规则</h2><table class="story-table"><tr><th>拿什么问题检查</th><th>沿流程核对什么</th><th>发现偏差后怎么反馈</th></tr><tr><td>“你有哪些 Agent？”</td><td>是否只返回概览，未进入业务执行？</td><td>补充浏览与执行的意图区分</td></tr><tr><td>“用这个 Agent 处理，材料稍后补。”</td><td>是否核验能力，并在缺必需输入时等待？</td><td>列出缺失字段和暂停条件</td></tr><tr><td>“比较、分析影响，再写简报。”</td><td>步骤间是否有明确输入输出和依赖？</td><td>指出交接缺口，补齐蓝图字段</td></tr><tr><td>“第二步失败了，再试一次。”</td><td>是否保留已完成结果，并核查重复执行？</td><td>补充部分失败与重试范围规则</td></tr></table><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>用这几条用户输入逐步推演现有流程，列出每步命中的规则、下一步和停止条件。找出缺失或冲突，只针对这些位置提出修改，并同步检查 README 与 TXT。</p></div><p class="story-note">规则推演检查设计是否自洽；平台调用与结果正确性还需运行记录和产物验证。以上不是已执行的测试结果。</p></div><aside class="talk-cue"><b>讲述提示 · 18/24</b><br>选两条问题推演，指出命中的规则、下一步与停止条件。</aside></section>
+/* Content spacing and indentation reflect information hierarchy. */
+.content-list{margin:0;padding-left:20px;list-style:disc}
+.content-list li{padding-left:3px;margin:7px 0;line-height:1.45}
+.content-list li:first-child{margin-top:0}
+.content-list li:last-child{margin-bottom:0}
+.compact-row .content-list{margin-top:10px}
+.compact-row .content-list b{display:inline;margin:0 8px 0 0}
+.nested-detail{padding-left:14px;margin-top:12px;border-left:2px solid var(--line);line-height:1.45}
+.workflow-notes p>b{display:inline-block;margin-bottom:6px}
+.source-rule b,.merge-block b{line-height:1.4}
+.prompt-template dd{padding-left:26px}
+.conclusion-statement{display:grid;gap:20px;line-height:1.6!important}
 
-<section class="slide" data-section="08 · ITERATION"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content"><h2>修改需求时，告诉 AI 同步改哪些地方</h2><div class="story-quote">例如：“业务 Agent 的 Description 统一为一段简洁英文，保留能力、触发条件与必要限制。”</div><div class="story-flow"><div class="story-step"><b>先改规范</b>根 README<br>业务目录 README</div><div class="story-arrow">→</div><div class="story-step"><b>再改定义</b>对应 Agent TXT<br>保留任务边界</div><div class="story-arrow">→</div><div class="story-step"><b>同步索引</b>Registry 描述<br>名称、状态和分类</div><div class="story-arrow">→</div><div class="story-step"><b>检查结果</b>长度与字段<br>引用和计数</div></div><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>按这个新规范更新业务 Agent，并同步两份 README 与 Registry 中对应的描述。完成后列出修改范围和检查结果；无法确认的条目单独说明。</p></div></div><aside class="talk-cue"><b>讲述提示 · 19/24</b><br>按规范、定义、Registry、检查顺序说明一次修改影响哪些文件。</aside></section>
+.evolution-snapshot{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;align-items:stretch;margin:20px 0 4px}
+.evolution-stop{position:relative;min-width:0;background:#fff;border:1px solid var(--line);border-top:4px solid #0067b1;padding:20px 14px;min-height:230px;display:flex;flex-direction:column;gap:18px;line-height:1.45}
+.evolution-stop:not(:last-child):after{content:"→";position:absolute;right:-17px;top:48%;color:#697177;z-index:2}
+.evolution-stop b{font-weight:700;color:#0067b1;min-height:46px;display:flex;align-items:center}
+.evolution-stop .step-no{color:var(--muted);font-variant-numeric:tabular-nums}
+.evolution-stop:last-child{background:#eef7f1;border-top-color:#19734b}
+.evolution-stop:last-child b{color:#19734b}
+.evolution-bands{display:grid;grid-template-columns:2fr 2fr 2fr;gap:18px}
+.evolution-bands div{border-top:1px solid var(--line);padding-top:12px;color:var(--muted);line-height:1.45;text-align:center}
 
-<section class="slide" data-section="08 · ITERATION"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content"><h2>把笼统的修改要求变成可以验收的任务</h2><table class="story-table"><tr><th>希望解决的问题</th><th>可以给 AI 的具体要求</th></tr><tr><td>描述太长、不统一</td><td>一段英文，包含能力和触发条件，800 字符以内，保留重要限制</td></tr><tr><td>Agent 职责重复</td><td>比较输入、输出、触发条件和边界，列出重叠证据，再提出合并或保留建议</td></tr><tr><td>文件之间对不上</td><td>核对 TXT 与 Registry 的名称、分类、权限、状态及描述，并检查引用</td></tr><tr><td>AI 声称已经完成</td><td>列出实际修改文件、检查项及未完成项；区分定义完成与运行通过</td></tr></table><p class="story-note">TODO.md 已记录去重、缺输入状态、返回字段和运行验收等修正与待办，可作为迭代实例。</p></div><aside class="talk-cue"><b>讲述提示 · 20/24</b><br>把“优化一下”改成可检查的长度、字段、边界和一致性要求。</aside></section>
+.artifact-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}.artifact-card{background:#fff;border:1px solid var(--line);min-width:0}.artifact-card header{padding:14px 18px;font-weight:700;color:var(--blue);border-bottom:1px solid var(--line)}.artifact-card img{display:block;width:100%;height:auto}.artifact-caption{padding:12px 18px;line-height:1.45;color:var(--muted)}
+.original-flow{width:100%;height:390px;object-fit:contain;background:#fff;border:1px solid var(--line)}.return-step{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);line-height:1.45}.return-step b{color:var(--blue)}
 
-<section class="slide" data-section="09 · VALIDATION"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content"><h2>最后一步：把待验证事项写下来，交给下一轮</h2><div class="story-grid"><div class="story-card"><h3>TODO.md：维护进度</h3><p>记录定义整理、Registry 一致性、平台配置、功能验收及完成标准；让后续任务有明确起点。</p></div><div class="story-card"><h3>测试材料：明确怎么验收</h3><p>在 submission-materials/02-测试场景.md 保存输入、操作步骤、预期结果、通过标准和实测记录。</p></div></div><div class="detail-prompt"><b>可以这样和 AI 说 · 示例</b><p>请基于现有 Agent 定义编写一个标准场景和一个输入变化场景，列出通过标准。未实际执行的项目标记待验证，并更新 TODO，不填写虚构的运行记录。</p></div><p class="story-note">文件层面的完整与一致，是平台调用及结果验证的基础。两部分进度分别记录。</p></div><aside class="talk-cue"><b>讲述提示 · 21/24</b><br>待办追踪进度，测试材料约定验收；文本推演与运行证据分别记录。</aside></section>
+.snapshot-route{display:block;width:100%;height:400px;flex:none}
+.slide[data-section="01 · EVOLUTION SNAPSHOT"] .content{gap:16px}
+.slide[data-section="01 · EVOLUTION SNAPSHOT"] .present-band{padding:13px 18px}
 
-<section class="slide" data-section="10 · WORKING WITH AI"><div class="topline"><span class="section">06 · COLLABORATION</span><span class="num"></span></div><div class="content"><h2>我们和 AI 怎样分工：决定、展开、审核与沉淀</h2><div class="story-grid"><div class="story-card"><h3>我来确定与审核</h3><p>确定要解决的问题、目标用户和预期结果。<br><br>决定角色分工、关键边界，以及哪些方案接受或调整。<br><br>审核流程是否符合业务意图，核对真实结果。</p></div><div class="story-card"><h3>让 AI 帮忙展开与实现</h3><p>枚举可能的用户问法，提出遗漏分支和澄清问题。<br><br>按约定整理流程、编写指令、同步定义与索引。<br><br>检查规则冲突与文件一致性，报告未完成事项。</p></div></div><div class="story-flow"><div class="story-step"><b>提出目标</b>说清想完成什么</div><div class="story-arrow">→</div><div class="story-step"><b>AI 展开方案</b>流程、分支与文件</div><div class="story-arrow">→</div><div class="story-step"><b>审核并反馈</b>指出具体偏差</div><div class="story-arrow">→</div><div class="story-step"><b>写回项目</b>规范、指令与待办</div></div><p class="story-note">这是结合现有项目整理的协作方法。实际分享时可配一段真实对话，说明自己做出了哪个关键判断。</p></div><aside class="talk-cue"><b>讲述提示 · 22/24</b><br>指左侧人的判断、右侧 AI 的展开，再沿循环说明反馈如何写回文件。</aside></section>
+.endtoend-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:36px;align-items:start}
+.endtoend-preview{height:410px;background:white;border:1px solid var(--line);padding:12px;position:relative;cursor:zoom-in;width:100%;font:inherit}.endtoend-preview img{height:100%;width:100%;object-fit:contain}.endtoend-preview span{position:absolute;bottom:12px;left:18px;right:18px;background:#edf7fe;padding:9px;color:#0067b1}
+.endtoend-phases{display:grid;grid-template-columns:1fr 1fr;gap:16px}.endtoend-phases div{padding:18px;background:#fff;border-left:3px solid #0067b1;line-height:1.45}.endtoend-phases b{display:block;margin-bottom:10px;color:#0067b1}
+.flow-dialog{width:94vw;max-width:1500px;height:92vh;max-height:92vh;padding:0;border:1px solid #9fc9e6;background:#f2f5f7}.flow-dialog::backdrop{background:#12212be0}.flow-toolbar{display:flex;gap:12px;align-items:center;padding:14px 18px;background:#fff;border-bottom:1px solid var(--line)}.flow-toolbar strong{margin-right:auto}.flow-toolbar button{padding:8px 12px;background:#edf7fe;border:1px solid #9fc9e6;cursor:pointer;font-size:16px}.flow-viewport{height:calc(100% - 68px);overflow:auto;padding:24px;overscroll-behavior:contain}.flow-viewport img{display:block;max-width:none;width:1000px;height:auto;margin:0 auto;background:#fff}
+@media print{.flow-dialog{display:none!important}}
 
-<section class="slide" data-section="11 · SCREENSHOTS"><div class="topline"><span class="section">06 · COLLABORATION</span><span class="num"></span></div><div class="content"><h2>用一段真实对话串起：需求、设计、修改与结果</h2><div class="story-grid"><div class="shot"><b>截图 01 · README 与格式规范</b><span>截取 Definition Standard 和业务目录 README；<br>展示规则写在哪里、如何引用。</span></div><div class="shot"><b>截图 02 · 一次沟通与文件修改</b><span>一段真实修改请求 + 对应 TXT 或 diff；<br>展示 AI 如何把要求落到文件。</span></div></div><p class="story-note">可选补充：文件树与 Registry；TODO 的修改记录。截图要求见「分享准备.md」。</p></div><aside class="talk-cue"><b>讲述提示 · 23/24</b><br>素材待补：拿一次真实需求、AI 回应和文件修改，展示完整协作过程。</aside></section>
+.role-page .chart-layout{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:36px;align-items:center}
+.role-page .chart-svg{height:415px}
+.role-notes{display:grid;gap:18px;padding-left:22px;border-left:1px solid var(--line)}
+.role-notes>div{padding-bottom:16px;border-bottom:1px solid var(--line)}
+.slide:not([data-section="Opening"]) .content .role-notes b{display:block;font-size:14px!important;font-weight:700;color:var(--blue);margin-bottom:9px}
+.slide:not([data-section="Opening"]) .content .role-notes p{font-size:14px!important;line-height:1.55;margin:0}
+.slide:not([data-section="Opening"]) .content .role-notes small{font-size:12px!important;line-height:1.45;color:var(--muted)}
+.history-examples{display:grid;grid-template-columns:1fr 1fr;gap:26px}.history-example{border:1px solid var(--line);background:#fff;min-width:0}.history-example header{padding:14px 18px;font-weight:700;color:var(--blue);background:#edf7fe}.history-quote{padding:18px 20px;background:#fff9e6;border-left:3px solid #d39b00;line-height:1.5;min-height:108px}.history-response{padding:18px 20px;line-height:1.5}.history-response b{display:block;color:#19734b;margin-bottom:10px}
 
-<section class="slide conclusion-slide" data-section="Conclusion"><div class="topline"><span class="section">TAKEAWAY</span></div><div class="content"><div class="conclusion-statement">把想法写成<span class="blue">背景</span>，<br>把要求写成<span class="blue">规范</span>，<br>让 AI 按文件<span class="blue">实现与检查</span>。</div></div><aside class="talk-cue"><b>讲述提示 · 24/24</b><br>回扣背景、规范、实现与检查；真实案例与规则共同构成项目上下文。</aside></section>
-<img class="deck-logo" src="logo.png" alt="Logo"><div class="logo-caption">Research and Development China R&amp;D Centre</div><div class="counter" id="counter"></div><div class="nav"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></div><div class="progress" id="progress"></div> </div></main> <script> const slides=[...document.querySelectorAll('.slide')]; let current=0; const counter=document.getElementById('counter'),progress=document.getElementById('progress'); function fragments(){ return [...slides[current].querySelectorAll('.reveal:not(.shown)')] .sort((a,b)=>Number(a.dataset.revealOrder||0)-Number(b.dataset.revealOrder||0)); } function render(next){ if(next<0 || next>=slides.length) return; slides[current].classList.remove('active'); current=next; slides[current].classList.add('active'); counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0'); progress.style.width=((current+1)/slides.length*100)+'%'; document.querySelectorAll('.reveal').forEach(el=>el.classList.remove('shown')); const firstFragments=[...slides[current].querySelectorAll('.reveal')]; if(!slides[current].classList.contains('manual-reveal')){ firstFragments.forEach((el,index)=>{ if(index===0) el.classList.add('shown'); }); } } function forward(){ const f=fragments(); if(f.length){ const group=f[0].dataset.revealGroup; if(group){ slides[current].querySelectorAll(`.reveal[data-reveal-group="${group}"]`).forEach(el=>el.classList.add('shown')); }else{ f[0].classList.add('shown'); } return; } render(current+1); } function back(){ render(current-1); } slides.forEach((slide,index)=>{ const num=slide.querySelector('.num'); if(num) num.textContent=String(index+1).padStart(2,'0'); }); slides[0]?.classList.add('active'); document.getElementById('next').onclick=forward; document.getElementById('prev').onclick=back; document.addEventListener('keydown',e=>{ if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); forward(); } if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); back(); } if(e.key.toLowerCase()==='f') document.documentElement.requestFullscreen?.(); if(e.key.toLowerCase()==='n') document.getElementById('stage').classList.toggle('show-notes'); }); render(0); </script> </body> </html>
+.workflow-overview .workflow-explain{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:46px;align-items:center}
+.workflow-overview .workflow-map{height:470px}
+.workflow-design-flow{display:flex;flex-direction:column;align-items:stretch;min-width:0}
+.workflow-design-node{background:#fff;border:1px solid #9fc9e6;border-left:4px solid #0067b1;padding:18px 20px;line-height:1.45}
+.workflow-design-node>b{display:block;font-weight:700;color:#0067b1;margin-bottom:10px}
+.workflow-design-node p{margin:0;line-height:1.45}
+.workflow-design-arrow{text-align:center;color:#0067b1;padding:7px 0}
+.workflow-design-flow .workflow-file{margin-top:18px;font-size:16px;padding:14px 18px}
+
+/* Slide 4 has explicit, independent sizes on the two sides. */
+.slide .role-page svg.chart-svg text,.slide .role-page svg.chart-svg text tspan{font-size:16px!important}
+.slide .role-page .role-notes b,.slide .role-page .role-notes p{font-size:14px!important}
+
+/* Correct left/right typography on slides 4 and 5. */
+.slide:not([data-section="Opening"]) .content.role-page svg text,
+.slide:not([data-section="Opening"]) .content.role-page svg text tspan,
+.slide:not([data-section="Opening"]) .content.workflow-overview svg text,
+.slide:not([data-section="Opening"]) .content.workflow-overview svg text tspan{font-size:14px!important}
+.slide:not([data-section="Opening"]) .content.role-page .role-notes b,
+.slide:not([data-section="Opening"]) .content.role-page .role-notes p,
+.slide:not([data-section="Opening"]) .content.workflow-overview .workflow-design-node b,
+.slide:not([data-section="Opening"]) .content.workflow-overview .workflow-design-node p{font-size:16px!important}
+/* Slide 9: taller complete-map overview and a vertical stage flow. */
+.endtoend-page .endtoend-layout{grid-template-columns:330px minmax(0,1fr);gap:44px;align-items:start}
+.endtoend-page .endtoend-preview{height:470px}
+.endtoend-page .vertical-phases{display:flex;flex-direction:column;gap:22px}
+.endtoend-page .vertical-phases>div{position:relative;padding:14px 20px;background:#fff;border:1px solid #9fc9e6;border-left:4px solid #0067b1;line-height:1.4}
+.endtoend-page .vertical-phases>div:not(:last-child):after{content:"↓";position:absolute;left:50%;bottom:-23px;transform:translateX(-50%);color:#0067b1}
+.endtoend-page .vertical-phases b{margin-bottom:7px;font-weight:700}
+.endtoend-reminder{margin-top:16px;padding:12px 16px;background:#edf7fe;border-left:3px solid #0067b1;line-height:1.4}
+
+/* One shared title-to-body gap for ordinary content cards. */
+:root{--card-heading-gap:12px}
+.visual-box>strong,.present-card>strong,.story-card>h3,.file-tile>b,.merge-block>b,.source-rule>b,.workflow-design-node>b{margin-bottom:var(--card-heading-gap)}
+.visual-box>strong{display:flex;align-items:center;gap:10px;line-height:1.4}
+.visual-box>strong .deck-icon{margin:0;width:24px;height:24px}
+.visual-box>.card-body{margin:0;line-height:1.45}
+
+/* Slide 5: show the diagram at native scale so labels display at 14px. */
+.workflow-overview .workflow-explain{align-items:center;gap:46px}
+.workflow-overview .workflow-map{width:454px;max-width:100%;height:370px;justify-self:center}
+.slide:not([data-section="Opening"]) .content.workflow-overview svg text,
+.slide:not([data-section="Opening"]) .content.workflow-overview svg text tspan{font-size:14px!important}
+
+.structure-with-registry{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:28px;align-items:center}
+.registry-summary{min-width:0;padding:18px;background:#fff;border:1px solid var(--line)}
+.registry-summary>b{display:block;color:#19734b;font-weight:700;margin-bottom:14px}
+.registry-mini{width:100%;height:auto;display:block}
+.registry-summary .source-label{margin-top:12px}
+.registry-merged .visual-row{grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr);gap:10px}
+.registry-merged .visual-box{padding:12px!important}
+.registry-merged .visual-box strong{margin-bottom:8px;line-height:1.4}
+.registry-merged .present-band{padding:12px 16px!important}
+
+.conclusion-slide .content.closing-summary{align-items:stretch;justify-content:center;gap:28px}
+.closing-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.closing-three>div{padding:26px 24px;background:#fff;border-top:3px solid #0067b1;line-height:1.5}
+.closing-three span{display:block;color:var(--muted);margin-bottom:20px}
+.closing-three b{display:block;color:#0067b1;font-weight:700;margin-bottom:12px}
+.closing-three p{margin:0;line-height:1.5}
+
+.closing-summary .closing-lines{display:grid;gap:10px;margin-top:4px;padding-top:22px;border-top:1px solid var(--line);text-align:center}
+.closing-summary .closing-lines p{margin:0;line-height:1.5}
+.conclusion-slide .content.closing-summary{gap:24px}
+
+.prompt-workshop{gap:16px!important}
+.workshop-request{display:flex;gap:24px;align-items:center;padding:14px 20px;background:#fff9e6;border-left:4px solid #d39b00;line-height:1.45}
+.workshop-request b{color:#8a6500;flex:none}
+.workshop-layout{display:grid;grid-template-columns:minmax(0,1.55fr) 30px minmax(0,1fr);gap:20px;align-items:center}
+.prompt-build{border:1px solid var(--line);background:#fff}
+.prompt-build header,.workshop-results header{padding:12px 16px;color:var(--blue);font-weight:700;background:#edf7fe;line-height:1.4}
+.prompt-build>div{display:grid;grid-template-columns:138px minmax(0,1fr);gap:16px;padding:13px 16px;border-bottom:1px solid var(--line);line-height:1.4}
+.prompt-build>div:last-child{border-bottom:0}.prompt-build b{color:var(--blue)}
+.prompt-build p,.workshop-results p{margin:0;line-height:1.4}
+.workshop-arrow{text-align:center;color:var(--blue)}
+.workshop-results{display:grid;gap:8px;text-align:center}
+.workshop-results header{background:transparent;padding-top:0}
+.workshop-results>div{padding:16px 18px;text-align:left;border:1px solid #bedac9;border-left:4px solid #19734b;background:#eef7f1}
+.workshop-results b{display:block;color:#19734b;margin-bottom:9px;font-weight:700}
+.workshop-results>span{color:#19734b}
+
+.slide[data-section="Opening"] .cover-hub-logo{display:block;width:280px;height:auto;max-width:40%;margin:0 0 24px;align-self:flex-start}
+.workshop-layout{grid-template-columns:minmax(0,1.75fr) 30px minmax(0,1fr)}
+
+.slide[data-section="Opening"] .cover-brand-title{display:flex;align-items:center;gap:16px;flex-wrap:nowrap;line-height:1.08}
+.slide[data-section="Opening"] .cover-brand-title>span{white-space:nowrap}
+.slide[data-section="Opening"] .cover-title-logo{display:block;width:290px;height:auto;flex:none}
+
+.communication-template-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr);gap:28px;align-items:start}
+.communication-elements{display:grid;gap:12px}
+.communication-elements>div{padding:14px 18px;background:#fff;border:1px solid var(--line);border-left:3px solid #0067b1}
+.communication-elements b{display:block;margin-bottom:8px;color:#0067b1;font-weight:700}
+.communication-elements p{margin:0;line-height:1.4}
+.complete-prompt{background:#fff9e6;border:1px solid #ead28a;min-width:0}
+.complete-prompt header{padding:14px 18px;color:#8a6500;font-weight:700;border-bottom:1px solid #ead28a}
+.complete-prompt-text{padding:16px 20px}
+.complete-prompt-text p{margin:0 0 13px;line-height:1.4}
+.complete-prompt-text p:last-child{margin-bottom:0}
+.complete-prompt-text b{color:#8a6500;font-weight:700}
+.reusable-template-page{gap:15px!important}
+.reusable-template-page .present-band{padding:12px 16px}
+
+/* Content-driven spacing: avoid empty areas under short questions and cards. */
+.history-quote{min-height:0;padding:16px 20px;line-height:1.45}
+.history-examples{align-items:start}
+.history-response{padding:16px 20px;line-height:1.45}
+.history-response b{margin-bottom:10px}
+.present-card,.story-card,.present-node,.story-step,.validation-step,.diff-line{min-height:0}
+.present-node,.story-step{padding:20px}
+.validation-step{padding:22px 20px}
+.content p:empty{display:none}
+
+/* Slide 20: slightly narrower example prompt column. */
+.communication-template-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:28px}
+
+/* Trim the rendered document images' bottom canvas, not their text. */
+.artifact-crop{width:100%;aspect-ratio:1120/550;overflow:hidden;background:#fff}
+.artifact-crop img{display:block;width:100%;height:auto}
+.artifact-card .artifact-caption{padding:10px 18px 14px}
+
+/* Semantic color audit: structure / request / design response / pending evidence. */
+:root{--request-ink:#8a6500;--request-bg:#fff9e6;--request-line:#d39b00;--response-ink:#19734b;--response-bg:#eef7f1;--pending-ink:#697177;--pending-bg:#f4f6f7}
+.project-case{--blue:#0067b1;--blue-soft:#edf7fe}
+.project-case .section{color:#0067b1}
+.project-case .visual-row>.visual-box:first-child{background:var(--request-bg);border-left-color:var(--request-line)}
+.project-case .visual-row>.visual-box:first-child strong{color:var(--request-ink)}
+.project-case .visual-row>.visual-box:last-child{background:var(--response-bg);border-left-color:var(--response-ink)}
+.project-case .visual-row>.visual-box:last-child strong{color:var(--response-ink)}
+.project-case .present-node{border-top-color:var(--response-ink)}
+.project-case .present-node>b{color:var(--response-ink)}
+.prompt-example{background:var(--request-bg);border-left-color:var(--request-line)}
+.prompt-example>b,.source-rule[style*="#fff9e6"]>b{color:var(--request-ink)}
+.validation-step.pending{background:var(--pending-bg);border-top-color:var(--pending-ink)}
+.validation-step.pending>b{color:var(--pending-ink)}
+.registry-summary>b{color:#0067b1}
+</style>
+  </head>
+  <body>
+    <main class="deck">
+      <div class="stage" id="stage">
+        <section class="slide active" data-section="Opening">
+          <div class="content">
+            <h1>Building Agent Hub <span class="blue">with AI</span></h1>
+            <p class="opening-subtitle">
+              From idea to files: communicating with AI, defining standards, and iterating
+            </p>
+            <div class="title-meta">
+              <div>
+                <span class="muted">Speaker:</span> <strong>xingyu you</strong>
+              </div>
+              <div>
+                <span class="muted">Date:</span> <strong>2026-10-20</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+<section class="slide" data-section="01 · EVOLUTION SNAPSHOT">
+  <div class="topline"><span class="section">01 · THE BIG PICTURE</span><span class="num"></span></div>
+  <div class="content">
+    <h2>From Chat to Agent Hub: the whole journey at a glance</h2>
+    <p>Follow one project from an initial conversation to reusable rules and coordinated agent roles.</p>
+<svg class="snapshot-route" viewBox="0 0 1160 390" role="img" aria-label="Six-stage roadmap from Chat through structured prompts, reusable instructions, workflows, and agents to Agent Hub"><title>From Chat to Agent Hub: a six-stage conceptual roadmap</title><defs><marker id="roadmap-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#9ba9b3"/></marker></defs><rect x="0" y="8" width="368" height="362" rx="18" fill="#fff9e6" stroke="#ead28a"/><text x="184.0" y="43" text-anchor="middle" fill="#151719" font-weight="700">01 · MAKE THE NEED EXPLICIT</text><text x="184.0" y="70" text-anchor="middle" fill="#697177">Conversation → Clear task</text><rect x="396" y="8" width="368" height="362" rx="18" fill="#edf7fe" stroke="#b8d8ec"/><text x="580.0" y="43" text-anchor="middle" fill="#151719" font-weight="700">02 · MAKE THE DESIGN REUSABLE</text><text x="580.0" y="70" text-anchor="middle" fill="#697177">Shared rules → Connected steps</text><rect x="792" y="8" width="368" height="362" rx="18" fill="#eef7f1" stroke="#bedac9"/><text x="976.0" y="43" text-anchor="middle" fill="#151719" font-weight="700">03 · CONNECT CAPABILITIES</text><text x="976.0" y="70" text-anchor="middle" fill="#697177">Bounded roles → Coordination</text><path d="M133 172H230" fill="none" stroke="#9ba9b3" stroke-width="2" marker-end="url(#roadmap-arrow)"/><path d="M329 172H430" fill="none" stroke="#9ba9b3" stroke-width="2" marker-end="url(#roadmap-arrow)"/><path d="M529 172H626" fill="none" stroke="#9ba9b3" stroke-width="2" marker-end="url(#roadmap-arrow)"/><path d="M725 172H826" fill="none" stroke="#9ba9b3" stroke-width="2" marker-end="url(#roadmap-arrow)"/><path d="M925 172H1022" fill="none" stroke="#9ba9b3" stroke-width="2" marker-end="url(#roadmap-arrow)"/><text x="86" y="116" text-anchor="middle" fill="#8a6500">01</text><circle cx="86" cy="172" r="43" fill="white" stroke="#8a6500" stroke-width="1.5"/><g transform="translate(86 172)" fill="none" stroke="#8a6500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-20-14h40v26H-5l-12 10v-10h-3z"/><path d="M-11-4h22M-11 4h14"/></g><text x="86" y="244" text-anchor="middle" fill="#8a6500" font-weight="700">Chat</text><text x="86" y="302" text-anchor="middle" fill="#151719">Explore the idea</text><text x="86" y="350" text-anchor="middle" fill="#697177">A conversation</text><text x="282" y="116" text-anchor="middle" fill="#8a6500">02</text><circle cx="282" cy="172" r="43" fill="white" stroke="#8a6500" stroke-width="1.5"/><g transform="translate(282 172)" fill="none" stroke="#8a6500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-17" y="-23" width="34" height="46" rx="4"/><path d="M-9-12h18M-9-2h18M-9 8h12"/><path d="m-10 17 3 3 6-6"/></g><text x="282" y="244" text-anchor="middle" fill="#8a6500" font-weight="700">Structured</text><text x="282" y="266" text-anchor="middle" fill="#8a6500" font-weight="700">Prompt</text><text x="282" y="302" text-anchor="middle" fill="#151719">Define the task</text><text x="282" y="350" text-anchor="middle" fill="#697177">A clear brief</text><text x="482" y="116" text-anchor="middle" fill="#0067b1">03</text><circle cx="482" cy="172" r="43" fill="white" stroke="#0067b1" stroke-width="1.5"/><g transform="translate(482 172)" fill="none" stroke="#0067b1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M-18-22H7l11 11v33h-36zM7-22v12h11"/><path d="M-9 0h18M-9 9h18"/><path d="m-6 17 6 4 6-4"/></g><text x="482" y="244" text-anchor="middle" fill="#0067b1" font-weight="700">Reusable</text><text x="482" y="266" text-anchor="middle" fill="#0067b1" font-weight="700">Instructions</text><text x="482" y="302" text-anchor="middle" fill="#151719">Capture shared rules</text><text x="482" y="350" text-anchor="middle" fill="#697177">README + Agent TXT</text><text x="678" y="116" text-anchor="middle" fill="#0067b1">04</text><circle cx="678" cy="172" r="43" fill="white" stroke="#0067b1" stroke-width="1.5"/><g transform="translate(678 172)" fill="none" stroke="#0067b1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-9" y="-24" width="18" height="12" rx="2"/><rect x="-25" y="13" width="18" height="12" rx="2"/><rect x="7" y="13" width="18" height="12" rx="2"/><path d="M0-12V0h-16v13M0 0h16v13"/></g><text x="678" y="244" text-anchor="middle" fill="#0067b1" font-weight="700">Workflow</text><text x="678" y="302" text-anchor="middle" fill="#151719">Define decisions</text><text x="678" y="322" text-anchor="middle" fill="#151719">and handoffs</text><text x="678" y="350" text-anchor="middle" fill="#697177">A process map</text><text x="878" y="116" text-anchor="middle" fill="#19734b">05</text><circle cx="878" cy="172" r="43" fill="white" stroke="#19734b" stroke-width="1.5"/><g transform="translate(878 172)" fill="none" stroke="#19734b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-22" y="-13" width="44" height="32" rx="8"/><path d="M0-13v-9M-26-3h4M22-3h4M-9 11H9"/><circle cx="0" cy="-25" r="3"/><circle cx="-9" cy="0" r="2"/><circle cx="9" cy="0" r="2"/></g><text x="878" y="244" text-anchor="middle" fill="#19734b" font-weight="700">Agent</text><text x="878" y="302" text-anchor="middle" fill="#151719">Act within scope</text><text x="878" y="350" text-anchor="middle" fill="#697177">Instructions + runtime</text><text x="1074" y="116" text-anchor="middle" fill="#19734b">06</text><circle cx="1074" cy="172" r="43" fill="white" stroke="#19734b" stroke-width="1.5"/><image href="assets/agent-hub-icon.png" x="1041" y="139" width="66" height="66" preserveAspectRatio="xMidYMid meet"/><text x="1074" y="244" text-anchor="middle" fill="#19734b" font-weight="700">Agent Hub</text><text x="1074" y="302" text-anchor="middle" fill="#151719">Coordinate agents</text><text x="1074" y="350" text-anchor="middle" fill="#697177">One guided entry</text></svg>
+    <div class="present-band">A prompt becomes part of an agent design. Runtime, tools, state handling, and verification make execution possible.</div>
+    <p class="source-label">Conceptual roadmap, not a strict creation timeline. Project definitions do not by themselves prove deployed capability.</p>
+  </div>
+</section>
+
+<section class="slide project-case" data-section="02 · ROLE DESIGN">
+          <div class="topline">
+            <span class="section">02 · ROLE DESIGN</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              Start with the work, then define the agent roles
+            </h2>
+            <p class="story-note">
+              Identify the work within each user need, then assign responsibility.
+            </p>
+            <div class="visual-stack">
+              <div class="visual-row">
+                <div class="visual-box">
+                  “I want one entry point to guide me from my goal to a result.”
+                </div>
+                <div class="visual-link">
+                  →
+                </div>
+                <div class="visual-box">
+                  <strong>
+                  <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="7" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/>
+                  </svg>
+                  Main Agent · Hub</strong><p class="card-body">Understand, route, confirm, summarize</p>
+                </div>
+              </div>
+              <div class="visual-row">
+                <div class="visual-box">
+                  “Who can do it? How do we combine them? Who runs it? What is missing?”
+                </div>
+                <div class="visual-link">
+                  →
+                </div>
+                <div class="visual-box">
+                  <strong>
+                  <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="2" width="8" height="5" rx="1"/><rect x="2" y="17" width="8" height="5" rx="1"/><rect x="14" y="17" width="8" height="5" rx="1"/><path d="M12 7v5H6v5M12 12h6v5"/>
+                  </svg>
+                  Functional Agents</strong><p class="card-body">Finder / Builder / Executor / Creator</p>
+                </div>
+              </div>
+              <div class="visual-row">
+                <div class="visual-box">
+                  “Different tasks need different business capabilities.”
+                </div>
+                <div class="visual-link">
+                  →
+                </div>
+                <div class="visual-box">
+                  <strong>
+                  <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 2h9l5 5v15H5zM14 2v6h5M8 12h8M8 16h8"/>
+                  </svg>
+                  Business Agents</strong><p class="card-body">Task-specific inputs / Rules / Deliverables</p>
+                </div>
+              </div>
+            </div>
+            <div class="detail-prompt">
+              <b>Example prompt to AI</b>
+              <p>
+                Derive roles from user needs. Specify each role’s inputs, outputs, boundaries, and handoffs. Check for overlapping or unassigned responsibilities.
+              </p>
+            </div>
+          </div>
+        </section>
+
+<section class="slide" data-section="02 · ROLE DESIGN">
+          <div class="topline">
+            <span class="section">02 · ROLE DESIGN</span><span class="num"></span>
+          </div>
+          <div class="content role-page">
+            <h2>
+              Agent Hub at the center, with clear functional boundaries
+            </h2>
+            <div class="chart-layout">
+              <svg class="chart-svg" viewBox="-40 0 680 410" role="img" aria-label="Hub coordinates four functional roles, layout shows relationships, not execution order">
+                <title>Hub coordinates four functional roles. The layout shows relationships, not execution order.</title><circle cx="300" cy="200" r="135" fill="none" stroke="#d9dde0" stroke-dasharray="6 6" /><path d="M300 200 L300 70" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L460 200" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L300 330" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L140 200" stroke="#9fc9e6" stroke-width="2" /><rect x="175" y="12" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="40" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Finder</text><text x="300.0" y="64" text-anchor="middle" font-size="16" fill="#151719">Candidates + rationale</text><rect x="375" y="167" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="500.0" y="195" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Builder</text><text x="500.0" y="219" text-anchor="middle" font-size="16" fill="#151719">Steps + dependencies</text><rect x="175" y="318" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="346" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Executor</text><text x="300.0" y="370" text-anchor="middle" font-size="16" fill="#151719">Status + results</text><rect x="-25" y="167" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="100.0" y="195" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Creator</text><text x="100.0" y="219" text-anchor="middle" font-size="16" fill="#151719">Gaps + proposals</text><circle cx="300" cy="200" r="72" fill="white" stroke="#d9dde0" /><image href="assets/agent-hub-icon.png" x="248" y="138" width="104" height="104" preserveAspectRatio="xMidYMid meet"><title>Agent Hub logo</title></image><text x="300" y="256" text-anchor="middle" font-size="16" fill="#697177"><tspan x="300" y="246">User-facing</tspan><tspan x="300" y="265">coordinator</tspan></text>
+              </svg>
+              <div class="role-notes">
+  <div><b>01 · Hub owns the conversation</b><p>Understand the goal, route work, confirm scope, and summarize results.</p></div>
+  <div><b>02 · Functions return deliverables</b><p>Recommendations, blueprints, gap proposals, and execution status.</p></div>
+  <div><b>03 · Business agents do the task</b><p>Executor dispatches authorized work and collects outputs.</p></div>
+  <small>This is a relationship map, not a fixed call sequence.</small>
+</div></div></div></section>
+
+<section class="slide" data-section="07 · WORKFLOW">
+          <div class="topline">
+            <span class="section">03 · WORKFLOW</span><span class="num"></span>
+          </div>
+          <div class="content workflow-overview">
+            <h2>
+              Workflow: map the main path, then add decisions
+            </h2>
+            <div class="workflow-explain">
+              <svg class="workflow-map" viewBox="150 0 454 370" role="img" aria-label="Main workflow">
+                <rect x="181.25" y="72" width="391.5" height="212" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 128 L377 156" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 150 L377 156 L382.8 150" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 200 L377 228" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 222 L377 228 L382.8 222" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 272 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">User request</text><rect x="210.25" y="84" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Hub understands and assesses</text><rect x="210.25" y="156" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="183.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Find or validate an agent</text><rect x="210.25" y="228" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="255.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Build a workflow if needed</text><rect x="210.25" y="300" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="327.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Confirm → Execute → Review</text>
+              </svg>
+              <div class="workflow-design-flow">
+  <div class="workflow-design-node"><b>01 · Map the main path</b><p>Start with the user request and the expected result.</p></div>
+  <div class="workflow-design-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-design-node"><b>02 · Add decision points</b><p>What is missing? Which agent fits? Is a multi-step plan needed?</p></div>
+  <div class="workflow-design-arrow" aria-hidden="true">↓</div>
+  <div class="workflow-design-node"><b>03 · Capture the rules</b><p>Define branches, handoffs, and stopping conditions with AI.</p></div>
+  <div class="workflow-file">Shared design → README / Task Routing Logic<br>Entry-point instructions → Agent-Hub.txt</div>
+</div></div></div></section>
+
+<section class="slide" data-section="07 · WORKFLOW">
+          <div class="topline">
+            <span class="section">03 · WORKFLOW</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              Fragment 1: identify what the user wants
+            </h2>
+            <div class="workflow-explain">
+              <svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="User intent routing">
+                <rect x="11.6" y="72" width="730.8" height="182" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 136 L188.5 182" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 176 L188.5 182 L194.3 176" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 136 L565.5 182" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 176 L565.5 182 L571.3 176" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 240 L565.5 294" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 288 L565.5 294 L571.3 288" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">User question</text><rect x="210.25" y="84" width="333.5" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="115.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub identifies intent</text><rect x="29" y="182" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Browse / Find agents</text><text x="188.5" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder: overview or options</text><rect x="406" y="182" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Request task execution</text><text x="565.5" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Check goal, inputs, constraints</text><rect x="406" y="294" width="319" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="325.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Select capabilities and plan</text>
+              </svg>
+              <div class="workflow-notes">
+                <h3>
+                  What does this part cover?
+                </h3>
+                <p>
+                  <b>Possible user questions:</b><br>“What agents are available?”<br>“Compare these two documents.”
+                </p>
+                <p>
+                  <b>Decisions to define:</b><br>Is the user exploring capabilities or requesting execution? Are the goal and required inputs clear?
+                </p>
+                <p>
+                  <b>Rules to give AI:</b><br>Return an overview for browsing. Check inputs for execution. Clarify a missing goal rather than inventing one.
+                </p>
+                <div class="workflow-file">
+                  README.md → Clarification Rules / Task Routing Logic<br>Agent-Hub.txt → Core responsibilities
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+<section class="slide" data-section="07 · WORKFLOW">
+          <div class="topline">
+            <span class="section">03 · WORKFLOW</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              Fragment 2: find the right agent
+            </h2>
+            <div class="workflow-explain">
+              <svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="Agent validation and discovery">
+                <rect x="11.6" y="72" width="730.8" height="180" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 134 L188.5 180" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 174 L188.5 180 L194.3 174" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 134 L565.5 180" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 174 L565.5 180 L571.3 174" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M188.5 238 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 238 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">User requests execution</text><rect x="210.25" y="84" width="333.5" height="50" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="114.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Did the user specify an agent?</text><rect x="29" y="180" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Specified: validate</text><text x="188.5" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Exists, fits, can run</text><rect x="406" y="180" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Unspecified / Invalid choice</text><text x="565.5" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder recommends candidates</text><rect x="210.25" y="300" width="333.5" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="329.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Identify candidates and scope</text>
+              </svg>
+              <div class="workflow-notes">
+                <h3>
+                  What does this part cover?
+                </h3>
+                <p>
+                  <b>Two entry paths:</b><br>Validate a user-specified agent. Otherwise, ask Finder for recommendations.
+                </p>
+                <p>
+                  <b>Conditions to consider:</b><br>Check existence, capability fit, input compatibility, runtime availability, and permissions.
+                </p>
+                <p>
+                  <b>Rules to give AI:</b><br>Recommend alternatives for an invalid choice. If no match fits, report the gap and consider composition or creation.
+                </p>
+                <div class="workflow-file">
+                  README.md → Subagent Selection Rules<br>Agent-Hub.txt / functional-agents/Agent-Finder.txt
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+<section class="slide" data-section="07 · WORKFLOW">
+          <div class="topline">
+            <span class="section">03 · WORKFLOW</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              Fragment 3: break complex work into clear handoffs
+            </h2>
+            <div class="workflow-explain">
+              <svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="Workflow orchestration">
+                <rect x="391.5" y="154" width="348" height="84" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 82" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 76 L377 82 L382.8 76" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 130 L188.5 168" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 162 L188.5 168 L194.3 162" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 130 L565.5 168" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 162 L565.5 168 L571.3 162" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M188.5 224 L377 268" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 262 L377 268 L382.8 262" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 224 L377 268" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 262 L377 268 L382.8 262" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 314 L377 338" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 332 L377 338 L382.8 332" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Goal and agents identified</text><rect x="210.25" y="82" width="333.5" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Single task or multiple stages?</text><rect x="29" y="168" width="319" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Simple task</text><text x="188.5" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Single-agent plan</text><rect x="406" y="168" width="319" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Complex task → Builder</text><text x="565.5" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Steps, inputs, outputs</text><rect x="210.25" y="268" width="333.5" height="46" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="296.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub presents plan and confirms</text><rect x="210.25" y="338" width="333.5" height="40" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="363.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Executor runs → Hub reports</text>
+              </svg>
+              <div class="workflow-notes">
+                <h3>
+                  Focus: Workflow Builder
+                </h3>
+                <p>
+                  <b>Design question:</b><br>“If a request needs multiple agents, how should Agent Hub coordinate them?”
+                </p>
+                <p>
+                  <b>The blueprint must define:</b><br>Who owns each step, its inputs and outputs, and which prior steps it depends on.
+                </p>
+                <p>
+                  <b>Rules to give AI:</b><br>Give Builder responsibility for steps and dependencies. Give Executor responsibility for authorized scheduling. Define their shared blueprint contract.
+                </p>
+                <div class="workflow-file">
+                  README.md → Complex Workflow Execution<br>functional-agents/Workflow-Builder.txt → steps<br>input / output / dependencies / permission_scope
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+<section class="slide" data-section="03 · COMPLETE WORKFLOW">
+  <div class="topline"><span class="section">03 · COMPLETE WORKFLOW</span><span class="num"></span></div>
+  <div class="content endtoend-page">
+    <h2>The complete Agent Hub flow: keep every branch connected</h2>
+    <div class="endtoend-layout">
+      <button class="endtoend-preview" type="button" id="open-full-flow" aria-label="Open the complete end-to-end flowchart"><img src="assets/agent-hub-end-to-end.svg" alt="Complete project flowchart, from user request to review and retry"><span>Click to explore the full diagram</span></button>
+      <div><div class="endtoend-phases vertical-phases">
+        <div><b>01 · Understand and match</b>Missing information, specified agents, recommendations, and capability gaps</div>
+        <div><b>02 · Plan and confirm</b>Simple or complex tasks, blueprint revision, and scope confirmation</div>
+        <div><b>03 · Execute within scope</b>Concrete action preview, authorization, and execution</div>
+        <div><b>04 · Review and continue</b>Complete, partial, or failed results, retry checks, and changed requests</div>
+      </div><div class="endtoend-reminder">When revising with AI: locate the branch, its return path, and unchanged rules.</div></div>
+    </div>
+    <p class="source-label">Actual project diagram referenced by README → End-to-End Agent Hub Flow. Overview is for orientation. Open the zoomable view for readable labels. Copy canvas expanded to include source nodes beyond its original bounds.</p>
+  </div>
+</section>
+
+<section class="slide project-case" data-section="05 · INSTRUCTION">
+          <div class="topline">
+            <span class="section">03 · WORKFLOW</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              Who does what? Follow one confirmed workflow across lanes
+            </h2>
+            <svg class="wide-diagram" viewBox="0 0 1160 400" role="img" aria-label="Swimlane collaboration for a complex task">
+              <title>Swimlane collaboration for a complex task</title>
+              <defs>
+                <marker id="Swimlane-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 0L10 5L0 10Z" fill="#697177" />
+                </marker>
+              </defs>
+              <rect x="0" y="10" width="1160" height="76" rx="4" fill="#f2f6f8" /><text x="16" y="53" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">USER</text><rect x="0" y="100" width="1160" height="76" rx="4" fill="#fbfcfc" /><text x="16" y="143" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">HUB</text><rect x="0" y="190" width="1160" height="76" rx="4" fill="#f2f6f8" /><text x="16" y="233" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">FUNCTIONAL</text><rect x="0" y="280" width="1160" height="76" rx="4" fill="#fbfcfc" /><text x="16" y="323" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">BUSINESS</text><path d="M200 72V114" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M272 138H350V204" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M612 228H710V162" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M710 114V72" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M782 48H880V204" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M952 228H1050V294" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M1050 294V162" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><rect x="128.0" y="24.0" width="144" height="48" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="200" y="53.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">1 · Request</text><rect x="126.109375" y="114.0" width="147.78125" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="200" y="134.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">2 · Understand</text><text x="200" y="152.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">and route</text><rect x="263.5859375" y="204.0" width="172.828125" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="350" y="224.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">3 · Finder</text><text x="350" y="242.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">match capabilities</text><rect x="462.2890625" y="204.0" width="155.421875" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="540" y="224.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">5 · Builder</text><text x="540" y="242.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">create blueprint</text><rect x="632.3515625" y="114.0" width="155.296875" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="710" y="143.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">6 · Present plan</text><rect x="624.8984375" y="24.0" width="170.203125" height="48" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="710" y="53.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">7 · Confirm scope</text><rect x="808.0" y="204.0" width="144" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="880" y="224.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">8 · Executor</text><text x="880" y="242.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">dispatch tasks</text><rect x="971.40625" y="294.0" width="157.1875" height="48" rx="6" fill="#eef7f1" stroke="#19734b" /><text x="1050" y="323.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">9 · Task outputs</text><rect x="966.6328125" y="114.0" width="166.734375" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="1050" y="143.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">10 · Present result</text>
+            <path d="M350 204V72" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M432 48H540V204" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><rect x="268" y="24" width="164" height="48" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="350" y="53" text-anchor="middle" font-size="16">4 · Select agents</text></svg>
+            <div class="present-band">
+              Illustrative complex-task path: select recommended agents, then confirm the blueprint before execution. Missing inputs or new actions can pause the workflow.
+            </div>
+            <p class="source-label">
+              Based on README routing and functional-agent boundaries. Arrows show handoffs, not measured timing. Agents not needed for this path are omitted.
+            </p>
+          </div>
+        </section>
+
+<section class="slide" data-section="02 · README">
+          <div class="topline">
+            <span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>Inside our README: architecture and definition examples</h2><div class="artifact-grid"><div class="artifact-card"><header>Architecture · Who belongs where?</header><div class="artifact-crop"><img src="assets/readme-architecture-example.png" alt="Project architecture regrouped to show the functional-agent directory"></div><div class="artifact-caption">One Hub + four functional agents. Registry and business agents remain separate.</div></div><div class="artifact-card"><header>Definition template · What should AI write?</header><div class="artifact-crop"><img src="assets/readme-definition-example.png" alt="Actual recommended functional-agent definition template from the README"></div><div class="artifact-caption">A repeatable structure for generating and reviewing definitions.</div></div></div><div class="present-band">Example request: “Read these sections first. Keep the existing roles and format, and identify any changes to the agreed design.”</div><p class="source-label">Left: project architecture regrouped by responsibility. Right: README template excerpt. These are document previews, not platform screenshots.</p></div></section>
+
+<section class="slide project-case" data-section="03 · FILE STRUCTURE">
+          <div class="topline">
+            <span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span>
+          </div>
+          <div class="content structure-reason registry-merged">
+            <h2>
+              Why this structure? Give each type of information a home
+            </h2>
+            <p class="story-note">
+              A design rationale derived from the current project, rather than a claim about its original creation order.
+            </p>
+            <div class="structure-with-registry"><div class="visual-stack">
+              <div class="visual-row">
+                <div class="visual-box">
+                  <strong>AI needs shared context</strong>Preserve goals and shared rules.
+                </div>
+                <div class="visual-link">
+                  →
+                </div>
+                <div class="visual-box">
+                  <strong>README.md</strong>Project-wide agreements
+                </div>
+              </div>
+              <div class="visual-row">
+                <div class="visual-box">
+                  <strong>Roles change independently</strong>Update one role independently.
+                </div>
+                <div class="visual-link">
+                  →
+                </div>
+                <div class="visual-box">
+                  <strong>Main / Functional / Business</strong>Separate TXT files by responsibility
+                </div>
+              </div>
+              <div class="visual-row">
+                <div class="visual-box">
+                  <strong>Finder needs a searchable directory</strong>Find and compare existing capabilities.
+                </div>
+                <div class="visual-link">
+                  →
+                </div>
+                <div class="visual-box">
+                  <strong>Agent-Registry.txt</strong>Discovery metadata aligned with TXT
+                </div>
+              </div>
+              <div class="visual-row">
+                <div class="visual-box">
+                  <strong>Progress and evidence need tracking</strong>Track tasks and verification separately.
+                </div>
+                <div class="visual-link">
+                  →
+                </div>
+                <div class="visual-box">
+                  <strong>TODO.md / submission-materials/</strong>Next actions and test evidence
+                </div>
+              </div>
+            </div><aside class="registry-summary"><b>172 definitions · 8 categories</b><svg class="registry-mini" viewBox="0 0 380 320" role="img" aria-label="Business agent definitions by category"><title>172 definitions in eight categories, counted from Registry</title><text x="0" y="32" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Knowledge / research</text><rect x="196" y="16" width="128" height="22" rx="2" fill="#0067b1"/><text x="332" y="32" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">32</text><text x="0" y="69" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Business operations</text><rect x="196" y="53" width="120" height="22" rx="2" fill="#0067b1"/><text x="324" y="69" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">30</text><text x="0" y="106" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Documents / content</text><rect x="196" y="90" width="100" height="22" rx="2" fill="#0067b1"/><text x="304" y="106" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">25</text><text x="0" y="143" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Data / analytics</text><rect x="196" y="127" width="80" height="22" rx="2" fill="#0067b1"/><text x="284" y="143" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">20</text><text x="0" y="180" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Compliance / quality</text><rect x="196" y="164" width="72" height="22" rx="2" fill="#0067b1"/><text x="276" y="180" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">18</text><text x="0" y="217" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Development / tech</text><rect x="196" y="201" width="72" height="22" rx="2" fill="#0067b1"/><text x="276" y="217" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">18</text><text x="0" y="254" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Communication</text><rect x="196" y="238" width="68" height="22" rx="2" fill="#0067b1"/><text x="272" y="254" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">17</text><text x="0" y="291" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Specialized business</text><rect x="196" y="275" width="48" height="22" rx="2" fill="#0067b1"/><text x="252" y="291" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">12</text></svg><p class="source-label">Registry counts, cross-checked with TXT definitions. Labels shortened. Not deployed-agent counts.</p></aside></div>
+<div class="present-band">
+              Example prompt: “Propose the smallest file structure for these roles. Explain what each file owns and which files must stay synchronized.”
+            </div>
+          </div>
+        </section>
+
+<section class="slide" data-section="04 · FORMAT">
+          <div class="topline">
+            <span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              From shared standards to one agent definition
+            </h2>
+            <div class="merge-layout">
+              <div class="merge-stack">
+                <div class="merge-block">
+                  <b>Root README</b>Shared structure, TXT format, length limits
+                </div>
+                <div class="merge-block">
+                  <b>Business folder README</b>Names, required inputs, metadata consistency
+                </div>
+                <div class="merge-block">
+                  <b>Return + presentation rules</b>Structured results upstream, clear output through Hub
+                </div>
+              </div>
+              <div class="merge-link">
+                →
+              </div>
+              <div class="compact-file">
+                <header>
+                  Example-Agent.txt
+                </header>
+                <div class="compact-row">
+                  <b>Name</b>Identify the capability.
+                </div>
+                <div class="compact-row">
+                  <b>Description</b>Explain when to choose it.
+                </div>
+                <div class="compact-row">
+                  <b>Instruction</b>
+                  <ul class="content-list">
+                    <li>
+                      <b>WHEN</b> Triggers and inputs
+                    </li>
+                    <li>
+                      <b>DO</b> Steps and boundaries
+                    </li>
+                    <li>
+                      <b>RETURN</b> Results, status, and missing fields
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="present-band">
+              Description ≤ 800 characters. Entire TXT &lt; 8,000 characters. Missing required input → clarify before dependent execution.
+            </div>
+          </div>
+        </section>
+
+
+
+<section class="slide project-case" data-section="10 · WORKING WITH AI">
+          <div class="topline">
+            <span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              One routing requirement: define → implement → challenge
+            </h2>
+            <div class="source-rule" style="background:#fff9e6;border-color:#d39b00">
+              <b>Request to AI · Example</b>If the user specifies an unsuitable agent, explain the issue and suggest an alternative.
+            </div>
+            <div class="present-flow">
+              <div class="present-node">
+                <b>Define the branch</b>
+                <ul class="content-list">
+                  <li>
+                    Valid → Confirm scope
+                  </li>
+                  <li>
+                    Invalid → Finder alternatives
+                  </li>
+                </ul>
+              </div>
+              <div class="present-arrow">
+                →
+              </div>
+              <div class="present-node">
+                <b>Record the rule</b>README.md
+                <div class="nested-detail">
+                  Subagent Selection Rules
+                </div>
+              </div>
+              <div class="present-arrow">
+                →
+              </div>
+              <div class="present-node">
+                <b>Implement it</b>Agent-Hub.txt
+                <div class="nested-detail">
+                  Routing and confirmation
+                </div>
+              </div>
+            </div>
+            <div class="merge-checks">
+              <div class="merge-check">
+                <b>Challenge 1 · “Use this unavailable agent.”</b>Explain the issue and recommend an alternative.
+              </div>
+              <div class="merge-check">
+                <b>Challenge 2 · “Use it. Files will follow.”</b>Validate the agent, then wait for required inputs.
+              </div>
+            </div>
+            <p class="source-label">
+              Based on current project rules. Reconstructed prompt and walkthrough examples, not original dialogue or verified runtime results.
+            </p>
+          </div>
+        </section>
+
+<section class="slide project-case" data-section="08 · ITERATION">
+          <div class="topline">
+            <span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              A file dependency map: one request can affect several files
+            </h2>
+            <div class="source-rule">
+              <b>Example feedback</b>Use one English paragraph, within 800 characters. Keep capability, triggers, and essential limits.
+            </div>
+            <svg class="wide-diagram" viewBox="0 0 1160 380" role="img" aria-label="Dependency map for project changes">
+              <title>Dependency map for project changes</title>
+              <defs>
+                <marker id="Dependency-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 0L10 5L0 10Z" fill="#697177" />
+                </marker>
+              </defs>
+              <path d="M580 72V95H200V126" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M580 72V126" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M580 72V95H960V126" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M200 184V210H580V248" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M580 184V248" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M960 184V210H580V248" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><rect x="460.0" y="20.0" width="240" height="52" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="580" y="51.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Requirement change</text><rect x="60.0" y="126.0" width="280" height="58" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="200" y="151.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">README standards</text><text x="200" y="169.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">and accepted decisions</text><rect x="440.0" y="126.0" width="280" height="58" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="580" y="151.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Agent TXT definitions</text><text x="580" y="169.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">roles and instructions</text><rect x="820.0" y="126.0" width="280" height="58" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="960" y="151.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Agent Registry</text><text x="960" y="169.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">discovery metadata</text><rect x="410.0" y="248.0" width="340" height="68" rx="6" fill="#eef7f1" stroke="#19734b" /><text x="580" y="278.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Consistency + validation</text><text x="580" y="296.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">fields, references, scenarios</text><text x="580" y="355" text-anchor="middle" font-size="14" fill="#697177" font-weight="400">A change can affect several files. Update only the relevant dependencies.</text>
+            </svg>
+            <p class="source-label">
+              Definitions and Registry metadata must agree. Relevant test scenarios and TODO items should reflect the changed rule.
+            </p>
+          </div>
+        </section>
+
+<section class="slide" data-section="09 · VALIDATION">
+          <div class="topline">
+            <span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              Active is a definition status, not runtime proof
+            </h2>
+            <div class="source-rule" style="background:#fff9e6;border-color:#d39b00">
+              <b>Documented correction · TODO, 2026-10-15</b>Active means the TXT definition is complete and discoverable. It does not mean deployed or runtime-validated.
+            </div>
+            <div class="validation-track" style="margin:4px 0">
+              <div class="validation-step">
+                <b>01 · Definition</b>
+                <ul class="content-list">
+                  <li>
+                    Roles and boundaries
+                  </li>
+                  <li>
+                    TXT and Registry agree
+                  </li>
+                </ul>
+                <br><span class="validation-badge">Active applies here</span>
+              </div>
+              <div class="validation-arrow">
+                →
+              </div>
+              <div class="validation-step pending">
+                <b>02 · Runtime</b>
+                <ul class="content-list">
+                  <li>
+                    Tools and permissions
+                  </li>
+                  <li>
+                    Actual agent calls
+                  </li>
+                </ul>
+                <br><span class="validation-badge">Requires run evidence</span>
+              </div>
+              <div class="validation-arrow">
+                →
+              </div>
+              <div class="validation-step pending">
+                <b>03 · Results</b>
+                <ul class="content-list">
+                  <li>
+                    Source support
+                  </li>
+                  <li>
+                    Acceptance criteria
+                  </li>
+                </ul>
+                <br><span class="validation-badge">Requires output review</span>
+              </div>
+            </div>
+            <p class="source-label">
+              The correction is recorded in TODO.md. These are separate validation gates, not a claim that all checks have passed.
+            </p>
+          </div>
+        </section>
+
+<section class="slide" data-section="10 · WORKING WITH AI">
+          <div class="topline">
+            <span class="section">06 · COLLABORATION</span><span class="num"></span>
+          </div>
+          <div class="content">
+            <h2>
+              A visible loop: decide → develop → review → record
+            </h2>
+            <div class="chart-layout">
+              <svg class="chart-svg" viewBox="-40 0 680 410" role="img" aria-label="Clockwise collaboration cycle: human decides, AI develops, human reviews, project records">
+                <title>Clockwise collaboration cycle: human decides, AI develops, human reviews, project records</title>
+                <defs>
+                  <marker id="cycle-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                    <path d="M0 0L10 5L0 10Z" fill="#0067b1" />
+                  </marker>
+                </defs>
+                <path d="M340.79024325749305 79.46053984903973 A132 132 0 0 1 425.5394601509603 164.20975674250695" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><path d="M425.5394601509603 245.79024325749305 A132 132 0 0 1 340.79024325749305 330.5394601509603" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><path d="M259.20975674250695 330.5394601509603 A132 132 0 0 1 174.46053984903972 245.79024325749307" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><path d="M174.46053984903972 164.20975674250695 A132 132 0 0 1 259.2097567425069 79.46053984903973" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><circle cx="300" cy="205" r="67" fill="white" stroke="#d9dde0" /><image href="assets/agent-hub-icon.png" x="248" y="143" width="104" height="104" preserveAspectRatio="xMidYMid meet"><title>Agent Hub logo</title></image><text x="300" y="261" text-anchor="middle" font-size="11" fill="#697177"><tspan x="300" y="251">Shared project</tspan><tspan x="300" y="270">context</tspan></text><rect x="175" y="12" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="40" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">1 · Human decides</text><text x="300.0" y="64" text-anchor="middle" font-size="14" fill="#151719">Goal + boundaries</text><rect x="375" y="172" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="500.0" y="200" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">2 · AI develops</text><text x="500.0" y="224" text-anchor="middle" font-size="14" fill="#151719">Options + files</text><rect x="175" y="330" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="358" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">3 · Human reviews</text><text x="300.0" y="382" text-anchor="middle" font-size="14" fill="#151719">Intent + evidence</text><rect x="-25" y="172" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="100.0" y="200" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">4 · Project records</text><text x="100.0" y="224" text-anchor="middle" font-size="14" fill="#151719">Rules + next actions</text>
+              </svg>
+              <div class="chart-copy">
+                <h3>
+                  Each iteration leaves a trace
+                </h3>
+                <p>
+                  Decide what the project should achieve.
+                </p>
+                <p>
+                  Ask AI to expand and implement the design.
+                </p>
+                <p>
+                  Review the proposal and evidence.
+                </p>
+                <p>
+                  Save accepted changes so the next request starts with shared context.
+                </p>
+                <div class="present-band">
+                  A process loop, not a chart of time or effort.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+<section class="slide" data-section="06 · REAL FEEDBACK"><div class="topline"><span class="section">06 · REAL FEEDBACK</span><span class="num"></span></div><div class="content"><h2>Real feedback from this conversation changed the presentation</h2><div class="history-examples"><div class="history-example"><header>01 · Correct the scope</header><div class="history-quote">“Isn’t Agent Hub itself the case that runs through the whole 1020 presentation?”</div><div class="history-response"><b>Resulting revision</b>Removed the separate SOP case section. Reconnected requirements, roles, workflow, files, and iteration to Agent Hub.</div></div><div class="history-example"><header>02 · Ask for the reasoning</header><div class="history-quote">“The key is how we came up with this file structure.”</div><div class="history-response"><b>Resulting revision</b>Replaced a directory listing with need → design rationale → file responsibility.</div></div></div><div class="present-band">Useful feedback identifies the mismatch, restates the intent, and asks for a concrete change.</div><p class="source-label">Translated excerpts from this presentation-preparation conversation. These are real editorial corrections, not evidence of the original Agent Hub development history or runtime behavior.</p></div></section>
+
+<section class="slide" data-section="06 · KEEPING CONTEXT"><div class="topline"><span class="section">06 · KEEPING CONTEXT</span><span class="num"></span></div><div class="content"><h2>When AI revisits the project: use the diagram as a checkpoint</h2><div class="evidence-layout"><div><img class="original-flow" src="assets/agent-finder-excerpt.svg" alt="Actual Finder flowchart excerpt showing goal, tags, and candidate retrieval"><p class="source-label">Original Finder diagram, cropped to its first three steps. <a href="assets/agent-finder-original.svg" target="_blank" rel="noopener">Open the complete diagram</a>.</p></div><div><div class="return-step"><b>1</b><span>Read the current README, relevant diagram, and agent instructions.</span></div><div class="return-step"><b>2</b><span>Locate the affected node or branch before changing the design.</span></div><div class="return-step"><b>3</b><span>Update the rule, diagram, and affected TXT or Registry together.</span></div><div class="return-step"><b>4</b><span>Walk through the changed branch. Report conflicts and missing decisions.</span></div></div></div><div class="present-band">Example: “Keep the Finder sequence: identify tags → retrieve candidates → evaluate fit. Explain any proposed deviation before applying it.”</div><p class="source-label">These artifacts help expose inconsistencies. They do not guarantee that AI reads them automatically or that runtime behavior is correct.</p></div></section>
+
+<section class="slide" data-section="06 · PRACTICAL TAKEAWAYS">
+  <div class="topline"><span class="section">06 · PRACTICAL TAKEAWAYS</span><span class="num"></span></div>
+  <div class="content reusable-template-page">
+    <h2>A reusable communication template: design the workflow and README</h2>
+    <div class="communication-template-layout">
+      <div class="communication-elements">
+        <div><b>01 · Goal</b><p>What should the project achieve?</p></div>
+        <div><b>02 · Context</b><p>Which ideas, files, and decisions should AI use?</p></div>
+        <div><b>03 · Scope</b><p>Which workflow and README sections should it produce?</p></div>
+        <div><b>04 · Constraints</b><p>Which boundaries must remain? What is still undecided?</p></div>
+        <div><b>05 · Acceptance</b><p>What outputs and checks will make the result reviewable?</p></div>
+      </div>
+      <div class="complete-prompt">
+        <header>EXAMPLE · ONE COMPLETE REQUEST TO AI</header>
+        <div class="complete-prompt-text">
+          <p><b>Goal.</b> Help me design Agent Hub, a single entry point for finding and coordinating business agents.</p>
+          <p><b>Context.</b> Use my requirements and available project files. First summarize accepted decisions and open questions.</p>
+          <p><b>Scope.</b> Map likely user requests into a workflow. Define Hub, functional, and business-agent responsibilities. Propose a minimal file structure and draft the README: vision, architecture, routing, definition standards, decisions, and open questions.</p>
+          <p><b>Constraints.</b> Keep recommendation, planning, and execution separate. Require confirmation before execution. Flag missing decisions. Do not invent tools, deployment, or test results.</p>
+          <p><b>Acceptance.</b> Return the workflow diagram, file responsibilities, and README draft. Walk through representative user questions and list conflicts, assumptions, and next steps.</p>
+        </div>
+      </div>
+    </div>
+    <div class="present-band">For an existing project: read the current README and diagram first, explain the proposed changes, then synchronize the affected files.</div>
+    <p class="source-label">Reusable example derived from Agent Hub’s design. Adapt the five elements to the task. This is not a verbatim historical prompt.</p>
+  </div>
+</section>
+
+<section class="slide conclusion-slide" data-section="Conclusion"><div class="topline"><span class="section">TAKEAWAY</span></div><div class="content closing-summary"><h2>From a conversation to a shared, reviewable design</h2><div class="closing-three"><div><span>01</span><b>Design the logic</b><p>Define roles, decisions, and handoffs before expanding the system.</p></div><div><span>02</span><b>Keep a shared reference</b><p>Capture accepted rules in README, diagrams, and agent instructions.</p></div><div><span>03</span><b>Review every change</b><p>Check affected files and separate written definitions from verified execution.</p></div></div><div class="closing-lines"><p>Capture the idea as <span class="blue">context</span>.</p><p>Capture requirements as <span class="blue">standards</span>.</p><p>Use files to guide AI through <span class="blue">implementation and review</span>.</p></div></div></section>
+
+
+        <img class="deck-logo" src="logo.png" alt="Logo">
+        <div class="logo-caption">
+          Research and Development China R&amp;D Centre
+        </div>
+        <div class="counter" id="counter">
+        </div>
+        <div class="nav">
+          <button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button>
+        </div>
+        <div class="progress" id="progress">
+        </div>
+      </div>
+    </main>
+    <script> const slides=[...document.querySelectorAll('.slide')]; let current=0; const counter=document.getElementById('counter'),progress=document.getElementById('progress'); function fragments(){ return [...slides[current].querySelectorAll('.reveal:not(.shown)')] .sort((a,b)=>Number(a.dataset.revealOrder||0)-Number(b.dataset.revealOrder||0)); } function render(next){ if(next<0 || next>=slides.length) return; slides[current].classList.remove('active'); current=next; slides[current].classList.add('active'); counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0'); progress.style.width=((current+1)/slides.length*100)+'%'; document.querySelectorAll('.reveal').forEach(el=>el.classList.remove('shown')); const firstFragments=[...slides[current].querySelectorAll('.reveal')]; if(!slides[current].classList.contains('manual-reveal')){ firstFragments.forEach((el,index)=>{ if(index===0) el.classList.add('shown'); }); } } function forward(){ const f=fragments(); if(f.length){ const group=f[0].dataset.revealGroup; if(group){ slides[current].querySelectorAll(`.reveal[data-reveal-group="${group}"]`).forEach(el=>el.classList.add('shown')); }else{ f[0].classList.add('shown'); } return; } render(current+1); } function back(){ render(current-1); } slides.forEach((slide,index)=>{ const num=slide.querySelector('.num'); if(num) num.textContent=String(index+1).padStart(2,'0'); }); slides[0]?.classList.add('active'); document.getElementById('next').onclick=forward; document.getElementById('prev').onclick=back; document.addEventListener('keydown',e=>{ if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); forward(); } if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); back(); } if(e.key.toLowerCase()==='f') document.documentElement.requestFullscreen?.();  }); render(0); </script><script>
+document.querySelectorAll('.evidence-slot').forEach(slot => {
+  const path = slot.querySelector('code')?.textContent;
+  if (!path) return;
+  const img = new Image();
+  img.alt = slot.querySelector('b')?.textContent || 'Project screenshot';
+  img.onload = () => { const title = slot.querySelector('b'); slot.replaceChildren(title, img); };
+  img.src = path;
+});
+</script><script>
+(function(){
+ const stage=document.getElementById('stage');
+ const deck=stage.closest('.deck');
+ function fitDeck(){
+  const width=deck.clientWidth;
+  const height=deck.clientHeight;
+  if(!width || !height) return;
+  const scale=Math.min(width/1280,height/720);
+  stage.style.transform='translate(-50%, -50%) scale('+scale+')';
+ }
+ window.addEventListener('resize',fitDeck);
+ document.addEventListener('fullscreenchange',fitDeck);
+ if(typeof ResizeObserver!=='undefined') new ResizeObserver(fitDeck).observe(deck);
+ fitDeck();
+})();
+</script>
+  <dialog class="flow-dialog" id="full-flow-dialog" aria-label="Complete end-to-end flowchart">
+  <div class="flow-toolbar"><strong>Agent Hub · End-to-End Flow</strong><button type="button" id="flow-smaller" aria-label="Zoom out">−</button><span id="flow-zoom-level">100%</span><button type="button" id="flow-larger" aria-label="Zoom in">+</button><button type="button" id="close-full-flow">Close</button></div>
+  <div class="flow-viewport"><img id="full-flow-image" src="assets/agent-hub-end-to-end.svg" alt="Complete Agent Hub decision flow with all branches"></div>
+</dialog>
+<script>
+(function(){
+ const dialog=document.getElementById('full-flow-dialog');
+ const image=document.getElementById('full-flow-image');
+ const level=document.getElementById('flow-zoom-level');
+ let zoom=100;
+ function applyZoom(){image.style.width=(1000*zoom/100)+'px';level.textContent=zoom+'%';}
+ document.getElementById('open-full-flow').onclick=()=>dialog.showModal();
+ document.getElementById('close-full-flow').onclick=()=>dialog.close();
+ document.getElementById('flow-smaller').onclick=()=>{zoom=Math.max(50,zoom-25);applyZoom();};
+ document.getElementById('flow-larger').onclick=()=>{zoom=Math.min(200,zoom+25);applyZoom();};
+ dialog.addEventListener('keydown',e=>e.stopPropagation());
+})();
+</script>
+</body>
+</html>

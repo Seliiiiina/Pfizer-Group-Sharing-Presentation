@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1816" height="5748" viewBox="0 0 1816 5748" role="img" aria-labelledby="title desc">
+<title id="title">End-to-End Agent Hub Flow</title>
+<desc id="desc">Fixed vertical layout of all 34 original nodes and 46 connections. User request starts at the top. Idempotency check and Close execution are at the bottom.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#333" /></marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;font-size:19px;fill:#292929} .edge{fill:none;stroke:#444;stroke-width:1.5;marker-end:url(#arrow)} .node{fill:#eeebff;stroke:#9c78ff;stroke-width:1.5}</style>
+<rect width="1410" height="4787" fill="white" />
+<path class="edge" data-from="U" data-to="H" d="M 555 95 L 555 127" />
+<path class="edge" data-from="H" data-to="C" d="M 555 267 L 555 299" />
+<path class="edge" data-from="C" data-to="Q2" d="M 425 394 L 425 513 Q 425 518.33 419.38 518.33 L 215 518.33 Q 205 518.33 205 526 L 205 556" />
+<g transform="translate(-175 -85.6)"><rect x="404.0" y="577" width="152" height="26" fill="#f2f2f2" /><text x="480" y="597" text-anchor="middle">Missing source</text></g>
+<path class="edge" data-from="C" data-to="S" d="M 555 489 L 555 521" />
+<g transform="translate(-245 -90.27)"><rect x="804.0" y="587" width="42" height="26" fill="#f2f2f2" /><text x="825" y="607" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="C" data-to="Q1" d="M 685 394 L 685 513 Q 685 518.33 690.62 518.33 L 895 518.33 Q 905 518.33 905 526 L 905 556" />
+<g transform="translate(-315 -85.6)"><rect x="1069.0" y="577" width="82" height="26" fill="#f2f2f2" /><text x="1110" y="597" text-anchor="middle">No goal</text></g>
+<path class="edge" data-from="S" data-to="V" d="M 555 711 L 555 748.5" />
+<g transform="translate(-245 -115)"><rect x="804.0" y="827" width="42" height="26" fill="#f2f2f2" /><text x="825" y="847" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="V" data-to="VP" d="M 555 888.5 L 555 920.5" />
+<path class="edge" data-from="VP" data-to="F" d="M 425 1015.5 L 422.19 1015.5 Q 419.38 1015.5 419.38 1020.5 L 419.38 1193 Q 419.38 1203 413.75 1203 L 310 1203" />
+<g transform="translate(-227.5 -163)"><rect x="614.0" y="1262" width="32" height="26" fill="#f2f2f2" /><text x="630" y="1282" text-anchor="middle">No</text></g>
+<path class="edge" data-from="VP" data-to="T" d="M 555 1110.5 L 555 1123 Q 555 1128 565 1128 L 665 1128 Q 675 1128 675 1133 L 675 2152.5 Q 675 2157.5 665 2157.5 L 565 2157.5 Q 555 2157.5 555 2162.5 L 555 2185" />
+<g transform="translate(-251.56 -278.5)"><rect x="924.0" y="1932" width="42" height="26" fill="#f2f2f2" /><text x="945" y="1952" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="S" data-to="F" d="M 425 616 L 402.5 616 Q 396.88 616 396.88 626 L 396.88 1105.5 Q 396.88 1113 391.25 1113 L 215 1113 Q 205 1113 205 1118 L 205 1143" />
+<g transform="translate(-231.88 -131.5)"><rect x="624.0" y="992" width="32" height="26" fill="#f2f2f2" /><text x="640" y="1012" text-anchor="middle">No</text></g>
+<path class="edge" data-from="F" data-to="FM" d="M 205 1263 L 205 1295" />
+<path class="edge" data-from="FM" data-to="G1" d="M 335 1390 L 357.5 1390 Q 363.12 1390 363.12 1400 L 363.12 1487.5 Q 363.12 1492.5 368.75 1492.5 L 895 1492.5 Q 905 1492.5 905 1497.5 L 905 1527.5" />
+<g transform="translate(-245 -211)"><rect x="914.0" y="1677" width="32" height="26" fill="#f2f2f2" /><text x="930" y="1697" text-anchor="middle">No</text></g>
+<path class="edge" data-from="G1" data-to="B" d="M 1010 1587.5 L 1097.61 1587.5 Q 1105.43 1587.5 1105.43 1597.5 L 1105.43 2457.5 Q 1105.43 2467.5 1097.61 2467.5 L 1010 2467.5" />
+<g transform="translate(-340 -398.5)"><rect x="1444.0" y="2552" width="42" height="26" fill="#f2f2f2" /><text x="1465" y="2572" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="G1" data-to="G2" d="M 905 1647.5 L 905 1707.5" />
+<g transform="translate(-315 -288.5)"><rect x="1229.0" y="1952" width="32" height="26" fill="#f2f2f2" /><text x="1245" y="1972" text-anchor="middle">No</text></g>
+<path class="edge" data-from="G2" data-to="G3" d="M 905 1827.5 L 905 1867.5" />
+<path class="edge" data-from="G3" data-to="HC" d="M 905 1987.5 L 905 2027.5" />
+<path class="edge" data-from="HC" data-to="T" d="M 905 2147.5 L 905 2270 Q 905 2280 895 2280 L 685 2280" />
+<g transform="translate(-315 -410)"><rect x="1169.0" y="2592" width="102" height="26" fill="#f2f2f2" /><text x="1220" y="2612" text-anchor="middle">Confirmed</text></g>
+<path class="edge" data-from="FM" data-to="R" d="M 205 1485 L 205 1527.5" />
+<g transform="translate(-175 -228.5)"><rect x="384.0" y="1712" width="42" height="26" fill="#f2f2f2" /><text x="405" y="1732" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="R" data-to="UC" d="M 205 1647.5 L 205 1687.5" />
+<path class="edge" data-from="UC" data-to="T" d="M 205 1807.5 L 205 2270 Q 205 2280 215 2280 L 425 2280" />
+<path class="edge" data-from="T" data-to="CS" d="M 555 2375 L 555 2947.5" />
+<g transform="translate(-245 -478.5)"><rect x="789.0" y="3022" width="72" height="26" fill="#f2f2f2" /><text x="825" y="3042" text-anchor="middle">Simple</text></g>
+<path class="edge" data-from="T" data-to="B" d="M 685 2280 L 718.75 2280 Q 724.38 2280 724.38 2290 L 724.38 2382.5 Q 724.38 2387.5 730 2387.5 L 895 2387.5 Q 905 2387.5 905 2392.5 L 905 2407.5" />
+<g transform="translate(-315 -416)"><rect x="1059.0" y="2777" width="82" height="26" fill="#f2f2f2" /><text x="1100" y="2797" text-anchor="middle">Complex</text></g>
+<path class="edge" data-from="B" data-to="WB" d="M 905 2527.5 L 905 2567.5" />
+<path class="edge" data-from="WB" data-to="WC" d="M 905 2687.5 L 905 2720" />
+<path class="edge" data-from="WC" data-to="RQ" d="M 1035 2815 L 1125 2815" />
+<g transform="translate(-326.96 -515)"><rect x="1389.0" y="3292" width="32" height="26" fill="#f2f2f2" /><text x="1405" y="3312" text-anchor="middle">No</text></g>
+<path class="edge" data-from="RQ" data-to="B" d="M 1230 2755 L 1230 2505 Q 1230 2495 1220 2495 L 1010 2495" />
+<path class="edge" data-from="WC" data-to="CS" d="M 905 2910 L 905 2997.5 Q 905 3007.5 895 3007.5 L 660 3007.5" />
+<g transform="translate(-315 -538.5)"><rect x="1224.0" y="3452" width="42" height="26" fill="#f2f2f2" /><text x="1245" y="3472" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="CS" data-to="AC" d="M 555 3067.5 L 555 3100" />
+<path class="edge" data-from="AC" data-to="E" d="M 555 3290 L 555 3697" />
+<g transform="translate(-245 -629)"><rect x="809.0" y="4082" width="32" height="26" fill="#f2f2f2" /><text x="825" y="4102" text-anchor="middle">No</text></g>
+<path class="edge" data-from="AC" data-to="PRE" d="M 685 3195 L 718.75 3195 Q 724.38 3195 724.38 3205 L 724.38 3275 Q 724.38 3285 730 3285 L 895 3285 Q 905 3285 905 3293.56 L 905 3322" />
+<g transform="translate(-310.62 -585)"><rect x="1059.0" y="3837" width="42" height="26" fill="#f2f2f2" /><text x="1080" y="3857" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="PRE" data-to="CONF" d="M 905 3442 L 905 3474.5" />
+<path class="edge" data-from="CONF" data-to="STOP" d="M 1035 3569.5 L 1220 3569.5 Q 1230 3569.5 1230 3579.5 L 1230 3697" />
+<g transform="translate(-338.91 -630.5)"><rect x="1444.0" y="4167" width="32" height="26" fill="#f2f2f2" /><text x="1460" y="4187" text-anchor="middle">No</text></g>
+<path class="edge" data-from="CONF" data-to="E" d="M 905 3664.5 L 905 3747 Q 905 3757 895 3757 L 660 3757" />
+<g transform="translate(-315 -649)"><rect x="1224.0" y="4312" width="42" height="26" fill="#f2f2f2" /><text x="1245" y="4332" text-anchor="middle">Yes</text></g>
+<path class="edge" data-from="E" data-to="ER" d="M 555 3817 L 555 3849.5" />
+<path class="edge" data-from="ER" data-to="OUT" d="M 555 4039.5 L 555 4252" />
+<g transform="translate(-245 -759)"><rect x="784.0" y="4962" width="102" height="26" fill="#f2f2f2" /><text x="835" y="4982" text-anchor="middle">Completed</text></g>
+<path class="edge" data-from="ER" data-to="PART" d="M 425 3944.5 L 391.25 3944.5 Q 385.62 3944.5 385.62 3954.5 L 385.62 4042 Q 385.62 4047 380 4047 L 215 4047 Q 205 4047 205 4052 L 205 4077" />
+<g transform="translate(-175 -696.5)"><rect x="439.0" y="4717" width="82" height="26" fill="#f2f2f2" /><text x="480" y="4737" text-anchor="middle">Partial</text></g>
+<path class="edge" data-from="ER" data-to="FAIL" d="M 685 3944.5 L 718.75 3944.5 Q 724.38 3944.5 724.38 3954.5 L 724.38 4042 Q 724.38 4047 730 4047 L 895 4047 Q 905 4047 905 4052 L 905 4077" />
+<g transform="translate(-315 -696.5)"><rect x="1074.0" y="4717" width="72" height="26" fill="#f2f2f2" /><text x="1110" y="4737" text-anchor="middle">Failed</text></g>
+<path class="edge" data-from="PART" data-to="OUT" d="M 205 4197 L 205 4302 Q 205 4312 215 4312 L 450 4312" />
+<path class="edge" data-from="FAIL" data-to="OUT" d="M 905 4197 L 905 4302 Q 905 4312 895 4312 L 660 4312" />
+<path class="edge" data-from="OUT" data-to="REV" d="M 555 4372 L 555 4404.5" />
+<path class="edge" data-from="REV" data-to="END" d="M 685 4499.5 L 730 4499.5 Q 735.62 4499.5 735.62 4509.5 L 735.62 4602 Q 735.62 4607 741.25 4607 L 895 4607 Q 905 4607 905 4612 L 905 4637" />
+<g transform="translate(-315 -826.5)"><rect x="1074.0" y="5407" width="72" height="26" fill="#f2f2f2" /><text x="1110" y="5427" text-anchor="middle">Accept</text></g>
+<path class="edge" data-from="REV" data-to="ID" d="M 425 4499.5 L 380 4499.5 Q 374.38 4499.5 374.38 4509.5 L 374.38 4602 Q 374.38 4607 368.75 4607 L 215 4607 Q 205 4607 205 4612 L 205 4637" />
+<g transform="translate(-175 -826.5)"><rect x="449.0" y="5407" width="62" height="26" fill="#f2f2f2" /><text x="480" y="5427" text-anchor="middle">Retry</text></g>
+<path class="edge" data-from="ID" data-to="E" d="M 100 4697 L 45 4697 Q 42 4697 42 4687 L 42 3767 Q 42 3757 45 3757 L 450 3757" />
+<path class="edge" data-from="REV" data-to="H" d="M 555 4594.5 L 555 4772 Q 555 4774.14 565 4774.14 L 1378.97 4774.14 Q 1384.14 4774.14 1384.14 4772 L 1384.14 207 Q 1384.14 197 1378.97 197 L 660 197" />
+<g transform="translate(-340 -911.71)"><rect x="1584.0" y="5662" width="172" height="26" fill="#f2f2f2" /><text x="1670" y="5682" text-anchor="middle">Modify or extend</text></g>
+<path class="edge" data-from="Q2" data-to="H" d="M 100 616 L 69 616 Q 66 616 66 606 L 66 296.33 Q 66 291 69 291 L 485 291 Q 495 291 495 285.67 L 495 267" />
+<path class="edge" data-from="Q1" data-to="H" d="M 1010 616 L 1042.83 616 Q 1050.65 616 1050.65 606 L 1050.65 296.33 Q 1050.65 291 1042.83 291 L 625 291 Q 615 291 615 285.67 L 615 267" />
+<g id="node-U" transform="translate(-245 -17.5)"><title>User request</title>
+<rect class="node" x="695.0" y="47.5" width="210" height="65" />
+<text x="800" y="86" text-anchor="middle">User request</text>
+</g>
+<g id="node-H" transform="translate(-245 -38)"><title>Agent Hub extracts goal, inputs, scope, constraints</title>
+<rect class="node" x="695.0" y="165.0" width="210" height="140" />
+<text x="800" y="217" text-anchor="middle">Agent Hub extracts</text>
+<text x="800" y="241" text-anchor="middle">goal, inputs, scope,</text>
+<text x="800" y="265" text-anchor="middle">constraints</text>
+</g>
+<g id="node-C" transform="translate(-245 -66)"><title>Enough information to match?</title>
+<polygon class="node" points="800,365.0 930.0,460 800,555.0 670.0,460" />
+<text x="800" y="454" text-anchor="middle">Enough information</text>
+<text x="800" y="478" text-anchor="middle">to match?</text>
+</g>
+<g id="node-Q2" transform="translate(-175 -94)"><title>Request required source or period</title>
+<rect class="node" x="275.0" y="650.0" width="210" height="120" />
+<text x="380" y="704" text-anchor="middle">Request required</text>
+<text x="380" y="728" text-anchor="middle">source or period</text>
+</g>
+<g id="node-S" transform="translate(-245 -94)"><title>User specified a Subagent?</title>
+<polygon class="node" points="800,615.0 930.0,710 800,805.0 670.0,710" />
+<text x="800" y="704" text-anchor="middle">User specified a</text>
+<text x="800" y="728" text-anchor="middle">Subagent?</text>
+</g>
+<g id="node-Q1" transform="translate(-315 -94)"><title>Ask minimum goal clarification</title>
+<rect class="node" x="1115.0" y="650.0" width="210" height="120" />
+<text x="1220" y="704" text-anchor="middle">Ask minimum goal</text>
+<text x="1220" y="728" text-anchor="middle">clarification</text>
+</g>
+<g id="node-V" transform="translate(-245 -131.5)"><title>Validate Registry status, capability, permission, tools</title>
+<rect class="node" x="695.0" y="880.0" width="210" height="140" />
+<text x="800" y="932" text-anchor="middle">Validate Registry</text>
+<text x="800" y="956" text-anchor="middle">status, capability,</text>
+<text x="800" y="980" text-anchor="middle">permission, tools</text>
+</g>
+<g id="node-VP" transform="translate(-245 -154.5)"><title>Valid and available?</title>
+<polygon class="node" points="800,1075.0 930.0,1170 800,1265.0 670.0,1170" />
+<text x="800" y="1164" text-anchor="middle">Valid and</text>
+<text x="800" y="1188" text-anchor="middle">available?</text>
+</g>
+<g id="node-F" transform="translate(-175 -187)"><title>Agent Finder recommends alternatives</title>
+<rect class="node" x="275.0" y="1330.0" width="210" height="120" />
+<text x="380" y="1372" text-anchor="middle">Agent Finder</text>
+<text x="380" y="1396" text-anchor="middle">recommends</text>
+<text x="380" y="1420" text-anchor="middle">alternatives</text>
+</g>
+<g id="node-FM" transform="translate(-175 -210)"><title>Suitable Business Subagent found?</title>
+<polygon class="node" points="380,1505.0 510.0,1600 380,1695.0 250.0,1600" />
+<text x="380" y="1594" text-anchor="middle">Suitable Business</text>
+<text x="380" y="1618" text-anchor="middle">Subagent found?</text>
+</g>
+<g id="node-R" transform="translate(-175 -252.5)"><title>Hub presents ranked recommendations</title>
+<rect class="node" x="275.0" y="1780.0" width="210" height="120" />
+<text x="380" y="1834" text-anchor="middle">Hub presents ranked</text>
+<text x="380" y="1858" text-anchor="middle">recommendations</text>
+</g>
+<g id="node-UC" transform="translate(-175 -292.5)"><title>User selects Agent or Agent set</title>
+<rect class="node" x="275.0" y="1980.0" width="210" height="120" />
+<text x="380" y="2034" text-anchor="middle">User selects Agent or</text>
+<text x="380" y="2058" text-anchor="middle">Agent set</text>
+</g>
+<g id="node-G1" transform="translate(-315 -252.5)"><title>Check whether existing Agents can compose</title>
+<rect class="node" x="1115.0" y="1780.0" width="210" height="120" />
+<text x="1220" y="1822" text-anchor="middle">Check whether</text>
+<text x="1220" y="1846" text-anchor="middle">existing Agents can</text>
+<text x="1220" y="1870" text-anchor="middle">compose</text>
+</g>
+<g id="node-G2" transform="translate(-315 -292.5)"><title>Agent Creator searches approved external reuse</title>
+<rect class="node" x="1115.0" y="2000.0" width="210" height="120" />
+<text x="1220" y="2042" text-anchor="middle">Agent Creator</text>
+<text x="1220" y="2066" text-anchor="middle">searches approved</text>
+<text x="1220" y="2090" text-anchor="middle">external reuse</text>
+</g>
+<g id="node-G3" transform="translate(-315 -332.5)"><title>Recommend reuse, adapt, or create</title>
+<rect class="node" x="1115.0" y="2200.0" width="210" height="120" />
+<text x="1220" y="2254" text-anchor="middle">Recommend reuse,</text>
+<text x="1220" y="2278" text-anchor="middle">adapt, or create</text>
+</g>
+<g id="node-HC" transform="translate(-315 -372.5)"><title>Hub requests confirmation before adoption or creation</title>
+<rect class="node" x="1115.0" y="2400.0" width="210" height="120" />
+<text x="1220" y="2442" text-anchor="middle">Hub requests</text>
+<text x="1220" y="2466" text-anchor="middle">confirmation before</text>
+<text x="1220" y="2490" text-anchor="middle">adoption or creation</text>
+</g>
+<g id="node-T" transform="translate(-245 -410)"><title>Simple or complex task?</title>
+<polygon class="node" points="800,2595.0 930.0,2690 800,2785.0 670.0,2690" />
+<text x="800" y="2684" text-anchor="middle">Simple or complex</text>
+<text x="800" y="2708" text-anchor="middle">task?</text>
+</g>
+<g id="node-B" transform="translate(-315 -442.5)"><title>Workflow Builder drafts Blueprint</title>
+<rect class="node" x="1115.0" y="2850.0" width="210" height="120" />
+<text x="1220" y="2904" text-anchor="middle">Workflow Builder</text>
+<text x="1220" y="2928" text-anchor="middle">drafts Blueprint</text>
+</g>
+<g id="node-WB" transform="translate(-315 -482.5)"><title>Hub presents ordered Blueprint, dependencies, and outputs</title>
+<rect class="node" x="1115.0" y="3050.0" width="210" height="120" />
+<text x="1220" y="3080" text-anchor="middle">Hub presents ordered</text>
+<text x="1220" y="3104" text-anchor="middle">Blueprint,</text>
+<text x="1220" y="3128" text-anchor="middle">dependencies, and</text>
+<text x="1220" y="3152" text-anchor="middle">outputs</text>
+</g>
+<g id="node-WC" transform="translate(-315 -515)"><title>User confirms Blueprint?</title>
+<polygon class="node" points="1220,3235.0 1350.0,3330 1220,3425.0 1090.0,3330" />
+<text x="1220" y="3324" text-anchor="middle">User confirms</text>
+<text x="1220" y="3348" text-anchor="middle">Blueprint?</text>
+</g>
+<g id="node-RQ" transform="translate(-340 -515)"><title>Revise plan or stop</title>
+<rect class="node" x="1465.0" y="3270.0" width="210" height="120" />
+<text x="1570" y="3336" text-anchor="middle">Revise plan or stop</text>
+</g>
+<g id="node-CS" transform="translate(-245 -552.5)"><title>Confirm Agent, goal, input, permission scope</title>
+<rect class="node" x="695.0" y="3500.0" width="210" height="120" />
+<text x="800" y="3542" text-anchor="middle">Confirm Agent, goal,</text>
+<text x="800" y="3566" text-anchor="middle">input, permission</text>
+<text x="800" y="3590" text-anchor="middle">scope</text>
+</g>
+<g id="node-AC" transform="translate(-245 -585)"><title>Data Modification or External Action?</title>
+<polygon class="node" points="800,3685.0 930.0,3780 800,3875.0 670.0,3780" />
+<text x="800" y="3774" text-anchor="middle">Data Modification</text>
+<text x="800" y="3798" text-anchor="middle">or External Action?</text>
+</g>
+<g id="node-PRE" transform="translate(-315 -598)"><title>Preview target, records, content, timing, identity</title>
+<rect class="node" x="1115.0" y="3920.0" width="210" height="120" />
+<text x="1220" y="3962" text-anchor="middle">Preview target,</text>
+<text x="1220" y="3986" text-anchor="middle">records, content,</text>
+<text x="1220" y="4010" text-anchor="middle">timing, identity</text>
+</g>
+<g id="node-CONF" transform="translate(-315 -630.5)"><title>User confirms concrete action?</title>
+<polygon class="node" points="1220,4105.0 1350.0,4200 1220,4295.0 1090.0,4200" />
+<text x="1220" y="4194" text-anchor="middle">User confirms</text>
+<text x="1220" y="4218" text-anchor="middle">concrete action?</text>
+</g>
+<g id="node-STOP" transform="translate(-340 -663)"><title>Stop without external change</title>
+<rect class="node" x="1465.0" y="4360.0" width="210" height="120" />
+<text x="1570" y="4414" text-anchor="middle">Stop without external</text>
+<text x="1570" y="4438" text-anchor="middle">change</text>
+</g>
+<g id="node-E" transform="translate(-245 -663)"><title>Executor runs confirmed task</title>
+<rect class="node" x="695.0" y="4360.0" width="210" height="120" />
+<text x="800" y="4414" text-anchor="middle">Executor runs</text>
+<text x="800" y="4438" text-anchor="middle">confirmed task</text>
+</g>
+<g id="node-ER" transform="translate(-245 -695.5)"><title>Execution result</title>
+<polygon class="node" points="800,4545.0 930.0,4640 800,4735.0 670.0,4640" />
+<text x="800" y="4646" text-anchor="middle">Execution result</text>
+</g>
+<g id="node-PART" transform="translate(-175 -733)"><title>Present completed, failed, skipped, IDs, rollback</title>
+<rect class="node" x="275.0" y="4810.0" width="210" height="120" />
+<text x="380" y="4852" text-anchor="middle">Present completed,</text>
+<text x="380" y="4876" text-anchor="middle">failed, skipped, IDs,</text>
+<text x="380" y="4900" text-anchor="middle">rollback</text>
+</g>
+<g id="node-FAIL" transform="translate(-315 -733)"><title>Present error, retryability, and required confirmation</title>
+<rect class="node" x="1115.0" y="4810.0" width="210" height="120" />
+<text x="1220" y="4852" text-anchor="middle">Present error,</text>
+<text x="1220" y="4876" text-anchor="middle">retryability, and</text>
+<text x="1220" y="4900" text-anchor="middle">required confirmation</text>
+</g>
+<g id="node-OUT" transform="translate(-245 -788)"><title>Hub presents result and validation</title>
+<rect class="node" x="695.0" y="5040.0" width="210" height="120" />
+<text x="800" y="5094" text-anchor="middle">Hub presents result</text>
+<text x="800" y="5118" text-anchor="middle">and validation</text>
+</g>
+<g id="node-REV" transform="translate(-245 -820.5)"><title>User next step?</title>
+<polygon class="node" points="800,5225.0 930.0,5320 800,5415.0 670.0,5320" />
+<text x="800" y="5326" text-anchor="middle">User next step?</text>
+</g>
+<g id="node-ID" transform="translate(-175 -863)"><title>Check idempotency and prior external result</title>
+<rect class="node" x="275.0" y="5500.0" width="210" height="120" />
+<text x="380" y="5554" text-anchor="middle">Check idempotency and</text>
+<text x="380" y="5578" text-anchor="middle">prior external result</text>
+</g>
+<g id="node-END" transform="translate(-315 -863)"><title>Close execution</title>
+<rect class="node" x="1115.0" y="5500.0" width="210" height="120" />
+<text x="1220" y="5566" text-anchor="middle">Close execution</text>
+</g>
+</svg>
