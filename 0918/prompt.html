@@ -18,7 +18,7 @@
 html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#e9ecee}
 body,button{font-family:Verdana,Arial,sans-serif}
 .deck{position:fixed;inset:0;display:grid;place-items:center;background:#e9ecee;overflow:hidden}
-.stage{position:relative;width:min(100vw,177.7778vh);height:min(100vh,56.25vw);aspect-ratio:16/9;background:var(--paper);overflow:hidden;box-shadow:0 18px 60px rgba(20,30,35,.12)}
+.stage{position:relative;width:min(100cqw,177.7778cqh);height:min(100cqh,56.25cqw);aspect-ratio:16/9;background:var(--paper);overflow:hidden;box-shadow:0 18px 60px rgba(20,30,35,.12)}
 .slide{position:absolute;inset:0;display:grid;grid-template-rows:26px minmax(0,1fr);gap:6px;padding:24px var(--pad) 42px;opacity:0;visibility:hidden;transform:translateX(28px);transition:opacity .35s ease,transform .35s ease,visibility .35s;pointer-events:none;overflow:hidden}
 .slide.active{opacity:1;visibility:visible;transform:none;pointer-events:auto}
 .content{width:100%;min-height:0;overflow:visible;align-self:start}
@@ -307,7 +307,7 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
 .verification-human-point{border-top:0}
 .conclusion-slide .content{display:grid;place-items:center;height:100%}
 .conclusion-statement{max-width:980px;color:var(--ink);font-size:28px;line-height:1.25;font-weight:850;text-align:center}
-@media(max-height:650px){:root{--pad:36px}.slide{padding-top:24px;padding-bottom:34px;gap:12px}h1{font-size:48px}.content{transform:scale(.95);transform-origin:center center;width:105%;margin-left:-2.5%}}
+
 @media print{
   @page{size:13.333in 7.5in;margin:0}
   html,body{width:auto;height:auto;overflow:visible;background:#fff}
@@ -335,6 +335,23 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
   .nav,.counter,.progress{display:none}
   .deck-logo{position:fixed;left:18px;bottom:6px}
   .logo-caption{position:fixed;left:94px;bottom:15px}
+}
+
+/* Fixed presentation canvas: compose once, scale the whole slide to the viewport. */
+@media screen {
+  :root { --pad:46px; }
+  html,body { width:100%;height:100%;margin:0;overflow:hidden!important; }
+  .deck { position:fixed!important;inset:0!important;display:block!important;overflow:hidden!important; }
+  .stage {
+    position:absolute!important;left:50%!important;top:50%!important;
+    width:1280px!important;height:720px!important;
+    min-width:1280px!important;min-height:720px!important;
+    max-width:none!important;max-height:none!important;margin:0!important;
+    aspect-ratio:16/9!important;container-type:size;
+    transform-origin:center center!important;
+    transform:translate(-50%,-50%) scale(var(--deck-scale,1))!important;
+  }
+  .content { transform:none!important;width:100%!important;margin-left:0!important; }
 }
 </style> </head> <body> <main class="deck"><div class="stage" id="stage"> <section class="slide active" data-section="Opening"><div class="content"><h1>From Chatting with AI to <span class="blue">Working with AI</span></h1><p class="opening-subtitle">Part 1 — From Clear Instructions to Verifiable Output</p><div class="title-meta"><div><span class="muted">Speaker:</span> <strong>xingyu you</strong></div><div><span class="muted">Date:</span> <strong>2026-09-18</strong></div></div></div></section>
 
@@ -374,4 +391,21 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
 
 <section class="slide conclusion-slide" data-section="Conclusion"><div class="topline"><span class="section">SECTION 4 CONCLUSION</span><span class="num">20</span></div><div class="content"><div class="conclusion-statement">Reliable AI work requires clear instructions, relevant context, and verifiable evidence.</div></div></section>
 
-<img class="deck-logo" src="../logo.png" alt="Logo"><div class="logo-caption">Research and Development China R&amp;D Centre</div><div class="counter" id="counter"></div><div class="nav"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></div><div class="progress" id="progress"></div> </div></main> <script> const slides=[...document.querySelectorAll('.slide')]; let current=0; const counter=document.getElementById('counter'),progress=document.getElementById('progress'); function fragments(){ return [...slides[current].querySelectorAll('.reveal:not(.shown)')] .sort((a,b)=>Number(a.dataset.revealOrder||0)-Number(b.dataset.revealOrder||0)); } function render(next){ if(next<0 || next>=slides.length) return; slides[current].classList.remove('active'); current=next; slides[current].classList.add('active'); counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0'); progress.style.width=((current+1)/slides.length*100)+'%'; document.querySelectorAll('.reveal').forEach(el=>el.classList.remove('shown')); const firstFragments=[...slides[current].querySelectorAll('.reveal')]; if(!slides[current].classList.contains('manual-reveal')){ firstFragments.forEach((el,index)=>{ if(index===0) el.classList.add('shown'); }); } } function forward(){ const f=fragments(); if(f.length){ const group=f[0].dataset.revealGroup; if(group){ slides[current].querySelectorAll(`.reveal[data-reveal-group="${group}"]`).forEach(el=>el.classList.add('shown')); }else{ f[0].classList.add('shown'); } return; } render(current+1); } function back(){ render(current-1); } slides.forEach((slide,index)=>{ const num=slide.querySelector('.num'); if(num) num.textContent=String(index+1).padStart(2,'0'); }); slides[0]?.classList.add('active'); document.getElementById('next').onclick=forward; document.getElementById('prev').onclick=back; document.addEventListener('keydown',e=>{ if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); forward(); } if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); back(); } if(e.key.toLowerCase()==='f') document.documentElement.requestFullscreen?.(); if(e.key.toLowerCase()==='n') document.getElementById('stage').classList.toggle('show-notes'); }); render(0); </script> </body> </html>
+<img class="deck-logo" src="logo.png" alt="Logo"><div class="logo-caption">Research and Development China R&amp;D Centre</div><div class="counter" id="counter"></div><div class="nav"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></div><div class="progress" id="progress"></div> </div></main> <script> const slides=[...document.querySelectorAll('.slide')]; let current=0; const counter=document.getElementById('counter'),progress=document.getElementById('progress'); function fragments(){ return [...slides[current].querySelectorAll('.reveal:not(.shown)')] .sort((a,b)=>Number(a.dataset.revealOrder||0)-Number(b.dataset.revealOrder||0)); } function render(next){ if(next<0 || next>=slides.length) return; slides[current].classList.remove('active'); current=next; slides[current].classList.add('active'); counter.textContent=String(current+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0'); progress.style.width=((current+1)/slides.length*100)+'%'; document.querySelectorAll('.reveal').forEach(el=>el.classList.remove('shown')); const firstFragments=[...slides[current].querySelectorAll('.reveal')]; if(!slides[current].classList.contains('manual-reveal')){ firstFragments.forEach((el,index)=>{ if(index===0) el.classList.add('shown'); }); } } function forward(){ const f=fragments(); if(f.length){ const group=f[0].dataset.revealGroup; if(group){ slides[current].querySelectorAll(`.reveal[data-reveal-group="${group}"]`).forEach(el=>el.classList.add('shown')); }else{ f[0].classList.add('shown'); } return; } render(current+1); } function back(){ render(current-1); } slides.forEach((slide,index)=>{ const num=slide.querySelector('.num'); if(num) num.textContent=String(index+1).padStart(2,'0'); }); slides[0]?.classList.add('active'); document.getElementById('next').onclick=forward; document.getElementById('prev').onclick=back; document.addEventListener('keydown',e=>{ if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); forward(); } if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); back(); } if(e.key.toLowerCase()==='f') document.documentElement.requestFullscreen?.(); if(e.key.toLowerCase()==='n') document.getElementById('stage').classList.toggle('show-notes'); }); render(0); </script> 
+<script>
+(function(){
+  const stage=document.getElementById('stage');
+  const deck=stage?.closest('.deck');
+  if(!stage || !deck) return;
+  function fitCanvas(){
+    if(!deck.clientWidth || !deck.clientHeight) return;
+    const scale=Math.min(deck.clientWidth/1280,deck.clientHeight/720);
+    stage.style.setProperty('--deck-scale',String(scale));
+  }
+  window.addEventListener('resize',fitCanvas);
+  document.addEventListener('fullscreenchange',fitCanvas);
+  if(typeof ResizeObserver!=='undefined') new ResizeObserver(fitCanvas).observe(deck);
+  fitCanvas();
+})();
+</script>
+</body> </html>
