@@ -8,9 +8,8 @@ A 23-slide English deck with a mainly Chinese speaker script. The running case i
 - speaker-script.md: aligned Chinese narration.
 - shared-frameworks.md: source-based reusable documentation patterns.
 - logic-chain.md: current Chinese narrative.
-- backup-examples.md: optional presentation-preparation feedback, outside the main deck.
 - assets/: local viewers, document previews, logos, and source diagrams.
-- Agent-Hub-Presentation.pdf: an older export, not synchronized with recent edits.
+- Agent-Hub-Presentation.pdf: current 23-slide PDF export of index.html.
 
 ## Slide outline
 
