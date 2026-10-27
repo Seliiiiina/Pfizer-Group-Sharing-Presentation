@@ -1,0 +1,695 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><base href="../../agent%20hub/"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agent Hub README — source viewer</title><style>
+*{box-sizing:border-box}html{scroll-padding-top:18px}body{margin:0;padding:22px 28px 40px;background:#fff;color:#151719;font:16px/1.55 Verdana,Arial,sans-serif}h1,h2,h3,h4{font-size:16px;line-height:1.4;color:#0067b1;margin:26px 0 12px;font-weight:700}h1{margin-top:0}h2{padding-top:14px;border-top:1px solid #d9dde0}p{margin:0 0 14px}ul,ol{padding-left:24px;margin:0 0 18px}li{margin:7px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;background:#f4f6f7;border:1px solid #d9dde0;margin:12px 0 18px;font:14px/1.5 Menlo,Consolas,monospace}code{font-family:Menlo,Consolas,monospace;background:#f4f6f7}table{border-collapse:collapse;font-size:14px}th,td{padding:10px;border:1px solid #d9dde0;text-align:left;vertical-align:top}th{background:#edf7fe}.table-wrap{overflow:auto;margin-bottom:18px}img{display:block;max-width:100%;height:auto;margin:16px auto}a{color:#0067b1}.source-extra{font-size:12px;color:#697177}:target{background:#edf7fe;outline:5px solid #edf7fe}
+</style></head><body><h1 id="agent-hub">Agent Hub</h1>
+<p>Agent Hub is an enterprise-grade intelligent agent discovery, recommendation, orchestration, and execution platform.</p>
+<p>The platform solves a growing enterprise problem: as internal and marketplace agents increase, users struggle to discover the right agent, compare overlapping capabilities, avoid duplicated builds, and improve the utilization of existing agents.</p>
+<h2 id="product-vision">Product Vision</h2>
+<p>Users should not need to know agent names, technical implementations, or invocation methods. They should be able to describe a business need in natural language, and Agent Hub should guide the full path:</p>
+<pre><code>Understanding
+  -&gt; Discovery
+  -&gt; Matching
+  -&gt; Recommendation
+  -&gt; Confirmation
+  -&gt; Workflow Building, when needed
+  -&gt; Execution
+  -&gt; Results</code></pre>
+<p>The long-term goal is to become a unified navigation, management, and scheduling center for enterprise agents, improving agent discoverability, utilization, reuse, collaboration efficiency, and return on investment.</p>
+<h2 id="core-architecture">Core Architecture</h2>
+<p>The system uses one main agent, four functional agents, and multiple business subagents.</p>
+<p>The current library contains 172 Business Subagents after the first capability deduplication pass. See <a href="Agent-Registry.txt" target="_blank" rel="noopener">Agent Registry</a> for current counts.</p>
+<pre><code>User
+  -&gt; Agent Hub
+      -&gt; Agent Finder
+      -&gt; Workflow Builder
+      -&gt; Agent Executor
+      -&gt; Agent Creator
+      -&gt; Agent Registry
+      -&gt; business-subagents/</code></pre>
+<h3 id="agent-hub-2">Agent Hub</h3>
+<p>Agent Hub is the core of the system and the only agent that directly interacts with users and presents final results.</p>
+<p>Responsibilities:</p>
+<ul>
+<li>Understand user requests and business intent.</li>
+<li>Identify task type and complexity.</li>
+<li>Decide which functional agent or agents should be called.</li>
+<li>Manage user confirmation before execution.</li>
+<li>Consolidate structured outputs from other agents.</li>
+<li>Explain recommendations, plans, execution status, and final results to the user.</li>
+</ul>
+<p>Agent Hub handles users who want to:</p>
+<ul>
+<li>Learn what agents currently exist.</li>
+<li>Search for a type of agent.</li>
+<li>Find the best agent for a specific task.</li>
+<li>Execute a simple task.</li>
+<li>Complete a complex task requiring multiple agents.</li>
+<li>Create a new agent when no suitable existing agent is available.</li>
+</ul>
+<h3 id="agent-finder">Agent Finder</h3>
+<p>Agent Finder discovers and recommends suitable agents from the enterprise-certified and recommended Subagent resource library.</p>
+<p>Use Agent Finder when:</p>
+<ul>
+<li>The user wants to know what agents exist.</li>
+<li>The user searches for agents by category, keyword, goal, or business scenario.</li>
+<li>The user wants the best agent for a task.</li>
+<li>The user wants to execute a task but has not specified the target agent.</li>
+</ul>
+<p>Expected behavior:</p>
+<ul>
+<li>Retrieve and match Business Subagents based on Agent Registry, not only keyword hits.</li>
+<li>Identify likely Primary Category, Capability Tags, and Domain Tags from the user&#x27;s goal, task content, and constraints.</li>
+<li>Follow the Retrieve Candidates -&gt; Evaluate Fit -&gt; Rank Candidates -&gt; Return Recommendations process.</li>
+<li>Evaluate capability match, domain relevance, input/output compatibility, availability, and permissions.</li>
+<li>Return up to five suitable candidate agents when matches exist.</li>
+<li>Include 0-100 matching score, match level, matched keywords, core capabilities, use cases, strengths, limitations, and recommendation rationale.</li>
+<li>Clearly identify the most recommended agent.</li>
+<li>Make scoring explainable. Do not invent scores without evaluation basis.</li>
+<li>Do not mark unavailable agents or agents missing required permissions as directly executable.</li>
+<li>Do not recommend clearly mismatched agents just to fill five candidates.</li>
+<li>If the user only wants an overview, summarize available agent categories, counts, main capabilities, and representative agents based on Registry.</li>
+<li>If no suitable agent exists, clearly state that there is no appropriate match instead of forcing a weak recommendation.</li>
+<li>Return structured results to Agent Hub. Agent Finder does not execute tasks or communicate final results directly to users.</li>
+</ul>
+<h3 id="workflow-builder">Workflow Builder</h3>
+<p>Workflow Builder designs multi-agent workflows for complex tasks.</p>
+<p>Use Workflow Builder when:</p>
+<ul>
+<li>A task requires multiple agents to collaborate.</li>
+<li>A task needs decomposition into ordered steps.</li>
+<li>The user has selected or confirmed candidate agents, and a workflow plan is needed before execution.</li>
+</ul>
+<p>Expected behavior:</p>
+<ul>
+<li>Break complex goals into executable steps.</li>
+<li>Identify the agent required for each step.</li>
+<li>Define execution order, dependencies, inputs, outputs, and expected results.</li>
+<li>Generate a complete Workflow Blueprint.</li>
+<li>Return the Workflow Blueprint to Agent Hub for user-facing explanation and confirmation.</li>
+</ul>
+<p>Example workflow:</p>
+<pre><code>Collect data
+  -&gt; Analyze data
+  -&gt; Generate report
+  -&gt; Send email</code></pre>
+<h3 id="agent-executor">Agent Executor</h3>
+<p>Agent Executor is responsible only for authorized execution and runtime scheduling.</p>
+<p>Use Agent Executor when:</p>
+<ul>
+<li>The user has confirmed a single-agent task.</li>
+<li>The user has confirmed a Workflow Blueprint.</li>
+<li>Agent Hub has already selected the execution path and authorized the scope.</li>
+</ul>
+<p>Responsibilities:</p>
+<ul>
+<li>Assign tasks to selected Subagents.</li>
+<li>Pass required inputs, context, and intermediate results.</li>
+<li>Control execution order.</li>
+<li>Track task status.</li>
+<li>Handle execution exceptions.</li>
+<li>Aggregate final results and return them to Agent Hub.</li>
+</ul>
+<p>Boundaries:</p>
+<ul>
+<li>Agent Executor does not perform initial requirement recognition.</li>
+<li>Agent Executor does not recommend agents.</li>
+<li>Agent Executor does not design workflows.</li>
+<li>Agent Executor may make necessary scheduling adjustments within the authorized scope.</li>
+<li>If execution requires adding a new agent, changing the task goal, expanding permissions, or performing unauthorized operations, Executor must return to Agent Hub for user confirmation.</li>
+</ul>
+<h3 id="agent-creator">Agent Creator</h3>
+<p>Agent Creator helps analyze capability gaps, search for reusable internal or external solutions, and draft new agent definitions only when reuse or adaptation is insufficient.</p>
+<p>Use Agent Creator when:</p>
+<ul>
+<li>Agent Finder cannot find a suitable existing agent.</li>
+<li>The platform needs to determine whether existing agents can be combined to meet the need.</li>
+<li>Existing internal Agents are insufficient and external reusable Agent patterns, templates, repositories, or marketplace examples should be considered.</li>
+<li>A genuinely new agent may be required.</li>
+</ul>
+<p>Expected behavior:</p>
+<ul>
+<li>Analyze the capability gap.</li>
+<li>Decide whether the need can be met by composing existing agents.</li>
+<li>Search the web, GitHub, marketplaces, or other approved external sources for reusable Agent patterns, templates, repositories, or design references when useful.</li>
+<li>Evaluate whether the best path is to reuse an existing solution, adapt an existing solution, or create a new Agent.</li>
+<li>If a new Agent is needed, draft its capability definition, responsibilities, input and output requirements, tool requirements, plain text instructions, and configuration plan.</li>
+<li>Return the proposed definition to Agent Hub for user confirmation before creation.</li>
+</ul>
+<h3 id="subagents">Subagents</h3>
+<p>Subagents are business agents stored in the <code>business-subagents/</code> folder. They form the platform&#x27;s callable business-agent resource library.</p>
+<p>Each Subagent should gradually include:</p>
+<ul>
+<li>Primary Category</li>
+<li>Capability Tags</li>
+<li>Domain Tags</li>
+<li>Capability description</li>
+<li>Usage scenarios</li>
+<li>Invocation conditions</li>
+<li>Input and output expectations</li>
+<li>Execution method</li>
+<li>Limitations</li>
+</ul>
+<h3 id="agent-registry">Agent Registry</h3>
+<p>Agent Registry is an independent plain text index file that records existing agents in one place.</p>
+<p>It is the single source of truth for agent classification, counts, and candidate recommendation. The system should not maintain duplicate registry data elsewhere.</p>
+<p>It should include each agent&#x27;s basic information, primary category, capability tags, domain tags, keyword metadata, and status so Agent Finder can search, compare, and match agents efficiently.</p>
+<p>Agent Registry must distinguish:</p>
+<ul>
+<li>Functional Agents: Agent Finder, Workflow Builder, Agent Executor, and Agent Creator.</li>
+<li>Business Subagents: callable business agents stored in <code>business-subagents/</code>.</li>
+</ul>
+<p>Agent Hub is the standalone main Agent and is maintained outside the Functional Agent group. Functional Agents are platform components and should not participate in ordinary business-agent recommendation or ranking. Business Subagents are the main retrieval and recommendation target for Agent Finder.</p>
+<p>Business Subagents use a three-layer classification model:</p>
+<ul>
+<li>Primary Category: exactly one required primary category.</li>
+<li>Capability Tags: multiple allowed functional capability tags.</li>
+<li>Domain Tags: multiple allowed business-domain tags.</li>
+</ul>
+<p>Primary Category must use one of these eight values:</p>
+<ul>
+<li>Knowledge and Research</li>
+<li>Document and Content</li>
+<li>Data and Analytics</li>
+<li>Business Operations</li>
+<li>Communication and Collaboration</li>
+<li>Development and Technology</li>
+<li>Compliance and Quality</li>
+<li>Specialized Business</li>
+</ul>
+<p>Capability Tags examples:</p>
+<ul>
+<li>Search</li>
+<li>Retrieve</li>
+<li>Extract</li>
+<li>Compare</li>
+<li>Analyze</li>
+<li>Validate</li>
+<li>Summarize</li>
+<li>Generate</li>
+<li>Automate</li>
+</ul>
+<p>Domain Tags examples:</p>
+<ul>
+<li>Clinical Research</li>
+<li>Regulatory</li>
+<li>Finance</li>
+<li>HR</li>
+<li>Supply Chain</li>
+</ul>
+<p>Recommended registry fields:</p>
+<ul>
+<li>Name</li>
+<li>Chinese Name, for business Subagents only</li>
+<li>Type</li>
+<li>Primary Category</li>
+<li>Capability Tags</li>
+<li>Domain Tags</li>
+<li>Description</li>
+<li>Keywords</li>
+<li>Capabilities</li>
+<li>Use When</li>
+<li>Limitations</li>
+<li>Permission Level</li>
+<li>Status</li>
+<li>Last Updated</li>
+</ul>
+<p>Permission Level must use one of these fixed values:</p>
+<ul>
+<li>Read-only: the Agent can inspect, retrieve, summarize, or analyze information without changing external state.</li>
+<li>Draft-only: the Agent can generate drafts, plans, recommendations, or content but cannot send, publish, modify, or submit anything.</li>
+<li>External Action: the Agent can perform outward-facing actions such as sending messages, creating tickets, or triggering external workflows after confirmation.</li>
+<li>Data Modification: the Agent can create, update, delete, submit, or otherwise modify records, files, systems, or business data after confirmation.</li>
+</ul>
+<p>Status must use one of these fixed values:</p>
+<ul>
+<li>Active</li>
+<li>Draft</li>
+<li>Deprecated</li>
+<li>Unavailable</li>
+</ul>
+<p>Status rules:</p>
+<ul>
+<li>Active: the plain text definition is complete and available for discovery; this does not mean it is deployed, connected, or runtime-validated. Execution requires verified runtime availability, required inputs/tools, permissions, and user confirmation.</li>
+<li>Draft: can be browsed or discussed but should not be recommended for execution.</li>
+<li>Deprecated: should not be recommended unless the user explicitly asks about it.</li>
+<li>Unavailable: cannot be executed and should not be recommended for execution.</li>
+</ul>
+<p>Last Updated must use <code>YYYY-MM-DD</code> format.</p>
+<p>Agent Finder should avoid recommending Draft, Deprecated, or Unavailable agents for execution unless the user explicitly asks about them.</p>
+<p>Future registry fields may include input/output types, permission requirements, and certification status. Current implementation remains plain-text-only and should not introduce JSON configuration files or a database.</p>
+<h2 id="interaction-rules">Interaction Rules</h2>
+<p>Only Agent Hub directly communicates with users in natural language.</p>
+<p>All other functional agents and business Subagents return structured data to their upstream caller. They do not directly present content to users.</p>
+<p>Recommended structured outputs include:</p>
+<ul>
+<li>Matching results</li>
+<li>Agent scores</li>
+<li>Workflow Blueprint</li>
+<li>Execution plan</li>
+<li>Execution status</li>
+<li>Exception information</li>
+<li>Task results</li>
+</ul>
+<p>Agent Hub is responsible for consolidating, explaining, and presenting these outputs.</p>
+<h2 id="user-facing-output-style">User-Facing Output Style</h2>
+<p>Agent Hub should present user-facing results in concise Markdown that supports quick decisions. Users should see summaries, compact tables when comparison is useful, and clear confirmation questions. Users should not see internal JSON-like objects unless explicitly requested.</p>
+<p>Use tables for Agent recommendations, Workflow Blueprints, or other comparison-heavy outputs. Use short paragraphs for explanatory outcomes such as no-match results, invalid Subagent explanations, or next-step suggestions. Do not turn every reason and suggestion into long bullet lists.</p>
+<p>Agent recommendation tables should use these fields:</p>
+<ul>
+<li>Recommendation</li>
+<li>Agent</li>
+<li>Match Level</li>
+<li>Score</li>
+<li>Best For</li>
+<li>Why</li>
+<li>Limitations</li>
+</ul>
+<p>Workflow Blueprint tables should use these fields:</p>
+<ul>
+<li>Step</li>
+<li>Agent</li>
+<li>Action</li>
+<li>Input</li>
+<li>Output</li>
+<li>Needs Confirmation</li>
+</ul>
+<p>For no-match or unsuitable-Agent cases, prefer two short paragraphs:</p>
+<pre><code>I could not find a suitable Agent for this request. The closest existing Agents are missing the required capability, do not support the provided input, or are not currently available for this business scenario.
+
+The best next step is to ask Agent Creator to search and evaluate reusable solutions, combine existing Agents through Workflow Builder if partial capabilities exist, or narrow the task scope and run matching again.</code></pre>
+<h2 id="human-in-the-loop-principle">Human-in-the-Loop Principle</h2>
+<p>The system must clearly separate recommendation, planning, and execution.</p>
+<p>Core rules:</p>
+<ul>
+<li>Unless the user has already specified a target agent, every task must first go through Agent Finder for matching and recommendation.</li>
+<li>If the user has specified a Subagent, Agent Hub must first verify that the Subagent exists, is available, and has the capability required for the current task.</li>
+<li>A verified user-specified Subagent can skip Agent Finder recommendation, but it cannot skip user confirmation.</li>
+<li>For any executable task, Agent Hub must present candidate agents or an execution plan before execution.</li>
+<li>Single-agent execution requires user confirmation.</li>
+<li>Multi-agent workflow execution requires user confirmation of the Workflow Blueprint.</li>
+<li>User selection of an Agent only means the execution object has been chosen. It does not authorize actual execution.</li>
+<li>User confirmation must cover the Agent, task goal, required input, and permission scope before execution starts.</li>
+<li>Finding a suitable agent does not automatically authorize execution.</li>
+<li>Generating a Workflow Blueprint does not automatically authorize execution.</li>
+<li>Any expansion of agent scope, task goal, execution permissions, or unauthorized operation requires renewed user confirmation through Agent Hub.</li>
+</ul>
+<h2 id="subagent-selection-rules">Subagent Selection Rules</h2>
+<p>Before entering Agent Execution or Workflow Building, Agent Hub must determine whether the user has explicitly specified a Subagent.</p>
+<p>If the user has specified a Subagent:</p>
+<ul>
+<li>Agent Hub checks whether the Subagent exists in the Subagent resource library.</li>
+<li>Agent Hub checks whether the Subagent is currently available.</li>
+<li>Agent Hub checks whether the Subagent has the capabilities required for the current task.</li>
+<li>If validation passes, Agent Hub does not need to call Agent Finder for recommendation or matching.</li>
+<li>If the Subagent does not exist, is unavailable, or lacks required capability, Agent Hub explains the reason and calls Agent Finder to recommend alternatives.</li>
+<li>If Agent Finder cannot find a suitable alternative, Agent Hub calls Agent Creator to analyze the capability gap.</li>
+<li>Agent Hub must still ask the user to confirm before any execution starts.</li>
+<li>For a single-agent task, Agent Hub calls Agent Executor after user confirmation.</li>
+<li>For a multi-agent task, Agent Hub calls Workflow Builder first, presents the Workflow Blueprint, asks for user confirmation, and then calls Agent Executor.</li>
+</ul>
+<p>If the user has not specified a Subagent:</p>
+<ul>
+<li>Agent Hub must call Agent Finder before execution or workflow design.</li>
+<li>Agent Finder recommends suitable candidate agents based on the task requirements.</li>
+<li>Agent Hub presents matching scores, recommendation rationale, and capability differences.</li>
+<li>The user selects and confirms the preferred agent or agent set.</li>
+<li>Only after confirmation can the system proceed to Workflow Building or Agent Execution.</li>
+</ul>
+<p>The system must always keep Agent selection, Workflow design, and Task execution as separate stages.</p>
+<h2 id="clarification-rules">Clarification Rules</h2>
+<p>Before calling Agent Finder, Workflow Builder, or Agent Executor, Agent Hub must check whether the user provided enough information.</p>
+<p>If the request is missing the task goal or required input, Agent Hub should ask the minimum number of clarification questions needed to proceed. Agent Hub should not ask broad discovery questions when the missing information is narrow and specific.</p>
+<h2 id="task-complexity-rules">Task Complexity Rules</h2>
+<p>Agent Hub classifies task complexity before execution or workflow design.</p>
+<p>A task is simple when it has:</p>
+<ul>
+<li>One clear capability requirement.</li>
+<li>A single input and output.</li>
+<li>No intermediate dependency.</li>
+</ul>
+<p>A task is complex when it involves:</p>
+<ul>
+<li>Multiple stages.</li>
+<li>Multiple data sources.</li>
+<li>Multiple collaborating roles or agents.</li>
+<li>Approval steps.</li>
+<li>Multiple outputs.</li>
+</ul>
+<p>Simple tasks can proceed to single-agent confirmation and Agent Executor. Complex tasks should proceed to Workflow Builder after required agents are selected or matched.</p>
+<h2 id="agent-finder-retrieval-and-scoring">Agent Finder Retrieval and Scoring</h2>
+<p>Agent Finder must use Agent Registry as the basis for browsing, counting, retrieval, matching, scoring, and recommendation.</p>
+<p>When Agent Hub receives an Agent query or task execution request, Agent Hub extracts the user goal, task content, and necessary constraints, then passes that information to Agent Finder.</p>
+<p>Agent Finder then follows this process:</p>
+<ol>
+<li>Retrieve Candidates: identify relevant Primary Category, Capability Tags, and Domain Tags, then retrieve matching Business Subagents from Agent Registry.</li>
+<li>Evaluate Fit: evaluate each candidate using Registry-recorded capabilities, constraints, input/output expectations, availability, and permissions.</li>
+<li>Rank Candidates: calculate a 0-100 score and sort candidates from highest to lowest.</li>
+<li>Return Recommendations: return up to five suitable candidates and identify the top recommendation.</li>
+</ol>
+<p>Scoring weights:</p>
+<ul>
+<li>Capability Match: 50%.</li>
+<li>Domain Relevance: 30%.</li>
+<li>Input/Output Compatibility: 10%.</li>
+<li>Availability and Permissions: 10%.</li>
+</ul>
+<p>Scores must be based on actual Registry records and include clear scoring rationale. Agent Finder must not invent scores without evidence. Keyword matches can support scoring but must not be the only basis for recommendation.</p>
+<p>Unavailable agents or agents missing required permissions must not be marked as directly executable.</p>
+<p>For each recommended candidate, Agent Finder should return:</p>
+<ul>
+<li>Matching score from 0 to 100.</li>
+<li>Match level.</li>
+<li>Matched keywords.</li>
+<li>Core capabilities.</li>
+<li>Applicable scenarios.</li>
+<li>Strengths.</li>
+<li>Limitations.</li>
+<li>Recommendation rationale.</li>
+</ul>
+<p>Match level mapping:</p>
+<ul>
+<li>90-100: Very Strong Match.</li>
+<li>70-89: Strong Match.</li>
+<li>50-69: Partial Match.</li>
+<li>Below 50: Weak Match. Do not recommend unless the user explicitly asks to see low-confidence options.</li>
+</ul>
+<p>Agent Finder should include enough rationale for Agent Hub to explain why each candidate was included and why the top candidate is recommended.</p>
+<p>For browsing or directory requests, Agent Finder should summarize Registry contents by category, including category counts, main capabilities, and representative agents.</p>
+<p>If no suitable Business Subagent exists, Agent Finder must return a no-match result. Agent Hub can then suggest Agent Creator for sourcing and evaluating reuse, adaptation, or creation, or Workflow Builder for combining existing Agents when appropriate.</p>
+<p>Agent Finder only performs matching and recommendation. It does not execute tasks, request execution confirmation, or present final user-facing results directly.</p>
+<p>No-match routing:</p>
+<ul>
+<li>If existing Agents have partial capabilities that can be sequenced together, suggest Workflow Builder.</li>
+<li>If the core required capability is missing, suggest Agent Creator to search external sources and evaluate reuse, adaptation, or creation.</li>
+<li>If the goal, input, or scope is unclear, Agent Hub should ask clarification questions and then call Agent Finder again.</li>
+</ul>
+<h2 id="execution-result-review">Execution Result Review</h2>
+<p>After Agent Executor returns a result, Agent Hub presents the result and asks whether the user accepts it, wants modifications, wants a retry, or wants to extend the task.</p>
+<p>If the user does not explicitly choose a next step, the system must not automatically retry, modify, extend, or continue execution.</p>
+<p>If execution fails, Agent Executor must return:</p>
+<ul>
+<li>Error reason.</li>
+<li>Completed steps.</li>
+<li>Failed step.</li>
+<li>Retry suggestion.</li>
+<li>Whether user confirmation is needed before retrying.</li>
+</ul>
+<h2 id="flowcharts">Flowcharts</h2>
+<h3 id="end-to-end-agent-hub-flow">End-to-End Agent Hub Flow</h3>
+<p><img alt="End-to-End Agent Hub Flow" src="assets/diagrams/agent-hub-end-to-end.svg"></p>
+<p><a href="assets/diagrams/agent-hub-end-to-end.svg" target="_blank" rel="noopener">Open the full SVG flowchart</a></p>
+<p class="source-extra">Mermaid source (automatic layout may differ from the fixed diagram)</p>
+<pre><code>%%{init: {&quot;layout&quot;: &quot;elk&quot;, &quot;flowchart&quot;: {&quot;curve&quot;: &quot;rounded&quot;, &quot;nodeSpacing&quot;: 35, &quot;rankSpacing&quot;: 45, &quot;wrappingWidth&quot;: 120}, &quot;elk&quot;: {&quot;mergeEdges&quot;: false, &quot;considerModelOrder&quot;: &quot;NODES_AND_EDGES&quot;, &quot;forceNodeModelOrder&quot;: false, &quot;cycleBreakingStrategy&quot;: &quot;MODEL_ORDER&quot;}}}%%
+flowchart TD
+  U[User request]
+  H[Agent Hub&lt;br/&gt;extracts goal,&lt;br/&gt;inputs, scope,&lt;br/&gt;constraints]
+  C{Enough&lt;br/&gt;information to&lt;br/&gt;match?}
+  Q2[Request&lt;br/&gt;required source&lt;br/&gt;or period]
+  S{User specified a&lt;br/&gt;Subagent?}
+  Q1[Ask minimum&lt;br/&gt;goal&lt;br/&gt;clarification]
+  V[Validate&lt;br/&gt;Registry status,&lt;br/&gt;capability,&lt;br/&gt;permission,&lt;br/&gt;tools]
+  VP{Valid and available?}
+  F[Agent Finder recommends alternatives]
+  FM{Suitable Business Subagent found?}
+  R[Hub presents ranked recommendations]
+  UC[User selects Agent or Agent set]
+  G1[Check whether existing Agents can compose]
+  G2[Agent Creator searches approved external reuse]
+  G3[Recommend reuse, adapt, or create]
+  HC[Hub requests confirmation before adoption or creation]
+  T{Simple or complex task?}
+  B[Workflow Builder drafts Blueprint]
+  WB[Hub presents ordered Blueprint, dependencies, and outputs]
+  WC{User confirms Blueprint?}
+  RQ[Revise plan or stop]
+  CS[Confirm Agent, goal, input, permission scope]
+  AC{Data Modification or External Action?}
+  PRE[Preview target, records, content, timing, identity]
+  CONF{User confirms concrete action?}
+  STOP[Stop without external change]
+  E[Executor runs confirmed task]
+  ER{Execution result}
+  PART[Present completed, failed, skipped, IDs, rollback]
+  FAIL[Present error, retryability, and required confirmation]
+  OUT[Hub presents result and validation]
+  REV{User next step?}
+  ID[Check idempotency and prior external result]
+  END[Close execution]
+
+  U --&gt; H
+  H --&gt; C
+  C -- Missing source --&gt; Q2
+  C -- Yes --&gt; S
+  C -- No goal --&gt; Q1
+  S -- Yes --&gt; V
+  V --&gt; VP
+  VP -- No --&gt; F
+  VP -- Yes --&gt; T
+  S -- No --&gt; F
+  F --&gt; FM
+  FM -- No --&gt; G1
+  G1 --&gt;|Yes| B
+  G1 --&gt;|No| G2
+  G2 --&gt; G3
+  G3 --&gt; HC
+  HC --&gt;|Confirmed| T
+  FM -- Yes --&gt; R
+  R --&gt; UC
+  UC --&gt; T
+  T -- Simple --&gt; CS
+  T -- Complex --&gt; B
+  B --&gt; WB
+  WB --&gt; WC
+  WC -- No --&gt; RQ
+  RQ --&gt; B
+  WC -- Yes --&gt; CS
+  CS --&gt; AC
+  AC -- No --&gt; E
+  AC -- Yes --&gt; PRE
+  PRE --&gt; CONF
+  CONF -- No --&gt; STOP
+  CONF -- Yes --&gt; E
+  E --&gt; ER
+  ER -- Completed --&gt; OUT
+  ER -- Partial --&gt; PART
+  ER -- Failed --&gt; FAIL
+  PART --&gt; OUT
+  FAIL --&gt; OUT
+  OUT --&gt; REV
+  REV -- Accept --&gt; END
+  REV -- Retry --&gt; ID
+  ID --&gt; E
+  REV -- Modify or extend --&gt; H
+  Q2 --&gt; H
+  Q1 --&gt; H</code></pre>
+<h3 id="agent-finder-retrieval-and-scoring-flow">Agent Finder Retrieval and Scoring Flow</h3>
+<p><img alt="Agent Finder Retrieval and Scoring Flow" src="assets/diagrams/agent-finder-retrieval-scoring.svg"></p>
+<p><a href="assets/diagrams/agent-finder-retrieval-scoring.svg" target="_blank" rel="noopener">Open the full SVG flowchart</a></p>
+<p class="source-extra">Mermaid source</p>
+<pre><code>flowchart TD
+  A[Agent Hub passes goal, task, constraints] --&gt; P[Identify Primary Category, Capability Tags, Domain Tags]
+  P --&gt; R[Retrieve candidate Business Subagents from Agent Registry]
+  R --&gt; E[Evaluate fit from Registry evidence]
+  E --&gt; SC[Score candidates 0-100]
+  SC --&gt; W[Apply weights: Capability 50, Domain 30, Input/Output 10, Availability and Permissions 10]
+  W --&gt; X{Any suitable candidates?}
+  X -- No --&gt; N[Return no_match with reason and next-step suggestion]
+  X -- Yes --&gt; K[Rank by score descending]
+  K --&gt; L[Return up to five candidates]
+  L --&gt; TOP[Mark top recommendation]
+  TOP --&gt; H[Return structured result to Agent Hub]</code></pre>
+<h2 id="task-routing-logic">Task Routing Logic</h2>
+<h3 id="agent-overview-request">Agent Overview Request</h3>
+<pre><code>User asks what agents exist
+  -&gt; Agent Hub
+  -&gt; Agent Finder summarizes categories, counts, capabilities, and examples
+  -&gt; Agent Hub presents the overview</code></pre>
+<h3 id="agent-search-or-recommendation">Agent Search or Recommendation</h3>
+<pre><code>User describes a goal, keyword, or business scenario
+  -&gt; Agent Hub
+  -&gt; Agent Finder retrieves and scores candidate agents
+  -&gt; Agent Hub presents about five candidates and the top recommendation
+  -&gt; User selects or confirms an agent</code></pre>
+<h3 id="simple-task-execution">Simple Task Execution</h3>
+<pre><code>User asks to execute a task
+  -&gt; Agent Hub checks whether a target agent was specified
+  -&gt; If specified, Agent Hub verifies existence, availability, and capability
+  -&gt; If not specified, Agent Finder recommends candidates
+  -&gt; Agent Hub presents the selected or recommended agent for confirmation
+  -&gt; Agent Executor runs the selected Subagent
+  -&gt; Agent Executor returns structured result
+  -&gt; Agent Hub presents final result</code></pre>
+<h3 id="complex-workflow-execution">Complex Workflow Execution</h3>
+<pre><code>User asks for a complex multi-step task
+  -&gt; Agent Hub identifies task complexity
+  -&gt; Agent Hub checks whether required Subagents were specified
+  -&gt; If specified, Agent Hub verifies existence, availability, and capability
+  -&gt; If not specified, Agent Finder matches required agents
+  -&gt; Workflow Builder creates a Workflow Blueprint
+  -&gt; Agent Hub presents the blueprint for confirmation
+  -&gt; Agent Executor executes the confirmed workflow
+  -&gt; Agent Executor returns structured status and results
+  -&gt; Agent Hub presents final result</code></pre>
+<p>For workflows containing Data Modification or External Action steps, the Blueprint confirmation is followed by a concrete action preview confirmation. A partial result does not automatically retry; the user must choose a next step, and Executor must check idempotency before retrying.</p>
+<h3 id="new-agent-creation">New Agent Creation</h3>
+<pre><code>Agent Finder finds no suitable agent
+  -&gt; Agent Hub informs the user
+  -&gt; Agent Creator analyzes the capability gap
+  -&gt; Agent Creator searches internal and external reusable solutions when useful
+  -&gt; Agent Creator recommends reuse, adaptation, or new Agent creation
+  -&gt; Agent Hub asks the user to confirm the selected path and any Registry update</code></pre>
+<h2 id="plain-text-agent-definition-standard">Plain Text Agent Definition Standard</h2>
+<p>Agent definitions and the Agent Registry are stored as UTF-8 <code>.txt</code> files for copying into Copilot Studio. README and TODO documents remain <code>.md</code> files. Headings, hyphen bullets, tables, and code fences remain literal text; preserve their line breaks when copying.</p>
+<p>Agent definitions and the Agent Registry use plain text (.txt) files; README and TODO documents use Markdown (.md). It should not include Python files, JSON configuration files, or other implementation code at this stage.</p>
+<p>The initial implementation uses plain text (.txt) files to define agent roles, usage scenarios, and execution instructions. This keeps the design portable and prepares the system for future migration to Microsoft Copilot Studio.</p>
+<p>All Agent plain text (.txt) files must use the same concise three-part structure:</p>
+<ul>
+<li>Name</li>
+<li>Description</li>
+<li>Instruction</li>
+</ul>
+<p>Name requirements:</p>
+<ul>
+<li>Agent Hub and the four functional agents only need English names.</li>
+<li>Business Subagents in <code>business-subagents/</code> should include both English and Chinese names below the main heading, using the localized field labels in their definitions.</li>
+</ul>
+<p>Description requirements:</p>
+<ul>
+<li>Except for Agent Hub, use one concise English paragraph: <code>&lt;Core capability and scope&gt;. Use when &lt;specific task or trigger&gt;. &lt;Key outputs or limits, when useful&gt;.</code></li>
+<li>Keep each description within 800 characters, including spaces and punctuation, stating what the agent does and when it should be used.</li>
+<li>Preserve essential scope limits, such as draft-only, confirmation-required, or entertainment-only behavior.</li>
+<li>Agent Hub retains its user-facing purpose and benefits description.</li>
+<li>Do not include long background explanations.</li>
+</ul>
+<p>Instruction requirements:</p>
+<ul>
+<li>Treat Instruction as the core instruction block, similar to a Skill.</li>
+<li>Define responsibilities, boundaries, trigger conditions, workflow, input and output requirements, calling rules, and necessary restrictions.</li>
+<li>Write executable instructions that help the Agent perform work, not just understand its role.</li>
+<li>Require functional agents and Subagents to return structured outputs as JSON-like objects inside Markdown code blocks when they report results upstream.</li>
+<li>Business Subagents must explicitly state that they do not communicate directly with users and return structured results to Agent Hub or the upstream functional Agent only.</li>
+</ul>
+<p>Length and style requirements:</p>
+<ul>
+<li>Each plain text (.txt) file must stay under 8000 characters, including Name, Description, and Instruction.</li>
+<li>Reduce unnecessary blank lines, repeated explanations, redundant headings, and non-actionable text.</li>
+<li>Prefer clear, direct, executable instructions.</li>
+<li>Avoid repeating the same global rules across Agent Hub and the four functional Agent files.</li>
+<li>Keep each file focused on its own responsibilities and collaboration boundaries.</li>
+</ul>
+<p>Recommended template for Agent Hub and functional agents:</p>
+<pre><code># English Name
+
+## Description
+
+Describe the agent&#x27;s core role and when it should be used.
+
+## Instruction
+
+Define responsibilities, boundaries, trigger conditions, workflow, input/output requirements, calling rules, and restrictions.</code></pre>
+<p>Recommended template for business Subagents:</p>
+<pre><code># English Name
+
+English name:
+
+Chinese name:
+
+## Description
+
+Describe the Subagent&#x27;s core capability and when to use it.
+
+## Instruction
+
+Define responsibilities, trigger conditions, input/output requirements, execution rules, and limitations.</code></pre>
+<h2 id="planned-repository-structure">Planned Repository Structure</h2>
+<pre><code>Agent-Hub/
+  README.md
+  Agent-Hub.txt
+  Agent-Registry.txt
+  functional-agents/
+    Agent-Finder.txt
+    Workflow-Builder.txt
+    Agent-Executor.txt
+    Agent-Creator.txt
+  business-subagents/
+    README.md</code></pre>
+<h2 id="decision-log">Decision Log</h2>
+<div class="table-wrap"><table>
+<tr><th>Date</th><th>Decision</th><th>Rationale</th><th>Status</th></tr>
+<tr><td>2026-10-14</td><td>Use Agent Hub as the only user-facing agent.</td><td>Keeps user experience consistent and centralizes confirmation, explanation, and final output.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Use four functional agents: Agent Finder, Workflow Builder, Agent Executor, and Agent Creator.</td><td>Separates discovery, planning, execution, and creation responsibilities.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Store initial agent definitions as plain text (.txt) files.</td><td>Supports lightweight iteration and future migration to Microsoft Copilot Studio.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Require Human-in-the-Loop confirmation before execution.</td><td>Prevents unauthorized execution and keeps recommendation, planning, and execution distinct.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Keep the project plain-text-only at this stage.</td><td>Minimizes implementation overhead and keeps the agent definitions portable.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Store business Subagents in <code>business-subagents/</code> and maintain an independent Agent Registry.</td><td>Separates callable business agents from core orchestration agents and gives Agent Finder a central index.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Limit every Agent plain text (.txt) file to Name, Description, and Instruction under 8000 characters.</td><td>Reduces token usage and improves maintainability for Copilot Studio migration.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Keep the functional agent folder named <code>functional-agents/</code>.</td><td>Preserves the current structure and clearly separates functional agents from business Subagents.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Use Markdown code blocks containing JSON-like objects for upstream structured outputs.</td><td>Keeps files plain-text-only while preserving machine-readable response structure.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Add <code>Permission Level</code> and fixed <code>Status</code> values to Agent Registry.</td><td>Helps Agent Finder avoid unavailable or deprecated agents and supports scoped execution confirmation.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Require fallback from invalid user-specified Subagent to Agent Finder, then Agent Creator if needed.</td><td>Prevents failed direct execution while still respecting the user&#x27;s preferred agent choice.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Require Agent Hub to confirm Agent, task goal, input, and permission scope before execution.</td><td>Makes Agent selection separate from execution authorization.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Define simple versus complex task routing criteria.</td><td>Gives Agent Hub a consistent rule for choosing Agent Executor or Workflow Builder.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Require post-execution user review and structured failure details.</td><td>Supports acceptance, modification, retry, and task extension after execution.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Use Primary Category, Capability Tags, and Domain Tags for Business Subagent classification.</td><td>Improves discovery, matching accuracy, and extensibility beyond department or technical-function categories.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Define eight fixed Primary Categories for Business Subagents.</td><td>Creates a stable top-level browsing and reporting structure for Agent Finder.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Make Agent Registry the single source of truth for classification, counts, and recommendations.</td><td>Avoids duplicated metadata and inconsistent search results.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Split Agent Registry into Functional Agents and Business Subagents.</td><td>Keeps platform orchestration components separate from user-facing business capability recommendations.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Require Agent Finder to evaluate fit beyond keyword matches.</td><td>Ensures recommendations consider capability fit, domain fit, input/output compatibility, and availability.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Use a four-step Agent Finder process: Retrieve Candidates, Evaluate Fit, Rank Candidates, Return Recommendations.</td><td>Makes discovery and recommendation behavior consistent and auditable.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Score Agent Finder recommendations using weighted criteria: Capability Match 50%, Domain Relevance 30%, Input/Output Compatibility 10%, Availability and Permissions 10%.</td><td>Gives recommendations an explainable scoring basis.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Fix <code>Permission Level</code> values as Read-only, Draft-only, External Action, and Data Modification.</td><td>Gives Hub, Finder, and Executor a shared permission vocabulary.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Use fixed user-facing table fields for recommendations and Workflow Blueprints.</td><td>Makes user output predictable and decision-friendly.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Require <code>Last Updated</code> to use <code>YYYY-MM-DD</code> format and define Status behavior.</td><td>Keeps Registry maintenance consistent and recommendation-safe.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Do not continue, retry, modify, or extend execution without an explicit user choice.</td><td>Preserves Human-in-the-Loop control after execution.</td><td>Accepted</td></tr>
+<tr><td>2026-10-14</td><td>Allow Agent Creator to search web, GitHub, marketplaces, or approved external sources before proposing new Agent creation.</td><td>Promotes reuse and adaptation before creating duplicate Agents.</td><td>Accepted</td></tr>
+</table></div>
+<h2 id="open-questions">Open Questions</h2>
+<div class="table-wrap"><table>
+<tr><th>Topic</th><th>Question</th><th>Options</th><th>Status</th></tr>
+<tr><td>Subagent registry fields</td><td>Are the initial <code>Agent-Registry.txt</code> fields sufficient for discovery and matching?</td><td>Name, Chinese Name, Type, Primary Category, Capability Tags, Domain Tags, Description, Keywords, Capabilities, Use When, Limitations, Permission Level, Status, Last Updated</td><td>Accepted for v1</td></tr>
+<tr><td>Structured outputs</td><td>What concise structured format should functional agents return inside plain text instructions?</td><td>JSON-like objects inside Markdown code blocks</td><td>Accepted for v1</td></tr>
+<tr><td>Execution runtime</td><td>Where should execution happen first?</td><td>Local prototype, hosted backend, Microsoft Copilot Studio</td><td>Open</td></tr>
+<tr><td>Agent registry search</td><td>How should Agent Finder search <code>Agent-Registry.txt</code>?</td><td>Registry-based matching with keyword, capability, domain, input/output, and availability signals</td><td>Accepted for v1</td></tr>
+<tr><td>Permission levels</td><td>What fixed values should <code>Permission Level</code> use?</td><td>Read-only, Draft-only, External Action, Data Modification</td><td>Accepted for v1</td></tr>
+</table></div>
+<h2 id="initial-implementation-plan">Initial Implementation Plan</h2>
+<ol>
+<li>Create <code>Agent-Hub.txt</code> as the standalone main Agent definition.</li>
+<li>Create plain text definitions for the four functional agents in <code>functional-agents/</code>.</li>
+<li>Create <code>business-subagents/</code> for business Subagents.</li>
+<li>Create <code>Agent-Registry.txt</code> as the central plain text index.</li>
+<li>Define the minimal registry fields for discovery and matching.</li>
+<li>Define JSON-like object response requirements inside each Agent Instruction.</li>
+<li>Simulate the end-to-end flow from user need to recommendation to confirmation to execution result after real Subagents are added.</li>
+<li>Refine the plain text instructions for future Microsoft Copilot Studio migration.</li>
+</ol>
+<h2 id="git-workflow-notes">Git Workflow Notes</h2>
+<p>If <code>git push</code> is rejected with <code>fetch first</code>, the remote branch contains commits that do not exist locally. Do not force push by default. First integrate the remote changes, resolve any conflicts, then push again.</p>
+<p>Recommended flow:</p>
+<pre><code>git status
+git pull --rebase origin main
+git push -u origin main</code></pre>
+<p>If rebase reports conflicts, resolve the files, then continue:</p>
+<pre><code>git status
+git add &lt;resolved-files&gt;
+git rebase --continue
+git push -u origin main</code></pre>
+<p>Use force push only when intentionally replacing remote history and after confirming that no one else&#x27;s work will be lost.</p>
+<h2 id="milestones">Milestones</h2>
+<div class="table-wrap"><table>
+<tr><th>Milestone</th><th>Outcome</th><th>Status</th></tr>
+<tr><td>M0: Planning baseline</td><td>README captures vision, architecture, roles, routing, and decisions.</td><td>Done</td></tr>
+<tr><td>M1: Core agent definitions</td><td><code>Agent-Hub.txt</code> and four functional Agent plain text (.txt) files exist.</td><td>Done</td></tr>
+<tr><td>M2: Subagent library baseline</td><td><code>business-subagents/</code> folder exists for future business Subagents.</td><td>Done</td></tr>
+<tr><td>M3: Agent Registry baseline</td><td><code>Agent-Registry.txt</code> indexes available agents with v1 registry fields.</td><td>Done</td></tr>
+<tr><td>M4: End-to-end prototype</td><td>A full recommendation, confirmation, and execution flow can be simulated.</td><td>Done</td></tr>
+<tr><td>M5: Copilot Studio readiness</td><td>Agent definitions are ready to migrate or map into Copilot Studio concepts.</td><td>Not started</td></tr>
+</table></div>
+<h2 id="execution-safeguards">Execution Safeguards</h2>
+<p>For Data Modification and External Action, Agent Hub must present a second confirmation after the proposed change or action is rendered. The confirmation identifies the target system, records or recipients, fields or content, timing, connection identity, permission scope, and expected result. A trigger phrase identifies intent; it does not grant permission.</p>
+<p>Agent Executor must support partial success and idempotent retries. Every execution result should preserve an execution ID, confirmation ID, idempotency key, completed steps, failed step, skipped steps, partial results, external system IDs, retryability, and rollback or cancellation references when available.</p><script>
+// Keep the intended section visible even when preceding local diagrams finish loading.
+window.addEventListener('load',()=>{
+ const id=decodeURIComponent(location.hash.slice(1));
+ if(id)document.getElementById(id)?.scrollIntoView();
+});
+</script></body></html>

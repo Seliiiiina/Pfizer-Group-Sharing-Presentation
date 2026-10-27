@@ -760,6 +760,491 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
 .validation-step.pending{background:var(--pending-bg);border-top-color:var(--pending-ink)}
 .validation-step.pending>b{color:var(--pending-ink)}
 .registry-summary>b{color:#0067b1}
+
+.hub-need-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.hub-need-card{position:relative;min-width:0;display:flex;flex-direction:column;border:1px solid var(--line);background:#fff}
+.hub-need-card:not(:last-child):after{content:"→";position:absolute;right:-20px;top:46%;color:#697177;z-index:2}
+.hub-need-card header{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.hub-need-card header span{color:var(--muted)}
+.hub-need-card header b{font-weight:700}
+.hub-need-question{padding:18px;line-height:1.45}
+.hub-need-card .content-list{margin:0 18px 18px;padding-left:20px;line-height:1.45}
+.hub-need-card .content-list li{margin:10px 0}
+.hub-need-bottom{margin-top:auto;padding:14px 18px;border-top:1px solid var(--line);line-height:1.4}
+.hub-need-card.problem{border-top:4px solid #d39b00}
+.hub-need-card.problem header,.hub-need-card.problem .hub-need-question{background:#fff9e6}
+.hub-need-card.problem header b{color:#8a6500}
+.hub-need-card.recommend{border-top:4px solid #0067b1}
+.hub-need-card.recommend header,.hub-need-card.recommend .hub-need-bottom{background:#edf7fe}
+.hub-need-card.recommend header b{color:#0067b1}
+.hub-need-card.execute{border-top:4px solid #19734b}
+.hub-need-card.execute header,.hub-need-card.execute .hub-need-bottom{background:#eef7f1}
+.hub-need-card.execute header b{color:#19734b}
+
+.example-dialogue{display:grid;gap:12px;min-width:0;align-content:start}
+.dialogue-bubble{padding:12px 16px;border:1px solid var(--line);background:#fff;line-height:1.4}
+.dialogue-bubble b{display:block;margin-bottom:7px;color:var(--blue);font-weight:700}
+.dialogue-bubble.user{background:#fff9e6;border-left:3px solid #d39b00;margin-left:18px}
+.dialogue-bubble.user b{color:#8a6500}
+.dialogue-bubble.ai{margin-right:18px}
+.dialogue-result{padding:12px 16px;background:#eef7f1;border-left:3px solid #19734b;line-height:1.4}
+.dialogue-result b{display:block;color:#19734b;margin-bottom:7px}
+.dialogue-label{color:var(--muted);line-height:1.4}
+.slide:not([data-section="Opening"]) .content .dialogue-label{font-size:12px!important}
+.structure-dialogue-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.structure-dialogue-layout .source-tree{padding:16px;line-height:1.75;font-size:14px!important}
+.structure-dialogue-layout .registry-summary{padding:14px}
+.structure-dialogue-layout .registry-summary>b{line-height:1.4}
+.structure-dialogue-layout .registry-mini{height:280px}
+.structure-dialogue-layout .example-dialogue{gap:10px}
+
+/* Conversation examples: alternating chat bubbles, with separate implementation output. */
+.example-dialogue{display:flex;flex-direction:column;align-items:stretch;gap:13px}
+.dialogue-label{margin-bottom:1px}
+.dialogue-bubble{position:relative;box-sizing:border-box;width:88%;max-width:88%;margin:0;padding:12px 16px;border:1px solid #d9dde0;border-radius:16px;line-height:1.4;background:#fff}
+.dialogue-bubble.user{align-self:flex-end;margin:0;background:#fff9e6;border:1px solid #ead28a;border-bottom-right-radius:4px}
+.dialogue-bubble.ai{align-self:flex-start;margin:0;background:#edf7fe;border:1px solid #b8d8ec;border-bottom-left-radius:4px}
+.dialogue-bubble:after{content:"";position:absolute;bottom:8px;width:9px;height:9px;transform:rotate(45deg)}
+.dialogue-bubble.user:after{right:-5px;background:#fff9e6;border-top:1px solid #ead28a;border-right:1px solid #ead28a}
+.dialogue-bubble.ai:after{left:-5px;background:#edf7fe;border-bottom:1px solid #b8d8ec;border-left:1px solid #b8d8ec}
+.dialogue-bubble b{margin-bottom:6px;font-weight:700}
+.dialogue-bubble.user b{color:#8a6500}
+.dialogue-bubble.ai b{color:#0067b1}
+.dialogue-result{position:relative;margin-top:2px;padding:12px 16px;border:1px solid #bedac9;border-left:3px solid #19734b;border-radius:6px;background:#eef7f1;line-height:1.4}
+.structure-dialogue-layout .example-dialogue{gap:11px}
+.structure-dialogue-layout .dialogue-bubble{width:92%;max-width:92%;padding:11px 14px}
+.role-page .example-dialogue{gap:11px}
+.role-page .dialogue-bubble{width:92%;max-width:92%;padding:11px 14px}
+
+/* Small participant circles outside the conversation bubbles. */
+.example-dialogue{padding-left:30px;padding-right:30px}
+.dialogue-bubble.user:before,.dialogue-bubble.ai:before{position:absolute;top:9px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;box-sizing:border-box;font-family:Verdana,Arial,sans-serif;font-size:10px!important;font-weight:700;line-height:1;color:#fff;z-index:2}
+.dialogue-bubble.user:before{content:"U";right:-32px;background:#d39b00;border:1px solid #b78300}
+.dialogue-bubble.ai:before{content:"AI";left:-32px;background:#0067b1;border:1px solid #00558f}
+.dialogue-bubble:after{bottom:auto;top:18px}
+
+.readme-capture-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:32px;align-items:start}
+.readme-capture-layout .example-dialogue{gap:12px}
+.readme-real-capture{min-width:0}
+.readme-real-capture img{display:block;width:100%;height:auto;max-height:435px;object-fit:contain;object-position:top left;border:1px solid var(--line);box-sizing:border-box;background:#fff}
+.readme-real-capture .source-label{margin-top:10px;line-height:1.4}
+
+.readme-structure-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.readme-outline-panel{background:#fff;border:1px solid var(--line);min-width:0}
+.readme-outline-panel>header,.readme-saved-output>header{padding:13px 18px;background:#edf7fe;border-bottom:1px solid var(--line);color:#0067b1;font-weight:700}
+.readme-outline-panel .source-tree{border:0;box-shadow:none;padding:18px 20px;line-height:1.75}
+.readme-outline-panel>.source-label{padding:0 20px 14px;margin:0}
+.readme-architecture-panel .artifact-caption{padding:14px 18px;line-height:1.45}
+.readme-structure-page,.readme-save-page{gap:15px!important}
+.readme-save-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:30px;align-items:start}
+.readme-save-layout .example-dialogue{gap:12px;padding-left:30px;padding-right:30px}
+.readme-save-layout .dialogue-bubble{width:94%;max-width:94%;padding:12px 15px;line-height:1.4}
+.readme-saved-output{min-width:0;border:1px solid var(--line);background:#fff}
+.readme-saved-output img{display:block;width:100%;max-height:390px;object-fit:contain;object-position:top left}
+.readme-saved-output>.source-label{padding:10px 16px 12px;margin:0}
+
+.framework-map{width:100%;border-collapse:collapse;background:#fff;table-layout:fixed;line-height:1.4}
+.framework-map th{background:#edf7fe;color:#0067b1;text-align:left;font-weight:700}
+.framework-map th,.framework-map td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.framework-map td b{color:#0067b1;font-weight:700}
+.framework-map .subline{display:block;margin-top:7px;color:#697177}
+.role-file-grid{display:grid;gap:12px}
+.role-file-row{display:grid;grid-template-columns:180px minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;padding:16px 20px;background:#fff;border:1px solid var(--line);border-left:4px solid #0067b1;line-height:1.4}
+.role-file-row>b{color:#0067b1}.role-file-row .file-result{padding-left:16px;border-left:1px solid var(--line)}
+
+.ideas-pipeline{display:grid;grid-template-columns:minmax(0,.9fr) 22px minmax(0,1fr) 22px minmax(0,1.25fr) 22px minmax(0,1fr);gap:12px;align-items:center}
+.ideas-stage{min-width:0;align-self:stretch;line-height:1.4;padding:18px 14px;background:#fff;border:1px solid var(--line)}
+.ideas-stage header{font-weight:700;color:#0067b1;margin-bottom:20px}
+.ideas-stage p{margin:0;line-height:1.45}
+.idea-fragments{display:flex;flex-direction:column;gap:13px}
+.idea-fragments span{display:block;padding:10px 12px;border:1px solid #ead28a;background:#fff9e6;color:#8a6500}
+.idea-fragments span:nth-child(2n){margin-left:16px;transform:rotate(2deg)}
+.idea-fragments span:nth-child(2n+1){margin-right:12px;transform:rotate(-2deg)}
+.ideas-sort-list{padding-left:18px;margin:0;line-height:1.45}
+.ideas-sort-list li{margin:10px 0}
+.ideas-review{margin-top:20px;border-top:1px solid var(--line);padding-top:14px;color:#0067b1}
+.ideas-artifacts{display:grid;gap:12px}
+.ideas-artifacts>div{padding:12px;border:1px solid #9fc9e6;background:#edf7fe;line-height:1.4}
+.ideas-artifacts b{display:block;margin-bottom:7px;color:#0067b1}
+.ideas-action{background:#eef7f1;border-color:#bedac9}
+.ideas-action header{color:#19734b}
+.ideas-action ol{margin:0;padding-left:20px;line-height:1.45}
+.ideas-action li{margin:12px 0}
+.ideas-arrow{color:#697177;text-align:center}
+.ideas-feedback{padding:14px 20px;border:1px dashed #9fc9e6;border-radius:6px;color:#0067b1;line-height:1.4;text-align:center}
+
+.ideas-visual-map{display:block;width:100%;height:430px;flex:none}
+.ideas-visual-map text{font-family:Verdana,Arial,sans-serif}
+
+.need-visual-map{display:block;width:100%;height:410px;flex:none}
+.need-visual-map text{font-family:Verdana,Arial,sans-serif}
+
+.fullflow-guide{min-width:0;padding:2px 0}
+.fullflow-guide-intro{color:var(--muted);margin-bottom:16px;line-height:1.4}
+.fullflow-timeline{list-style:none;padding:0;margin:0;display:grid;gap:16px}
+.fullflow-timeline>li{position:relative;display:grid;grid-template-columns:36px minmax(0,1fr);gap:18px;margin:0;padding:0}
+.fullflow-number{position:relative;z-index:1;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#edf7fe;border:1px solid #9fc9e6;color:#0067b1;font-weight:700}
+.fullflow-timeline>li:not(:last-child):before{content:"";position:absolute;left:16px;top:34px;bottom:-16px;border-left:1px solid #9fc9e6}
+.fullflow-heading{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin:0 0 7px}
+.fullflow-heading>b{color:#0067b1;font-weight:700}
+.slide:not([data-section="Opening"]) .content .fullflow-heading>span{font-size:12px!important;color:var(--muted);white-space:nowrap}
+.fullflow-timeline p{margin:0;line-height:1.4}
+.slide:not([data-section="Opening"]) .content .fullflow-branch{display:block;margin-top:6px;font-size:12px!important;line-height:1.4;color:var(--muted)}
+.fullflow-guide-footer{padding:13px 16px;margin-top:18px;background:#edf7fe;border-left:3px solid #0067b1;line-height:1.4}
+
+.framework-five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin:18px 0}
+.framework-file-card{min-width:0;display:flex;flex-direction:column;align-items:flex-start;padding:22px 16px;border:1px solid var(--line);border-top:3px solid #0067b1;background:#fff;line-height:1.45}
+.framework-file-icon{width:42px;height:42px;color:#0067b1;margin-bottom:22px;flex:none}
+.framework-file-card>b{font-weight:700;color:#0067b1;min-height:46px;margin-bottom:18px}
+.framework-purpose{padding:8px 10px;background:#edf7fe;color:#0067b1;margin-bottom:18px}
+.framework-file-card p{margin:0;line-height:1.5}
+.mapping-head,.mapping-short>div{display:grid;grid-template-columns:150px minmax(0,1fr) 40px minmax(0,1.5fr);gap:20px;align-items:center}
+.mapping-head{padding:0 20px;color:var(--muted)}
+.mapping-short{display:grid;gap:12px}
+.mapping-short>div{padding:20px;background:#fff;border:1px solid var(--line)}
+.mapping-short b{color:#0067b1;font-weight:700}
+.mapping-short .mapping-focus{background:#edf7fe;border-color:#9fc9e6;border-left:4px solid #0067b1}
+.mapping-arrow{color:#697177;text-align:center}
+
+.framework-five{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+
+.finder-source-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.finder-source-card{background:#fff;border:1px solid var(--line);min-width:0}
+.finder-source-card header{padding:13px 18px;color:#0067b1;background:#edf7fe;border-bottom:1px solid var(--line);font-weight:700}
+.finder-source-card img{display:block;width:100%;height:auto;max-height:440px;object-fit:contain;object-position:top left}
+
+.readme-scroll-layout{display:grid;grid-template-columns:minmax(0,2.5fr) minmax(0,1fr);gap:30px;align-items:start}
+.readme-browser{border:1px solid var(--line);background:#fff;min-width:0}
+.readme-browser>header{padding:12px 16px;background:#edf7fe;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.readme-browser>header>b{color:#0067b1;font-weight:700;margin-right:auto}
+.readme-browser nav{display:flex;gap:10px;flex-wrap:wrap}
+.readme-browser nav a{display:block;color:#0067b1;text-decoration:none;background:#fff;padding:5px 8px;border:1px solid #b8d8ec;border-radius:4px}
+.readme-browser iframe{display:block;width:100%;height:420px;border:0;background:#fff}
+.readme-margin-notes{padding:12px 0;display:grid;gap:24px}
+.readme-margin-notes b{display:block;color:#0067b1;font-weight:700;margin-bottom:10px}
+.readme-margin-notes p{margin:0;line-height:1.45}
+.readme-demo-hint{padding:14px 16px;background:#edf7fe;border-left:3px solid #0067b1;line-height:1.45}
+
+.readme-section-outline{display:block;padding:8px 0}
+.readme-section-outline>b{margin-bottom:14px}
+.readme-section-outline>ul{padding-left:18px;margin:0;list-style:disc}
+.readme-section-outline li{margin:8px 0;line-height:1.35}
+.readme-section-outline li>ul{padding-left:19px;margin:6px 0 10px;list-style:circle;color:var(--muted)}
+.readme-section-outline li>ul>li{margin:5px 0}
+
+.definition-example-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:28px;align-items:start}
+.definition-request{padding:16px 18px;margin-top:18px;background:#fff9e6;border-left:3px solid #d39b00;line-height:1.45}
+.definition-request b{display:block;color:#8a6500;margin-bottom:10px}
+.definition-browser{min-width:0;background:#fff;border:1px solid var(--line)}
+.definition-browser header{padding:13px 16px;background:#edf7fe;color:#0067b1;font-weight:700;line-height:1.4}
+.definition-browser iframe{display:block;width:100%;height:410px;border:0}
+.readme-save-layout .compact-file .source-tree{border:0;padding:18px 0;font-size:14px!important}
+
+.iteration-steps{display:flex;gap:14px;align-items:stretch}.iteration-steps>div{flex:1;min-width:0;padding:20px 16px;background:#fff;border-top:3px solid #0067b1;line-height:1.45}.iteration-steps b{display:block;color:#0067b1;margin-bottom:14px}.iteration-steps>.step-link{flex:none;padding:0;align-self:center;border:0;background:transparent;color:#697177}
+.change-dialogue-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:30px;align-items:start}.proposal-note{padding:14px 18px;background:#fff9e6;border-left:3px solid #d39b00;line-height:1.45}.proposal-note b{display:block;color:#8a6500;margin-bottom:9px}.change-checklist{background:#fff;border:1px solid var(--line);padding:20px}.change-checklist h3{color:#0067b1;margin-bottom:14px}.change-checklist li{margin:12px 0;line-height:1.4}.case-branch-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}.case-branch{padding:22px;background:#fff;border-top:4px solid #0067b1;line-height:1.45}.case-branch b{display:block;margin-bottom:14px;color:#0067b1}.case-branch.yes{background:#eef7f1;border-color:#19734b}.case-branch.yes b{color:#19734b}.case-branch.ask{background:#fff9e6;border-color:#d39b00}.case-branch.ask b{color:#8a6500}
+
+.role-page .framework-conversation{gap:11px}
+.role-page .framework-conversation .dialogue-bubble{width:94%;max-width:94%;padding:11px 14px}
+
+/* Slide 4: an explicit process cue, with more room for the dialogue. */
+.framework-process-strip{display:flex;align-items:center;justify-content:center;gap:18px;padding:12px 18px;background:#edf7fe;border:1px solid #b8d8ec;line-height:1.4;flex:none}
+.framework-process-strip span{color:#0067b1;font-weight:700}
+.framework-process-strip i{font-style:normal;color:#697177}
+.role-page .chart-layout{grid-template-columns:minmax(0,.95fr) minmax(0,1.35fr);gap:28px;align-items:center}
+.role-page .chart-svg{height:365px}
+.role-page .framework-conversation{gap:10px}
+
+/* Shared visual/conversation proportions on slides 4–8. */
+.balanced-visual-dialogue .chart-layout,
+.balanced-visual-dialogue .workflow-explain{grid-template-columns:minmax(0,11fr) minmax(0,9fr);gap:30px}
+
+.framework-left-visual{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:18px}
+.framework-left-visual .framework-process-strip{display:grid;grid-template-columns:minmax(0,1fr) 16px minmax(0,1.25fr) 16px minmax(0,1fr) 16px minmax(0,1fr);gap:5px;padding:10px 12px;text-align:center;line-height:1.35}
+.framework-left-visual .framework-process-strip span{font-weight:400}
+.framework-left-visual .chart-svg{height:350px;width:100%}
+.role-page .chart-layout{align-items:start}
+
+.framework-design-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:8px 4px 2px}
+.framework-design-path>div{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;min-width:0}
+.framework-design-path>div:not(:last-child):after{content:"";position:absolute;left:calc(50% + 20px);right:calc(-50% + 6px);top:17px;height:1px;background:#9fc9e6}
+.framework-design-path span{display:grid;place-items:center;position:relative;z-index:1;width:34px;height:34px;border-radius:50%;background:#edf7fe;border:1px solid #9fc9e6;color:#0067b1}
+.framework-design-path b{display:block;line-height:1.35;color:#0067b1;font-weight:400}
+
+.user-branch-visual{min-width:0;display:flex;flex-direction:column;gap:18px}
+.user-branch-path{display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr) 18px minmax(0,1.45fr);gap:10px;align-items:center;padding:6px 4px}
+.user-branch-path>div{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;min-width:0}
+.user-branch-path span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#edf7fe;border:1px solid #9fc9e6;color:#0067b1;font-weight:700}
+.user-branch-path b{color:#0067b1;font-weight:700;line-height:1.35}
+.user-branch-path i{font-style:normal;text-align:center;color:#0067b1;font-weight:700}
+.user-branch-visual .workflow-map{height:330px}
+
+.user-perspective-path{grid-template-columns:repeat(3,minmax(0,1fr))}
+.framework-design-path b{color:#0067b1;font-weight:700}
+
+.finder-scroll-browser{border:1px solid var(--line);background:#fff;min-width:0}
+.finder-scroll-browser header{padding:12px 16px;background:#edf7fe;color:#0067b1;font-weight:700;border-bottom:1px solid var(--line)}
+.finder-scroll-browser iframe{display:block;width:100%;height:360px;border:0;background:#fff}
+
+/* Slide 4: slightly enlarge the relationship map below the design steps. */
+.framework-left-visual{gap:12px}
+.role-page .framework-left-visual .chart-svg{height:400px;width:100%}
+
+.swimlane-design-path{grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;padding:0 6px}
+.swimlane-design-path>div{gap:6px}
+.swimlane-design-path span{width:28px;height:28px}
+.swimlane-design-path>div:not(:last-child):after{top:14px}
+.swimlane-design-path b{color:#0067b1;font-weight:700;line-height:1.3}
+
+/* Build and review: file artifacts and visible decision branches. */
+.build-visual-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.build-visual-card{position:relative;min-width:0;padding:18px 14px;background:#fff;border:1px solid #c4dbea;border-radius:12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.build-visual-card:not(:last-child):after{content:"→";position:absolute;right:-23px;top:46%;color:#0067b1;font-weight:700}
+.build-visual-card svg{width:60px;height:60px;color:#0067b1;flex:none}
+.build-step-number{align-self:flex-start;color:#0067b1;font-weight:700}
+.build-visual-card h3{margin:0;line-height:1.35;font-weight:700}
+.build-file-chip{background:#edf5fb;color:#0067b1;padding:9px 10px;border-radius:6px;width:100%;line-height:1.35}
+.build-visual-card p{margin:0;line-height:1.4;color:#59636b}
+.branch-test-map{display:grid;gap:10px}
+.branch-test-head,.branch-test-row{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:24px;align-items:center}
+.branch-test-head{color:#0067b1;padding:0 14px 2px}
+.branch-test-row{padding:12px 14px;background:#fff;border:1px solid #d9e4ec;border-radius:10px}
+.test-input{display:flex;gap:12px;align-items:center;line-height:1.4}
+.test-input>span{color:#8a6500;background:#fff9e6;border:1px solid #d39b00;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none}
+.test-route{display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
+.test-decision{padding:5px 18px;border:1px solid #9fc9e6;border-radius:20px;background:#edf5fb;color:#0067b1}
+.test-route-arrow{color:#0067b1;line-height:1}
+.test-route>b{color:#19734b}
+.test-file{display:flex;flex-direction:column;gap:8px;border-left:3px solid #9fc9e6;padding-left:14px;line-height:1.35}
+.test-file>b{color:#0067b1}
+.test-file>span{color:#59636b}
+.test-review-path{grid-template-columns:repeat(3,minmax(0,1fr));padding-top:0}
+.test-review-path>div{gap:6px}
+.test-review-path span{width:28px;height:28px}
+.test-review-path>div:not(:last-child):after{top:14px}
+
+
+.context-checkpoint-layout{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:start;gap:30px}
+.context-checkpoint-layout .example-dialogue{gap:12px}
+.context-checkpoint-layout .dialogue-bubble{padding:12px 14px;line-height:1.4}
+.context-checkpoint-layout .finder-scroll-browser iframe{height:390px}
+.context-checkpoint-layout .dialogue-result{line-height:1.4}
+
+.readme-section-outline .outline-parent{margin-top:10px;line-height:1.4}
+.readme-section-outline .outline-parent ul{margin:6px 0 0 0;padding-left:24px;list-style-type:disc}
+.readme-section-outline .outline-parent li{padding-left:3px;margin:4px 0;line-height:1.4}
+
+.review-method-path{grid-template-columns:repeat(4,minmax(0,1fr));padding:0 4px}
+.handoff-example{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:24px;align-items:stretch}
+.handoff-node,.handoff-contract{padding:20px;border:1px solid #9fc9e6;border-radius:10px;background:#fff;line-height:1.45}
+.handoff-node{display:flex;flex-direction:column;gap:12px}.handoff-node>span{color:#0067b1;font-weight:700}.handoff-node h3{margin:0}.handoff-contract{background:#edf5fb}.handoff-contract ul{padding-left:22px;margin-bottom:0}.handoff-contract li{margin:8px 0}
+.business-standard-copy{display:flex;flex-direction:column;gap:10px}.business-standard-copy .merge-block{padding:10px 14px;line-height:1.35}.business-standard-copy .merge-block b{margin-bottom:5px}.business-standard-copy .definition-request{padding:10px 14px;margin-top:0;line-height:1.35}
+.context-problem-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.context-problem-grid>div{padding:14px 16px;background:#fff9e6;border-left:3px solid #d39b00}.context-problem-grid b{color:#8a6500}.context-problem-grid p{margin-top:7px}
+.context-resume-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:30px;align-items:start}.context-reference-stack{display:flex;flex-direction:column;gap:12px}.context-reference-stack h3{margin:0}.context-resume-grid .dialogue-bubble{padding:12px 14px;line-height:1.4}
+.walkthrough-example{display:grid;grid-template-columns:1fr .95fr 1.25fr;gap:24px;align-items:start}.walkthrough-input{padding:22px 18px;background:#fff9e6;border:1px solid #d39b00;border-radius:10px}.walkthrough-input>span{color:#8a6500;font-weight:700}.walkthrough-input h3{margin:20px 0 14px;line-height:1.5}.walkthrough-route{display:flex;flex-direction:column;align-items:center;gap:8px}.walkthrough-route>div{width:100%;padding:14px;background:#fff;border:1px solid #9fc9e6;border-radius:8px;text-align:center}.walkthrough-route b,.walkthrough-route span{display:block}.walkthrough-route b{color:#0067b1;margin-bottom:7px}.walkthrough-files{display:flex;flex-direction:column;gap:12px}.walkthrough-files h3{margin:0}.walkthrough-files .definition-request{margin:0}
+
+.flow-design-dialogue{align-self:start}.flow-design-dialogue .dialogue-bubble{padding:12px 14px;line-height:1.4}
+.handoff-method-page .handoff-ai-request{padding:12px 16px;background:#fff9e6;border-left:3px solid #d39b00;line-height:1.4}.handoff-ai-request b{display:block;color:#8a6500;margin-bottom:6px}
+.handoff-method-page .handoff-swimlane{width:100%;height:auto;max-height:355px;flex-shrink:1;min-height:0}.handoff-swimlane text{font-size:16px}
+.handoff-method-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.handoff-method-summary>div{padding:10px 14px;border-top:2px solid #0067b1;line-height:1.4}.handoff-method-summary b{display:block;color:#0067b1;margin-bottom:5px}
+
+.ai-two-uses{display:flex;flex-direction:column;gap:8px;text-align:center;align-items:center}.ai-two-uses p{margin:0;line-height:1.4}.ai-two-uses b{color:#0067b1}
+.slide .ai-two-uses{margin-top:-12px}.file-framework-intro{display:flex;flex-direction:column;gap:8px;line-height:1.4}
+.merged-readme-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.70fr) minmax(0,1.53fr);gap:22px;align-items:start}
+.merged-readme-layout h3{font-size:16px;font-weight:700;color:#0067b1;margin:0 0 16px;line-height:1.4}
+.merged-readme-layout .example-dialogue{padding-left:22px;padding-right:22px;gap:18px}.merged-readme-layout .dialogue-bubble{padding:12px;line-height:1.4}
+.readme-arrow-outline{padding:16px 12px;background:#edf5fb;border-radius:8px;line-height:1.45;display:flex;flex-direction:column;gap:14px}
+.readme-arrow-outline>b{color:#0067b1}.readme-arrow-outline>div{padding-left:8px}
+.merged-readme-layout .readme-browser{height:440px;min-width:0}.merged-readme-layout .readme-browser iframe{height:350px;min-height:0;width:100%}.merged-readme-layout .readme-browser header{flex-direction:column;align-items:flex-start;gap:10px;padding:12px}.merged-readme-layout .readme-browser nav{display:flex;gap:10px;flex-wrap:wrap}
+
+.user-perspective-path .process-stage-label{color:#151719;font-weight:400;line-height:1.3;white-space:nowrap}
+.user-perspective-path>div{position:relative}
+.user-perspective-path>div:not(:last-child):after{top:48px}
+
+.handoff-method-page .handoff-swimlane{width:calc(100% + 16px);max-width:none;height:auto;max-height:none;margin-left:-8px;flex:none}
+.handoff-method-page .present-band{padding:10px 14px;line-height:1.4}
+
+.handoff-ai-request b.handoff-inline-label{display:inline;color:#151719;margin:0}
+
+.handoff-request-examples{margin-top:10px;padding-top:10px;border-top:1px solid #ead28a;display:flex;flex-direction:column;gap:5px}
+.handoff-ai-request .handoff-request-examples b{display:inline;color:#151719;margin:0}
+
+.handoff-integrated-points{display:flex;flex-direction:column;gap:4px;margin-top:6px;padding-left:24px}
+
+.slide .handoff-method-page{gap:12px}
+.handoff-method-page .handoff-ai-request{line-height:1.38;padding:10px 16px}
+.handoff-method-page .handoff-ai-request>b{margin-bottom:4px}
+
+.framework-five .framework-file-card{text-align:center;align-items:center}
+.framework-five .framework-file-icon{align-self:center;margin-left:auto;margin-right:auto}
+
+.readme-framework-groups{display:flex;flex-direction:column;gap:12px}
+.readme-framework-groups>div{padding:12px 10px;background:#edf5fb;border-radius:8px;display:flex;flex-direction:column;gap:6px;line-height:1.35}
+.readme-framework-groups b{color:#0067b1;margin-bottom:3px}
+.readme-framework-groups .framework-child{padding-left:12px}
+
+.business-standard-outline h3{margin:0 0 4px;color:#0067b1;font-size:16px;font-weight:700;overflow-wrap:anywhere}
+.business-standard-outline .readme-framework-groups{gap:10px}
+.business-standard-outline .readme-framework-groups>div{padding:12px 14px;gap:5px}
+
+.readme-outline-panel>h3{white-space:nowrap}
+
+/* Slide 13: keep all three section headings outside their content panels. */
+.merged-readme-layout>.readme-outline-panel{background:transparent;border:0;padding:0;min-width:0}
+.merged-readme-layout>div{display:flex;flex-direction:column;min-width:0}
+.merged-readme-layout>div>h3{margin:0 0 16px;padding:0;border:0;background:transparent;line-height:1.4;font-weight:700;color:#0067b1}
+.merged-readme-layout .readme-framework-groups{height:440px;gap:10px}
+.merged-readme-layout .readme-framework-groups>div{padding:10px;gap:4px;line-height:1.3;flex:1}
+.merged-readme-layout .readme-framework-groups b{margin-bottom:2px}
+.merged-readme-layout .readme-browser{height:440px;display:flex;flex-direction:column;overflow:hidden}
+.merged-readme-layout .readme-browser>header{flex:none}
+.merged-readme-layout .readme-browser iframe{height:auto;flex:1;min-height:0}
+
+
+.business-definition-layout{grid-template-columns:minmax(0,.85fr) minmax(0,1.6fr);gap:24px;align-items:stretch;height:470px}
+.business-definition-layout .business-standard-outline{height:100%;min-height:0;gap:10px}
+.business-definition-layout .business-standard-outline>h3{margin:0;flex:none}
+.business-definition-layout .readme-framework-groups{flex:1;min-height:0;gap:7px}
+.business-definition-layout .readme-framework-groups>div{padding:7px 12px;gap:3px;line-height:1.3;flex:1}
+.business-definition-layout .readme-framework-groups b{margin-bottom:2px}
+.business-definition-layout .definition-browser{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.business-definition-layout .definition-browser header{flex:none}
+.business-definition-layout .definition-browser iframe{height:auto;flex:1;min-height:0}
+
+.merged-readme-layout .readme-conversation-panel .dialogue-bubble{border-radius:12px;padding:14px;box-shadow:0 2px 7px rgba(20,40,55,.04)}
+.merged-readme-layout .readme-conversation-panel .dialogue-bubble b{padding-bottom:7px;margin-bottom:8px;border-bottom:1px solid rgba(0,0,0,.08);line-height:1.35}
+
+/* Slide 16: context risks lead directly into a reference-backed conversation. */
+.context-continuation-layout{display:grid;grid-template-columns:minmax(0,.27fr) minmax(0,.73fr);gap:28px;align-items:start}
+.context-risk-list{padding:8px 26px 8px 0;border-right:1px solid #d9e4ec;display:flex;flex-direction:column;gap:25px}
+.context-risk-list h3{margin:0;color:#0067b1;font-weight:700;line-height:1.4}
+.context-risk-item{display:flex;align-items:flex-start;gap:14px}
+.context-risk-icon{display:grid;place-items:center;width:42px;height:42px;flex:none;border-radius:10px;background:#fff9e6;color:#8a6500}
+.context-risk-icon svg{width:26px;height:26px}
+.context-risk-item b{display:block;font-weight:700;margin-bottom:7px}
+.context-risk-item p{margin:0;color:#59636b;line-height:1.4}
+.context-dialogue-column{display:flex;flex-direction:column;gap:16px;min-width:0}
+.context-reference-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 14px;background:#edf5fb;border-radius:8px}
+.context-reference-bar>b{color:#0067b1;margin-right:4px}.context-reference-bar>span{background:#fff;border:1px solid #c4dbea;border-radius:5px;padding:5px 9px}
+.context-dialogue-column .example-dialogue{gap:12px;padding-left:30px;padding-right:30px}
+.context-dialogue-column .dialogue-bubble{padding:12px 14px;line-height:1.4}
+.context-continuation-path{grid-template-columns:repeat(4,minmax(0,1fr));padding:0 4px;gap:18px}
+.context-continuation-path>div{gap:7px}.context-continuation-path span{width:28px;height:28px}.context-continuation-path>div:not(:last-child):after{top:14px}
+
+.aligned-walkthrough-page .review-method-path,.aligned-walkthrough-page .walkthrough-example{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-left:0;padding-right:0}
+.aligned-walkthrough-page .walkthrough-example{align-items:stretch}
+.aligned-walkthrough-page .walkthrough-input{padding:18px 14px}
+.aligned-walkthrough-page .walkthrough-files,.aligned-walkthrough-page .walkthrough-feedback{min-width:0;display:flex;flex-direction:column;gap:14px}
+.aligned-walkthrough-page .walkthrough-files h3{margin:0;line-height:1.4}
+.aligned-walkthrough-page .walkthrough-feedback .definition-request{margin:0;padding:16px 14px;line-height:1.4}
+.aligned-walkthrough-page .walkthrough-feedback>p{padding:0 4px;color:#59636b;line-height:1.4}
+.aligned-walkthrough-page .walkthrough-files .merge-block{padding:14px;line-height:1.4}
+
+.context-dialogue-column .context-continuation-path{gap:10px;padding:0}
+.context-dialogue-column .context-continuation-path b{line-height:1.35}
+.context-dialogue-column .context-continuation-path>div{gap:6px}
+
+.context-dialogue-column .context-continuation-path{grid-template-columns:1fr 1fr 1fr 1.25fr}
+.context-dialogue-column .context-continuation-path b{white-space:nowrap}
+.context-continuation-page .context-risk-list{padding-right:18px}
+
+/* Slide 17: open four-column walkthrough with restrained separators. */
+.aligned-walkthrough-page .walkthrough-example{gap:24px}
+.aligned-walkthrough-page .walkthrough-example>div{background:transparent;border:0;border-radius:0;box-shadow:none;padding:12px 14px 0;min-width:0}
+.aligned-walkthrough-page .walkthrough-example>div+div{border-left:1px solid #d9e4ec}
+.aligned-walkthrough-page .walkthrough-input>span{color:#697177;font-weight:400}
+.aligned-walkthrough-page .walkthrough-input h3{color:#0067b1;margin:16px 0 12px;font-weight:700}
+.aligned-walkthrough-page .walkthrough-route>div{background:transparent;border:0;border-radius:0;padding:0 0 8px;text-align:left}
+.aligned-walkthrough-page .walkthrough-route{align-items:stretch;gap:10px}
+.aligned-walkthrough-page .walkthrough-route>span{color:#9fc9e6;text-align:left;padding-left:10px}
+.aligned-walkthrough-page .walkthrough-files .merge-block{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}
+.aligned-walkthrough-page .walkthrough-files h3{color:#0067b1}
+.aligned-walkthrough-page .walkthrough-files .merge-block b{color:#0067b1;margin-bottom:8px}
+.aligned-walkthrough-page .walkthrough-feedback .definition-request{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}
+.aligned-walkthrough-page .walkthrough-feedback .definition-request b{color:#0067b1;margin-bottom:10px}
+.aligned-walkthrough-page .walkthrough-feedback>p{padding:0;margin-top:4px}
+
+
+.collaboration-interaction-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center}
+.human-ai-interaction{display:block;width:100%;height:auto;max-height:430px}
+.collaboration-role-list{display:flex;flex-direction:column;gap:25px}
+.collaboration-role-item{display:flex;align-items:flex-start;gap:16px}
+.collaboration-role-icon{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:50%;background:#edf5fb;color:#0067b1}
+.collaboration-role-icon svg{width:26px;height:26px}
+.collaboration-role-item:nth-child(odd) .collaboration-role-icon{background:#fff9e6;color:#8a6500}
+.collaboration-role-item h3{margin:0 0 8px;color:#0067b1;font-size:16px;font-weight:700;line-height:1.4}
+.collaboration-role-item p{margin:0;line-height:1.4}
+
+/* Slide 17: boxes only for branch nodes and file checks. */
+.aligned-walkthrough-page .walkthrough-route>div{background:#edf5fb;border:1px solid #c4dbea;border-radius:8px;padding:12px;text-align:center}
+.aligned-walkthrough-page .walkthrough-route>span{text-align:center;padding-left:0}
+.aligned-walkthrough-page .walkthrough-files .merge-block{background:#fff;border:1px solid #c4dbea;border-radius:8px;padding:14px;box-shadow:none}
+
+.aligned-walkthrough-page .walkthrough-example>div+div{border-left:0}
+.aligned-walkthrough-page .walkthrough-files .merge-block b{display:block;text-align:center}
+
+.collaboration-closing{text-align:center;display:flex;flex-direction:column;gap:8px}.collaboration-closing p{margin:0;line-height:1.4}
+
+.collaboration-conversation-swimlane{display:block;width:100%;height:450px;flex:none}
+.unified-collaboration-page .collaboration-closing{margin-top:0}
+
+.collaboration-conversation-swimlane{height:410px}
+
+.reusable-template-page .communication-template-layout{grid-template-columns:minmax(0,.3fr) minmax(0,.7fr);gap:32px}
+.template-step-index{display:flex;flex-direction:column;gap:0}
+.communication-elements.template-step-index>div{position:relative;display:flex;align-items:flex-start;gap:14px;padding:12px 0 18px;background:transparent;border:0;min-height:82px}
+.template-step-number{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:#edf5fb;border:1px solid #9fc9e6;color:#0067b1;font-weight:700;z-index:1}
+.template-step-index>div:not(:last-child):after{content:"";position:absolute;left:17px;top:46px;bottom:-12px;border-left:1px solid #c4dbea}
+.template-step-index b{margin:2px 0 7px}.template-step-index p{line-height:1.4;color:#59636b}
+
+.collaboration-conversation-swimlane{height:374px}
+
+.communication-elements.template-step-index>div{padding-top:9px;padding-bottom:12px;min-height:70px}
+.template-step-index b{margin-top:2px;margin-bottom:4px}
+.template-step-index p{line-height:1.35}
+.template-step-index>div:not(:last-child):after{top:43px;bottom:-9px}
+
+.validation-transition{line-height:1.4;color:#151719}
+
+.change-discussion-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:34px;align-items:start}
+.change-discussion-layout .dialogue-bubble{padding:12px 14px;line-height:1.4}.change-discussion-layout .example-dialogue{gap:14px}
+.proposal-comparison{display:flex;flex-direction:column;gap:18px}.proposal-comparison h3{margin:0;color:#0067b1;font-weight:700;line-height:1.4}
+.proposal-example{padding:18px;background:#edf5fb;border-left:3px solid #0067b1;line-height:1.4}.proposal-example>b{color:#0067b1;display:block;margin-bottom:12px}.proposal-example p{margin:0 0 12px}.proposal-example.external{background:#fff9e6;border-color:#d39b00}.proposal-example.external>b{color:#8a6500}
+.revision-file-path,.revision-file-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;padding-left:0;padding-right:0}
+.revision-file-grid>div{padding:18px 14px;border-top:2px solid #0067b1;background:#fff;line-height:1.4}.revision-file-grid b{display:block;color:#0067b1;margin-bottom:12px}.revision-file-grid p{margin:0}
+.validation-real-example{padding:14px 18px;border-left:3px solid #9fc9e6;background:#edf5fb;line-height:1.4}.validation-real-example b{display:block;color:#0067b1;margin-bottom:8px}.validation-real-example p{margin:0}
+
+.change-discussion-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+
+.situation-action-comparison{gap:22px}
+.situation-action{display:flex;gap:14px;align-items:flex-start;padding:0 0 18px;border-bottom:1px solid #d9e4ec;line-height:1.4}
+.situation-number{display:grid;place-items:center;flex:none;width:32px;height:32px;background:#edf5fb;color:#0067b1;border-radius:50%;font-weight:700}
+.situation-action>div>b{color:#0067b1;display:block;margin-bottom:10px}
+.situation-action p{margin:0 0 12px;color:#59636b}
+.situation-action-result{padding-left:12px;border-left:3px solid #9fc9e6}
+.situation-action-result>b{display:block;color:#151719;margin-bottom:5px}
+.situation-design-goal{margin:0;line-height:1.4;color:#0067b1}
+
+.situation-action{border-bottom:0}
+.situation-action-result{border-left:0;padding-left:0}
+.revision-file-grid>div:nth-child(3)>b,.revision-file-grid>div:nth-child(4)>b{text-align:center}
+
+.unified-collaboration-page .collaboration-conversation-swimlane{height:320px;margin:24px 0 16px}
+
+.unified-collaboration-page .collaboration-conversation-swimlane{width:94%;height:300px;margin:24px auto 16px}
+
+/* Keep the interaction diagram at its native coordinate scale so its text matches body text. */
+.unified-collaboration-page .collaboration-conversation-swimlane{width:1120px;max-width:100%;height:262px;margin:24px auto 16px}
+.slide:not([data-section="Opening"]) .content.unified-collaboration-page svg text,
+.slide:not([data-section="Opening"]) .content.unified-collaboration-page svg text tspan{font-family:Verdana,Arial,sans-serif;font-size:16px!important}
+.unified-collaboration-page .collaboration-closing{font-size:16px;line-height:1.4}
+
+.revision-file-grid>div>b{text-align:center}
+
+.conclusion-slide .content.closing-summary{justify-content:flex-start;align-items:stretch}
+
+.conclusion-slide .content.closing-summary{height:100%;gap:0}
+.closing-centered-body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:24px;text-align:center}
+.closing-centered-body .closing-three>div{text-align:center;align-items:center}
 </style>
   </head>
   <body>
@@ -769,7 +1254,7 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
           <div class="content">
             <h1>Building Agent Hub <span class="blue">with AI</span></h1>
             <p class="opening-subtitle">
-              From idea to files: communicating with AI, defining standards, and iterating
+              From idea to Files<br>Communicating with AI, Defining standards, and Iterating
             </p>
             <div class="title-meta">
               <div>
@@ -793,584 +1278,108 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
   </div>
 </section>
 
-<section class="slide project-case" data-section="02 · ROLE DESIGN">
-          <div class="topline">
-            <span class="section">02 · ROLE DESIGN</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>
-              Start with the work, then define the agent roles
-            </h2>
-            <p class="story-note">
-              Identify the work within each user need, then assign responsibility.
-            </p>
-            <div class="visual-stack">
-              <div class="visual-row">
-                <div class="visual-box">
-                  “I want one entry point to guide me from my goal to a result.”
-                </div>
-                <div class="visual-link">
-                  →
-                </div>
-                <div class="visual-box">
-                  <strong>
-                  <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="7" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/>
-                  </svg>
-                  Main Agent · Hub</strong><p class="card-body">Understand, route, confirm, summarize</p>
-                </div>
-              </div>
-              <div class="visual-row">
-                <div class="visual-box">
-                  “Who can do it? How do we combine them? Who runs it? What is missing?”
-                </div>
-                <div class="visual-link">
-                  →
-                </div>
-                <div class="visual-box">
-                  <strong>
-                  <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="8" y="2" width="8" height="5" rx="1"/><rect x="2" y="17" width="8" height="5" rx="1"/><rect x="14" y="17" width="8" height="5" rx="1"/><path d="M12 7v5H6v5M12 12h6v5"/>
-                  </svg>
-                  Functional Agents</strong><p class="card-body">Finder / Builder / Executor / Creator</p>
-                </div>
-              </div>
-              <div class="visual-row">
-                <div class="visual-box">
-                  “Different tasks need different business capabilities.”
-                </div>
-                <div class="visual-link">
-                  →
-                </div>
-                <div class="visual-box">
-                  <strong>
-                  <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 2h9l5 5v15H5zM14 2v6h5M8 12h8M8 16h8"/>
-                  </svg>
-                  Business Agents</strong><p class="card-body">Task-specific inputs / Rules / Deliverables</p>
-                </div>
-              </div>
-            </div>
-            <div class="detail-prompt">
-              <b>Example prompt to AI</b>
-              <p>
-                Derive roles from user needs. Specify each role’s inputs, outputs, boundaries, and handoffs. Check for overlapping or unassigned responsibilities.
-              </p>
-            </div>
-          </div>
-        </section>
+<section class="slide" data-section="02 · WHY AGENT HUB"><div class="topline"><span class="section">02 · WHY AGENT HUB</span><span class="num"></span></div><div class="content"><h2>Why Agent Hub? From too many options to coordinated work</h2><svg class="need-visual-map" viewBox="0 0 1160 410" role="img" aria-label="Many agent options become an explainable recommendation and a confirmed execution workflow"><title>Why Agent Hub: discovery, fit explanation, and authorized coordination</title><defs><marker id="need-step-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#697177"/></marker></defs><rect x="2" y="8" width="356" height="378" rx="16" fill="#fffaf0" stroke="#ead28a"/><text x="180" y="43" text-anchor="middle" fill="#0067b1" font-weight="700">01 · Too many agents</text><rect x="402" y="8" width="356" height="378" rx="16" fill="#f2f8fc" stroke="#b8d8ec"/><text x="580" y="43" text-anchor="middle" fill="#0067b1" font-weight="700">02 · Recommend and explain</text><rect x="802" y="8" width="356" height="378" rx="16" fill="#f1f8f4" stroke="#bedac9"/><text x="980" y="43" text-anchor="middle" fill="#0067b1" font-weight="700">03 · Help complete the task</text><path d="M365 199h27" fill="none" stroke="#697177" stroke-width="2" marker-end="url(#need-step-arrow)"/><path d="M765 199h27" fill="none" stroke="#697177" stroke-width="2" marker-end="url(#need-step-arrow)"/><g transform="rotate(-5 95 116)"><rect x="30" y="83" width="130" height="70" rx="8" fill="white" stroke="#ead28a"/><g transform="translate(54 109)" fill="none" stroke="#8a6500" stroke-width="1.6" stroke-linecap="round"><rect x="-13" y="-9" width="26" height="20" rx="5"/><path d="M0-9v-5M-6 6H6"/><circle cx="-5" cy="0" r="1.3"/><circle cx="5" cy="0" r="1.3"/></g><text x="95" y="142" text-anchor="middle" fill="#151719">Research</text></g><g transform="rotate(5 262 124)"><rect x="197" y="91" width="130" height="70" rx="8" fill="white" stroke="#ead28a"/><g transform="translate(221 117)" fill="none" stroke="#8a6500" stroke-width="1.6" stroke-linecap="round"><rect x="-13" y="-9" width="26" height="20" rx="5"/><path d="M0-9v-5M-6 6H6"/><circle cx="-5" cy="0" r="1.3"/><circle cx="5" cy="0" r="1.3"/></g><text x="262" y="150" text-anchor="middle" fill="#151719">Data</text></g><g transform="rotate(3 89 210)"><rect x="24" y="177" width="130" height="70" rx="8" fill="white" stroke="#ead28a"/><g transform="translate(48 203)" fill="none" stroke="#8a6500" stroke-width="1.6" stroke-linecap="round"><rect x="-13" y="-9" width="26" height="20" rx="5"/><path d="M0-9v-5M-6 6H6"/><circle cx="-5" cy="0" r="1.3"/><circle cx="5" cy="0" r="1.3"/></g><text x="89" y="236" text-anchor="middle" fill="#151719">Documents</text></g><g transform="rotate(-4 262 215)"><rect x="197" y="182" width="130" height="70" rx="8" fill="white" stroke="#ead28a"/><g transform="translate(221 208)" fill="none" stroke="#8a6500" stroke-width="1.6" stroke-linecap="round"><rect x="-13" y="-9" width="26" height="20" rx="5"/><path d="M0-9v-5M-6 6H6"/><circle cx="-5" cy="0" r="1.3"/><circle cx="5" cy="0" r="1.3"/></g><text x="262" y="241" text-anchor="middle" fill="#151719">Code</text></g><rect x="25" y="287" width="310" height="54" rx="18" fill="#fff9e6" stroke="#d39b00"/><text x="180" y="320" text-anchor="middle" fill="#8a6500">“Which one fits my task?”</text><text x="180" y="367" text-anchor="middle" fill="#697177">The user knows the goal, not the agent.</text><rect x="424" y="87" width="308" height="64" rx="8" fill="#fff" stroke="#0067b1"/><circle cx="448" cy="112" r="13" fill="#edf7fe"/><text x="448" y="117" text-anchor="middle" fill="#0067b1" font-weight="700">1</text><text x="474" y="112" text-anchor="start" fill="#0067b1" font-weight="700">Candidate A</text><text x="716" y="112" text-anchor="end" fill="#697177">Strong fit</text><text x="442" y="136" text-anchor="start" fill="#697177">Capability · input fit · permissions</text><rect x="424" y="167" width="308" height="64" rx="8" fill="#fff" stroke="#b8d8ec"/><circle cx="448" cy="192" r="13" fill="#edf7fe"/><text x="448" y="197" text-anchor="middle" fill="#0067b1" font-weight="700">2</text><text x="474" y="192" text-anchor="start" fill="#0067b1" font-weight="700">Candidate B</text><text x="716" y="192" text-anchor="end" fill="#697177">Partial fit</text><text x="442" y="216" text-anchor="start" fill="#697177">Capability · input fit · permissions</text><rect x="424" y="247" width="308" height="64" rx="8" fill="#fff" stroke="#d9dde0"/><circle cx="448" cy="272" r="13" fill="#edf7fe"/><text x="448" y="277" text-anchor="middle" fill="#0067b1" font-weight="700">3</text><text x="474" y="272" text-anchor="start" fill="#0067b1" font-weight="700">Candidate C</text><text x="716" y="272" text-anchor="end" fill="#697177">Limited fit</text><text x="442" y="296" text-anchor="start" fill="#697177">Capability · input fit · permissions</text><text x="580" y="342" text-anchor="middle" fill="#0067b1">Explain the ranking and limits.</text><text x="580" y="368" text-anchor="middle" fill="#697177">Illustrative shortlist, not actual scores.</text><rect x="827" y="78" width="306" height="48" rx="8" fill="#fff" stroke="#9fc9e6"/><text x="980" y="108" text-anchor="middle" fill="#19734b">Select agents + plan</text><path d="M980 126V144" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#need-step-arrow)"/><rect x="827" y="149" width="306" height="48" rx="8" fill="#fff9e6" stroke="#d39b00"/><text x="980" y="179" text-anchor="middle" fill="#8a6500">User confirms scope</text><path d="M980 197V215" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#need-step-arrow)"/><rect x="827" y="220" width="306" height="48" rx="8" fill="#fff" stroke="#bedac9"/><text x="980" y="250" text-anchor="middle" fill="#19734b">Execute within permission</text><path d="M980 268V286" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#need-step-arrow)"/><rect x="827" y="291" width="306" height="48" rx="8" fill="#eef7f1" stroke="#19734b"/><text x="980" y="321" text-anchor="middle" fill="#19734b">Return reviewable results</text><text x="980" y="367" text-anchor="middle" fill="#697177">Hub coordinates the handoffs.</text></svg><div class="present-band">Describe the goal → understand the recommendation → confirm the work. Agent Hub connects the three.</div><p class="source-label">Project design rationale, not completed user research. Candidates and fit levels illustrate the intended experience. Runtime availability, tools, and authorization still require verification.</p></div></section>
 
 <section class="slide" data-section="02 · ROLE DESIGN">
           <div class="topline">
             <span class="section">02 · ROLE DESIGN</span><span class="num"></span>
           </div>
-          <div class="content role-page">
-            <h2>
-              Agent Hub at the center, with clear functional boundaries
-            </h2>
-            <div class="chart-layout">
-              <svg class="chart-svg" viewBox="-40 0 680 410" role="img" aria-label="Hub coordinates four functional roles, layout shows relationships, not execution order">
-                <title>Hub coordinates four functional roles. The layout shows relationships, not execution order.</title><circle cx="300" cy="200" r="135" fill="none" stroke="#d9dde0" stroke-dasharray="6 6" /><path d="M300 200 L300 70" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L460 200" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L300 330" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L140 200" stroke="#9fc9e6" stroke-width="2" /><rect x="175" y="12" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="40" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Finder</text><text x="300.0" y="64" text-anchor="middle" font-size="16" fill="#151719">Candidates + rationale</text><rect x="375" y="167" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="500.0" y="195" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Builder</text><text x="500.0" y="219" text-anchor="middle" font-size="16" fill="#151719">Steps + dependencies</text><rect x="175" y="318" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="346" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Executor</text><text x="300.0" y="370" text-anchor="middle" font-size="16" fill="#151719">Status + results</text><rect x="-25" y="167" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="100.0" y="195" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Creator</text><text x="100.0" y="219" text-anchor="middle" font-size="16" fill="#151719">Gaps + proposals</text><circle cx="300" cy="200" r="72" fill="white" stroke="#d9dde0" /><image href="assets/agent-hub-icon.png" x="248" y="138" width="104" height="104" preserveAspectRatio="xMidYMid meet"><title>Agent Hub logo</title></image><text x="300" y="256" text-anchor="middle" font-size="16" fill="#697177"><tspan x="300" y="246">User-facing</tspan><tspan x="300" y="265">coordinator</tspan></text>
-              </svg>
-              <div class="role-notes">
-  <div><b>01 · Hub owns the conversation</b><p>Understand the goal, route work, confirm scope, and summarize results.</p></div>
-  <div><b>02 · Functions return deliverables</b><p>Recommendations, blueprints, gap proposals, and execution status.</p></div>
-  <div><b>03 · Business agents do the task</b><p>Executor dispatches authorized work and collects outputs.</p></div>
-  <small>This is a relationship map, not a fixed call sequence.</small>
-</div></div></div></section>
+          <div class="content role-page balanced-visual-dialogue">
+            <h2>How we shaped the main-agent framework with AI</h2><div class="chart-layout"><div class="framework-left-visual"><div class="framework-design-path" aria-label="Share the idea, break down work, assign roles, define boundaries"><div><span>01</span><b>Share the<br>idea</b></div><div><span>02</span><b>Break down<br>the work</b></div><div><span>03</span><b>Assign<br>roles</b></div><div><span>04</span><b>Define<br>boundaries</b></div></div><svg class="chart-svg" viewBox="-40 0 680 410" role="img" aria-label="Hub coordinates four functional roles, layout shows relationships, not execution order">
+                <title>Hub coordinates four functional roles. The layout shows relationships, not execution order.</title><circle cx="300" cy="200" r="135" fill="none" stroke="#d9dde0" stroke-dasharray="6 6" /><path d="M300 200 L300 70" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L460 200" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L300 330" stroke="#9fc9e6" stroke-width="2" /><path d="M300 200 L140 200" stroke="#9fc9e6" stroke-width="2" /><rect x="187.5" y="12" width="225" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="40" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Finder</text><text x="300.0" y="64" text-anchor="middle" font-size="16" fill="#151719">Candidates + rationale</text><rect x="387.5" y="167" width="225" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="500.0" y="195" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Builder</text><text x="500.0" y="219" text-anchor="middle" font-size="16" fill="#151719">Steps + dependencies</text><rect x="187.5" y="318" width="225" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="346" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Executor</text><text x="300.0" y="370" text-anchor="middle" font-size="16" fill="#151719">Status + results</text><rect x="-12.5" y="167" width="225" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="100.0" y="195" text-anchor="middle" font-size="16" fill="#0067b1" font-weight="700">Creator</text><text x="100.0" y="219" text-anchor="middle" font-size="16" fill="#151719">Gaps + proposals</text><circle cx="300" cy="200" r="72" fill="white" stroke="#d9dde0" /><image href="assets/agent-hub-icon.png" x="248" y="138" width="104" height="104" preserveAspectRatio="xMidYMid meet"><title>Agent Hub logo</title></image><text x="300" y="256" text-anchor="middle" font-size="16" fill="#697177"><tspan x="300" y="246">User-facing</tspan><tspan x="300" y="265">coordinator</tspan></text>
+              </svg></div><div class="example-dialogue framework-conversation"><div class="dialogue-label">ILLUSTRATIVE CONVERSATION · NOT ORIGINAL CHAT</div><div class="dialogue-bubble user"><b>USER · Share the idea</b>I want a single entry point that recommends agents, explains fit, and helps complete tasks. Help me structure the system first.</div><div class="dialogue-bubble ai"><b>AI · Break down the work</b>We need request understanding, capability matching, workflow planning, task execution, and capability-gap handling.</div><div class="dialogue-bubble user"><b>USER · Ask for the framework</b>Which work belongs to the main agent? Which needs a functional agent? Keep planning separate from execution and make boundaries explicit.</div><div class="dialogue-bubble ai"><b>AI · Propose the role split</b>Hub owns interaction and routing. Finder matches, Builder plans, Executor runs confirmed work, and Creator assesses gaps and reuse.</div></div></div><p class="source-label">The framework answers who owns each responsibility. The next slide connects those roles into an initial workflow. Dialogue is reconstructed, not an original transcript.</p></div></section>
 
 <section class="slide" data-section="07 · WORKFLOW">
           <div class="topline">
             <span class="section">03 · WORKFLOW</span><span class="num"></span>
           </div>
-          <div class="content workflow-overview">
-            <h2>
-              Workflow: map the main path, then add decisions
-            </h2>
-            <div class="workflow-explain">
-              <svg class="workflow-map" viewBox="150 0 454 370" role="img" aria-label="Main workflow">
-                <rect x="181.25" y="72" width="391.5" height="212" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 128 L377 156" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 150 L377 156 L382.8 150" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 200 L377 228" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 222 L377 228 L382.8 222" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 272 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">User request</text><rect x="210.25" y="84" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Hub understands and assesses</text><rect x="210.25" y="156" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="183.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Find or validate an agent</text><rect x="210.25" y="228" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="255.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Build a workflow if needed</text><rect x="210.25" y="300" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="327.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Confirm → Execute → Review</text>
-              </svg>
-              <div class="workflow-design-flow">
-  <div class="workflow-design-node"><b>01 · Map the main path</b><p>Start with the user request and the expected result.</p></div>
-  <div class="workflow-design-arrow" aria-hidden="true">↓</div>
-  <div class="workflow-design-node"><b>02 · Add decision points</b><p>What is missing? Which agent fits? Is a multi-step plan needed?</p></div>
-  <div class="workflow-design-arrow" aria-hidden="true">↓</div>
-  <div class="workflow-design-node"><b>03 · Capture the rules</b><p>Define branches, handoffs, and stopping conditions with AI.</p></div>
-  <div class="workflow-file">Shared design → README / Task Routing Logic<br>Entry-point instructions → Agent-Hub.txt</div>
-</div></div></div></section>
+          <div class="content workflow-overview balanced-visual-dialogue">
+            <h2>From roles to an initial workflow</h2><div class="workflow-explain"><svg class="workflow-map" viewBox="150 0 454 370" role="img" aria-label="Main workflow">
+                <rect x="181.25" y="72" width="391.5" height="212" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 128 L377 156" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 150 L377 156 L382.8 150" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 200 L377 228" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 222 L377 228 L382.8 222" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 272 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="226.925" y="12" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">User request</text><rect x="226.925" y="84" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Hub understands and assesses</text><rect x="226.925" y="156" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="183.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Find or validate an agent</text><rect x="226.925" y="228" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="255.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Build a workflow if needed</text><rect x="226.925" y="300" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="327.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="14" fill="#151719">Confirm → Execute → Review</text>
+              </svg><div class="example-dialogue"><div class="dialogue-label">RECONSTRUCTED EXAMPLE · NOT ORIGINAL CHAT</div><div class="dialogue-bubble user"><b>USER · Connect the roles</b>Using the agreed roles, outline the main path from a user request to a reviewable result.</div><div class="dialogue-bubble ai"><b>AI · Propose a main path</b>Understand the request → find or validate agents → plan if needed → confirm → execute → review.</div><div class="dialogue-bubble user"><b>USER · Challenge the first draft</b>Now examine it from the user’s perspective. What different questions or missing inputs could change this path?</div><div class="dialogue-result"><b>DESIGN OUTCOME</b>The main path is a starting point. Next, user questions reveal the missing branches.</div></div></div></div></section>
 
 <section class="slide" data-section="07 · WORKFLOW">
           <div class="topline">
             <span class="section">03 · WORKFLOW</span><span class="num"></span>
           </div>
-          <div class="content">
-            <h2>
-              Fragment 1: identify what the user wants
-            </h2>
+          <div class="content balanced-visual-dialogue">
+            <h2>User perspective 1: “I am only browsing.”</h2>
             <div class="workflow-explain">
-              <svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="User intent routing">
-                <rect x="11.6" y="72" width="730.8" height="182" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 136 L188.5 182" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 176 L188.5 182 L194.3 176" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 136 L565.5 182" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 176 L565.5 182 L571.3 176" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 240 L565.5 294" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 288 L565.5 294 L571.3 288" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">User question</text><rect x="210.25" y="84" width="333.5" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="115.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub identifies intent</text><rect x="29" y="182" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Browse / Find agents</text><text x="188.5" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder: overview or options</text><rect x="406" y="182" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Request task execution</text><text x="565.5" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Check goal, inputs, constraints</text><rect x="406" y="294" width="319" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="325.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Select capabilities and plan</text>
-              </svg>
-              <div class="workflow-notes">
-                <h3>
-                  What does this part cover?
-                </h3>
-                <p>
-                  <b>Possible user questions:</b><br>“What agents are available?”<br>“Compare these two documents.”
-                </p>
-                <p>
-                  <b>Decisions to define:</b><br>Is the user exploring capabilities or requesting execution? Are the goal and required inputs clear?
-                </p>
-                <p>
-                  <b>Rules to give AI:</b><br>Return an overview for browsing. Check inputs for execution. Clarify a missing goal rather than inventing one.
-                </p>
-                <div class="workflow-file">
-                  README.md → Clarification Rules / Task Routing Logic<br>Agent-Hub.txt → Core responsibilities
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              <div class="user-branch-visual"><div class="framework-design-path user-perspective-path" aria-label="User situation, question to AI, and resulting design rule"><div><strong class="process-stage-label">User situation</strong><span>01</span><b>User only<br>wants to browse</b></div><div><strong class="process-stage-label">Ask AI</strong><span>02</span><b>Ask AI: execute<br>or only recommend?</b></div><div><strong class="process-stage-label">Complete the rules</strong><span>03</span><b>Separate intent<br>and check inputs</b></div></div><svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="User intent routing">
+                <rect x="11.6" y="72" width="730.8" height="182" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 136 L188.5 182" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 176 L188.5 182 L194.3 176" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 136 L565.5 182" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 176 L565.5 182 L571.3 176" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 240 L565.5 294" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 288 L565.5 294 L571.3 288" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="226.925" y="12" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">User question</text><rect x="226.925" y="84" width="300.15" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="115.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub identifies intent</text><rect x="44.95" y="182" width="287.1" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Browse / Find agents</text><text x="188.5" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder: overview or options</text><rect x="421.95" y="182" width="287.1" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="206.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Request task execution</text><text x="565.5" y="226.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Check goal, inputs, constraints</text><rect x="421.95" y="294" width="287.1" height="52" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="325.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Select capabilities and plan</text>
+              </svg></div>
+              <div class="example-dialogue"><div class="dialogue-label">USER-LED FOLLOW-UP · ILLUSTRATIVE DIALOGUE</div><div class="dialogue-bubble user"><b>USER · Design question</b>If a user only asks what agents exist, should Hub execute anything?</div><div class="dialogue-bubble ai"><b>AI · Proposed rule</b>No. Separate browsing from execution. Finder returns an overview or recommendations.</div><div class="dialogue-bubble user"><b>USER · Follow-up</b>What if the goal is clear, but the user has not supplied the materials?</div><div class="dialogue-result"><b>IMPLEMENTED IN THE DESIGN</b>Discuss suitable capabilities if useful, but wait for required inputs before execution. Ask focused questions if the goal itself is unclear.</div></div></div></div></section>
 
 <section class="slide" data-section="07 · WORKFLOW">
           <div class="topline">
             <span class="section">03 · WORKFLOW</span><span class="num"></span>
           </div>
-          <div class="content">
-            <h2>
-              Fragment 2: find the right agent
-            </h2>
+          <div class="content balanced-visual-dialogue">
+            <h2>User perspective 2: “I already chose an agent.”</h2>
             <div class="workflow-explain">
-              <svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="Agent validation and discovery">
-                <rect x="11.6" y="72" width="730.8" height="180" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 134 L188.5 180" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 174 L188.5 180 L194.3 174" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 134 L565.5 180" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 174 L565.5 180 L571.3 174" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M188.5 238 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 238 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">User requests execution</text><rect x="210.25" y="84" width="333.5" height="50" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="114.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Did the user specify an agent?</text><rect x="29" y="180" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Specified: validate</text><text x="188.5" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Exists, fits, can run</text><rect x="406" y="180" width="319" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Unspecified / Invalid choice</text><text x="565.5" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Finder recommends candidates</text><rect x="210.25" y="300" width="333.5" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="329.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Identify candidates and scope</text>
-              </svg>
-              <div class="workflow-notes">
-                <h3>
-                  What does this part cover?
-                </h3>
-                <p>
-                  <b>Two entry paths:</b><br>Validate a user-specified agent. Otherwise, ask Finder for recommendations.
-                </p>
-                <p>
-                  <b>Conditions to consider:</b><br>Check existence, capability fit, input compatibility, runtime availability, and permissions.
-                </p>
-                <p>
-                  <b>Rules to give AI:</b><br>Recommend alternatives for an invalid choice. If no match fits, report the gap and consider composition or creation.
-                </p>
-                <div class="workflow-file">
-                  README.md → Subagent Selection Rules<br>Agent-Hub.txt / functional-agents/Agent-Finder.txt
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              <div class="user-branch-visual"><div class="framework-design-path user-perspective-path" aria-label="User situation, question to AI, and resulting design rule"><div><strong class="process-stage-label">User situation</strong><span>01</span><b>User names<br>an agent</b></div><div><strong class="process-stage-label">Ask AI</strong><span>02</span><b>Ask AI: validate<br>or find alternatives?</b></div><div><strong class="process-stage-label">Complete the rules</strong><span>03</span><b>Check suitability<br>before proceeding</b></div></div><svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="Agent validation and discovery">
+                <rect x="11.6" y="72" width="730.8" height="180" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 84" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 78 L377 84 L382.8 78" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 134 L188.5 180" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 174 L188.5 180 L194.3 174" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 134 L565.5 180" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 174 L565.5 180 L571.3 174" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M188.5 238 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 238 L377 300" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 294 L377 300 L382.8 294" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="226.925" y="12" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">User requests execution</text><rect x="226.925" y="84" width="300.15" height="50" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="114.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Did the user specify an agent?</text><rect x="44.95" y="180" width="287.1" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Yes: check the agent.</text><text x="188.5" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Check fit and availability.</text><rect x="421.95" y="180" width="287.1" height="58" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="204.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">No, or the choice is invalid:</text><text x="565.5" y="224.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Ask Finder for alternatives.</text><rect x="226.925" y="300" width="300.15" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="329.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Identify candidates and scope</text>
+              </svg></div>
+              <div class="example-dialogue"><div class="dialogue-label">USER-LED FOLLOW-UP · ILLUSTRATIVE DIALOGUE</div><div class="dialogue-bubble user"><b>USER · Start with the need</b>Users may name an agent. Should Hub still ask Finder to recommend one?</div><div class="dialogue-bubble ai"><b>AI · Proposed design</b>Validate the specified agent first. If it fits and can run, skip a fresh recommendation.</div><div class="dialogue-bubble user"><b>USER · Refine the boundary</b>What if it is invalid? Does choosing an agent authorize execution?</div><div class="dialogue-result"><b>IMPLEMENTED IN THE DESIGN</b>Invalid choice → explain and ask Finder. Selection alone does not authorize execution. Scope confirmation remains required.</div></div></div></div></section>
 
 <section class="slide" data-section="07 · WORKFLOW">
           <div class="topline">
             <span class="section">03 · WORKFLOW</span><span class="num"></span>
           </div>
-          <div class="content">
-            <h2>
-              Fragment 3: break complex work into clear handoffs
-            </h2>
+          <div class="content balanced-visual-dialogue">
+            <h2>User perspective 3: “My task needs several agents.”</h2>
             <div class="workflow-explain">
-              <svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="Workflow orchestration">
-                <rect x="391.5" y="154" width="348" height="84" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 82" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 76 L377 82 L382.8 76" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 130 L188.5 168" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 162 L188.5 168 L194.3 162" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 130 L565.5 168" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 162 L565.5 168 L571.3 162" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M188.5 224 L377 268" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 262 L377 268 L382.8 262" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 224 L377 268" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 262 L377 268 L382.8 262" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 314 L377 338" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 332 L377 338 L382.8 332" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="210.25" y="12" width="333.5" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Goal and agents identified</text><rect x="210.25" y="82" width="333.5" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Single task or multiple stages?</text><rect x="29" y="168" width="319" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Simple task</text><text x="188.5" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Single-agent plan</text><rect x="406" y="168" width="319" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Complex task → Builder</text><text x="565.5" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Steps, inputs, outputs</text><rect x="210.25" y="268" width="333.5" height="46" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="296.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub presents plan and confirms</text><rect x="210.25" y="338" width="333.5" height="40" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="363.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Executor runs → Hub reports</text>
-              </svg>
-              <div class="workflow-notes">
-                <h3>
-                  Focus: Workflow Builder
-                </h3>
-                <p>
-                  <b>Design question:</b><br>“If a request needs multiple agents, how should Agent Hub coordinate them?”
-                </p>
-                <p>
-                  <b>The blueprint must define:</b><br>Who owns each step, its inputs and outputs, and which prior steps it depends on.
-                </p>
-                <p>
-                  <b>Rules to give AI:</b><br>Give Builder responsibility for steps and dependencies. Give Executor responsibility for authorized scheduling. Define their shared blueprint contract.
-                </p>
-                <div class="workflow-file">
-                  README.md → Complex Workflow Execution<br>functional-agents/Workflow-Builder.txt → steps<br>input / output / dependencies / permission_scope
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              <div class="user-branch-visual"><div class="framework-design-path user-perspective-path" aria-label="User situation, question to AI, and resulting design rule"><div><strong class="process-stage-label">User situation</strong><span>01</span><b>User needs<br>several agents</b></div><div><strong class="process-stage-label">Ask AI</strong><span>02</span><b>Ask AI: who plans<br>and who executes?</b></div><div><strong class="process-stage-label">Complete the rules</strong><span>03</span><b>Define steps<br>and handoffs</b></div></div><svg class="workflow-map" viewBox="0 0 754 390" role="img" aria-label="Workflow orchestration">
+                <rect x="391.5" y="154" width="348" height="84" rx="12" fill="#edf7fe" stroke="#0067b1" stroke-width="2.5" stroke-dasharray="7 4" /><path d="M377 56 L377 82" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 76 L377 82 L382.8 76" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 130 L188.5 168" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M182.7 162 L188.5 168 L194.3 162" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 130 L565.5 168" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M559.7 162 L565.5 168 L571.3 162" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M188.5 224 L377 268" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 262 L377 268 L382.8 262" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M565.5 224 L377 268" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 262 L377 268 L382.8 262" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M377 314 L377 338" fill="none" stroke="#697177" stroke-width="1.6" /><path d="M371.2 332 L377 338 L382.8 332" fill="none" stroke="#697177" stroke-width="1.6" /><rect x="226.925" y="12" width="300.15" height="44" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="39.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Goal and agents identified</text><rect x="226.925" y="82" width="300.15" height="48" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="111.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Single task or multiple stages?</text><rect x="44.95" y="168" width="287.1" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="188.5" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Simple task</text><text x="188.5" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Single-agent plan</text><rect x="421.95" y="168" width="287.1" height="56" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="565.5" y="191.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Complex task → Builder</text><text x="565.5" y="211.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Steps, inputs, outputs</text><rect x="226.925" y="268" width="300.15" height="46" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="296.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Hub presents plan and confirms</text><rect x="226.925" y="338" width="300.15" height="40" rx="6" fill="white" stroke="#9fc9e6" stroke-width="1.4" /><text x="377" y="363.0" text-anchor="middle" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Executor runs → Hub reports</text>
+              </svg></div>
+              <div class="example-dialogue"><div class="dialogue-label">USER-LED FOLLOW-UP · ILLUSTRATIVE DIALOGUE</div><div class="dialogue-bubble user"><b>USER · Design question</b>How should several agents work together on one complex task?</div><div class="dialogue-bubble ai"><b>AI · Proposed rule</b>Break the goal into ordered steps. Specify each step’s owner, inputs, outputs, and dependencies.</div><div class="dialogue-bubble user"><b>USER · Follow-up</b>Who plans, who executes, and what exactly passes between them?</div><div class="dialogue-result"><b>IMPLEMENTED IN THE DESIGN</b>Builder creates the blueprint. Hub presents it for confirmation. Executor receives the confirmed plan and dispatches work within scope.</div></div></div></div></section>
 
 <section class="slide" data-section="03 · COMPLETE WORKFLOW">
   <div class="topline"><span class="section">03 · COMPLETE WORKFLOW</span><span class="num"></span></div>
   <div class="content endtoend-page">
-    <h2>The complete Agent Hub flow: keep every branch connected</h2>
+    <h2>Ask AI to connect the main path, branches, and return paths</h2>
     <div class="endtoend-layout">
       <button class="endtoend-preview" type="button" id="open-full-flow" aria-label="Open the complete end-to-end flowchart"><img src="assets/agent-hub-end-to-end.svg" alt="Complete project flowchart, from user request to review and retry"><span>Click to explore the full diagram</span></button>
-      <div><div class="endtoend-phases vertical-phases">
-        <div><b>01 · Understand and match</b>Missing information, specified agents, recommendations, and capability gaps</div>
-        <div><b>02 · Plan and confirm</b>Simple or complex tasks, blueprint revision, and scope confirmation</div>
-        <div><b>03 · Execute within scope</b>Concrete action preview, authorization, and execution</div>
-        <div><b>04 · Review and continue</b>Complete, partial, or failed results, retry checks, and changed requests</div>
-      </div><div class="endtoend-reminder">When revising with AI: locate the branch, its return path, and unchanged rules.</div></div>
+      <div class="example-dialogue flow-design-dialogue"><div class="dialogue-label">DESIGNING THE PATH · ILLUSTRATIVE DIALOGUE</div><div class="dialogue-bubble user"><b>USER · Connect the pieces</b>Combine our main path and user-question branches into one end-to-end flow. Show where each branch rejoins, waits, or stops.</div><div class="dialogue-bubble ai"><b>AI · Trace the return paths</b>I’ll connect the normal path, clarification loops, plan revisions, and result review. I’ll identify missing connections rather than invent a decision.</div><div class="dialogue-bubble user"><b>USER · Challenge the map</b>If inputs are missing, the plan is rejected, or execution fails, where do we go next? Check each branch for a clear return or stopping point.</div><div class="dialogue-result">Building a flowchart like this helps us check with AI that every branch has a clear next step, return path, or stopping point.</div></div>
     </div>
     <p class="source-label">Actual project diagram referenced by README → End-to-End Agent Hub Flow. Overview is for orientation. Open the zoomable view for readable labels. Copy canvas expanded to include source nodes beyond its original bounds.</p>
   </div>
 </section>
 
-<section class="slide project-case" data-section="05 · INSTRUCTION">
-          <div class="topline">
-            <span class="section">03 · WORKFLOW</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>
-              Who does what? Follow one confirmed workflow across lanes
-            </h2>
-            <svg class="wide-diagram" viewBox="0 0 1160 400" role="img" aria-label="Swimlane collaboration for a complex task">
-              <title>Swimlane collaboration for a complex task</title>
-              <defs>
-                <marker id="Swimlane-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0L10 5L0 10Z" fill="#697177" />
-                </marker>
-              </defs>
-              <rect x="0" y="10" width="1160" height="76" rx="4" fill="#f2f6f8" /><text x="16" y="53" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">USER</text><rect x="0" y="100" width="1160" height="76" rx="4" fill="#fbfcfc" /><text x="16" y="143" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">HUB</text><rect x="0" y="190" width="1160" height="76" rx="4" fill="#f2f6f8" /><text x="16" y="233" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">FUNCTIONAL</text><rect x="0" y="280" width="1160" height="76" rx="4" fill="#fbfcfc" /><text x="16" y="323" text-anchor="start" font-size="14" fill="#0067b1" font-weight="700">BUSINESS</text><path d="M200 72V114" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M272 138H350V204" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M612 228H710V162" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M710 114V72" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M782 48H880V204" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M952 228H1050V294" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M1050 294V162" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><rect x="128.0" y="24.0" width="144" height="48" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="200" y="53.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">1 · Request</text><rect x="126.109375" y="114.0" width="147.78125" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="200" y="134.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">2 · Understand</text><text x="200" y="152.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">and route</text><rect x="263.5859375" y="204.0" width="172.828125" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="350" y="224.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">3 · Finder</text><text x="350" y="242.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">match capabilities</text><rect x="462.2890625" y="204.0" width="155.421875" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="540" y="224.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">5 · Builder</text><text x="540" y="242.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">create blueprint</text><rect x="632.3515625" y="114.0" width="155.296875" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="710" y="143.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">6 · Present plan</text><rect x="624.8984375" y="24.0" width="170.203125" height="48" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="710" y="53.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">7 · Confirm scope</text><rect x="808.0" y="204.0" width="144" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="880" y="224.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">8 · Executor</text><text x="880" y="242.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">dispatch tasks</text><rect x="971.40625" y="294.0" width="157.1875" height="48" rx="6" fill="#eef7f1" stroke="#19734b" /><text x="1050" y="323.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">9 · Task outputs</text><rect x="966.6328125" y="114.0" width="166.734375" height="48" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="1050" y="143.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">10 · Present result</text>
-            <path d="M350 204V72" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><path d="M432 48H540V204" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Swimlane-arrow)" /><rect x="268" y="24" width="164" height="48" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="350" y="53" text-anchor="middle" font-size="16">4 · Select agents</text></svg>
-            <div class="present-band">
-              Illustrative complex-task path: select recommended agents, then confirm the blueprint before execution. Missing inputs or new actions can pause the workflow.
-            </div>
-            <p class="source-label">
-              Based on README routing and functional-agent boundaries. Arrows show handoffs, not measured timing. Agents not needed for this path are omitted.
-            </p>
-          </div>
-        </section>
+<section class="slide" data-section="03 · WORKFLOW"><div class="topline"><span class="section">03 · WORKFLOW</span><span class="num"></span></div><div class="content handoff-method-page"><h2>Use a swimlane diagram to clarify who does what</h2><div class="handoff-ai-request"><b>USER — AI · Make the responsibilities explicit</b>Put each step in the responsible role’s lane and define:<div class="handoff-integrated-points"><div><b class="handoff-inline-label">Owner:</b> Who is responsible for this step?</div><div><b class="handoff-inline-label">Handoff:</b> What does it receive, produce, and pass to the next role?</div><div><b class="handoff-inline-label">Boundary:</b> When should it pause or return? Keep planning separate from execution.</div></div></div><svg class="wide-diagram handoff-swimlane" viewBox="0 0 1200 380" role="img" aria-label="Responsibility handoffs across user, Hub, functional agents and business agents"><title>Who owns each step and what passes to the next role</title><defs><marker id="handoff-lane-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#697177"/></marker></defs><rect x="0" y="10" width="1200" height="76" rx="4" fill="#f2f6f8"/><text x="16" y="53" fill="#0067b1" font-weight="700">USER</text><rect x="0" y="100" width="1200" height="76" rx="4" fill="#fbfcfc"/><text x="16" y="143" fill="#0067b1" font-weight="700">HUB</text><rect x="0" y="190" width="1200" height="76" rx="4" fill="#f2f6f8"/><text x="16" y="233" fill="#0067b1" font-weight="700">FUNCTIONAL</text><rect x="0" y="280" width="1200" height="76" rx="4" fill="#fbfcfc"/><text x="16" y="323" fill="#0067b1" font-weight="700">BUSINESS</text><path d="M210 75V111" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M295 138H410V201" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M410 201V75" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M500 48H610V201" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M700 228H800V165" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M800 111V75" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M890 48H980V201" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M980 255V273H1060V291" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><path d="M1150 318H1180V138H1150" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#handoff-lane-arrow)"/><rect x="130.0" y="21" width="160" height="54" rx="6" fill="#fff9e6" stroke="#d39b00"/><text x="210" y="53" text-anchor="middle" fill="#151719">1 · Request</text><rect x="125.0" y="111" width="170" height="54" rx="6" fill="#fff" stroke="#9fc9e6"/><text x="210" y="133" text-anchor="middle" fill="#151719">2 · Hub</text><text x="210" y="153" text-anchor="middle" fill="#151719">Understand + route</text><rect x="315.0" y="201" width="190" height="54" rx="6" fill="#fff" stroke="#9fc9e6"/><text x="410" y="223" text-anchor="middle" fill="#151719">3 · Finder</text><text x="410" y="243" text-anchor="middle" fill="#151719">Candidates + fit</text><rect x="320.0" y="21" width="180" height="54" rx="6" fill="#fff9e6" stroke="#d39b00"/><text x="410" y="53" text-anchor="middle" fill="#151719">4 · Select agents</text><rect x="520.0" y="201" width="180" height="54" rx="6" fill="#fff" stroke="#9fc9e6"/><text x="610" y="223" text-anchor="middle" fill="#151719">5 · Builder</text><text x="610" y="243" text-anchor="middle" fill="#151719">Steps + dependencies</text><rect x="710.0" y="111" width="180" height="54" rx="6" fill="#fff" stroke="#9fc9e6"/><text x="800" y="133" text-anchor="middle" fill="#151719">6 · Hub</text><text x="800" y="153" text-anchor="middle" fill="#151719">Present blueprint</text><rect x="710.0" y="21" width="180" height="54" rx="6" fill="#fff9e6" stroke="#d39b00"/><text x="800" y="53" text-anchor="middle" fill="#151719">7 · Confirm scope</text><rect x="895.0" y="201" width="170" height="54" rx="6" fill="#fff" stroke="#9fc9e6"/><text x="980" y="223" text-anchor="middle" fill="#151719">8 · Executor</text><text x="980" y="243" text-anchor="middle" fill="#151719">Dispatch tasks</text><rect x="970.0" y="291" width="180" height="54" rx="6" fill="#eef7f1" stroke="#19734b"/><text x="1060" y="313" text-anchor="middle" fill="#151719">9 · Business agent</text><text x="1060" y="333" text-anchor="middle" fill="#151719">Structured result</text><rect x="970.0" y="111" width="180" height="54" rx="6" fill="#fff" stroke="#9fc9e6"/><text x="1060" y="133" text-anchor="middle" fill="#151719">10 · Hub</text><text x="1060" y="153" text-anchor="middle" fill="#151719">Review + present</text></svg></div></section>
 
-<section class="slide" data-section="02 · README">
-          <div class="topline">
-            <span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>Inside our README: architecture and definition examples</h2><div class="artifact-grid"><div class="artifact-card"><header>Architecture · Who belongs where?</header><div class="artifact-crop"><img src="assets/readme-architecture-example.png" alt="Project architecture regrouped to show the functional-agent directory"></div><div class="artifact-caption">One Hub + four functional agents. Registry and business agents remain separate.</div></div><div class="artifact-card"><header>Definition template · What should AI write?</header><div class="artifact-crop"><img src="assets/readme-definition-example.png" alt="Actual recommended functional-agent definition template from the README"></div><div class="artifact-caption">A repeatable structure for generating and reviewing definitions.</div></div></div><div class="present-band">Example request: “Read these sections first. Keep the existing roles and format, and identify any changes to the agreed design.”</div><p class="source-label">Left: project architecture regrouped by responsibility. Right: README template excerpt. These are document previews, not platform screenshots.</p></div></section>
+<section class="slide" data-section="04 · IDEAS TO FILES"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>Use AI twice: organize our ideas, then work from the agreed files</h2><svg class="ideas-visual-map" viewBox="0 0 1160 430" role="img" aria-label="Scattered ideas are organized with AI, reviewed by a human, saved as references, and used for step-by-step generation"><title>Organize ideas into shared files, then generate and review</title><defs><marker id="ideas-map-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#697177" /></marker><marker id="ideas-return-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#0067b1" /></marker></defs><rect x="4" y="65" width="240" height="278" rx="18" fill="#fffaf0" /><rect x="306" y="65" width="246" height="278" rx="18" fill="#f2f8fc" /><rect x="608" y="65" width="260" height="278" rx="18" fill="#f2f8fc" /><rect x="916" y="65" width="240" height="278" rx="18" fill="#f1f8f4" /><text x="124" y="36" text-anchor="middle" fill="#0067b1" font-weight="700">IDEAS</text><text x="429" y="36" text-anchor="middle" fill="#0067b1" font-weight="700">ORGANIZE</text><text x="738" y="36" text-anchor="middle" fill="#0067b1" font-weight="700">SHARED FILES</text><text x="1036" y="36" text-anchor="middle" fill="#0067b1" font-weight="700">WORK IN STEPS</text><path d="M250 194H298" fill="none" stroke="#697177" stroke-width="2" marker-end="url(#ideas-map-arrow)" /><path d="M558 194H600" fill="none" stroke="#697177" stroke-width="2" marker-end="url(#ideas-map-arrow)" /><path d="M874 194H908" fill="none" stroke="#697177" stroke-width="2" marker-end="url(#ideas-map-arrow)" /><g transform="translate(1 0)"><rect x="27" y="90" width="190" height="52" rx="6" fill="#fff9e6" stroke="#ead28a" /><g transform="translate(47 116)" fill="none" stroke="#8a6500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="-4" r="4" /><path d="M-8 8a8 8 0 0 1 16 0" /></g><text x="67" y="122" text-anchor="start" fill="#8a6500">Roles</text></g><g transform="translate(-20 6)"><rect x="48" y="160" width="190" height="52" rx="6" fill="#fff9e6" stroke="#ead28a" /><g transform="translate(68 186)" fill="none" stroke="#8a6500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m-7 6 10-13 5 4L-2 10l-7 2z" /></g><text x="88" y="192" text-anchor="start" fill="#8a6500">Writing style</text></g><g transform="translate(6 12)"><rect x="22" y="230" width="190" height="52" rx="6" fill="#fff9e6" stroke="#ead28a" /><g transform="translate(42 256)" fill="none" stroke="#8a6500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-9-8H9M-9 0H4M-9 8H9" /></g><text x="62" y="262" text-anchor="start" fill="#8a6500">Steps + exceptions</text></g><g transform="translate(20 0)"><circle cx="400" cy="134" r="38" fill="#fff" stroke="#9fc9e6" /><g transform="translate(400 132)" fill="none" stroke="#0067b1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-19" y="-12" width="38" height="28" rx="7" /><circle cx="-7" cy="0" r="2" /><circle cx="7" cy="0" r="2" /><path d="M-7 9H7M0-12v-8" /><circle cx="0" cy="-23" r="3" /></g><circle cx="310" cy="193" r="3" fill="#0067b1" /><text x="325" y="198" text-anchor="start" fill="#151719">Group related ideas</text><circle cx="310" cy="225" r="3" fill="#0067b1" /><text x="325" y="230" text-anchor="start" fill="#151719">Clarify missing details</text><circle cx="310" cy="257" r="3" fill="#0067b1" /><text x="325" y="262" text-anchor="start" fill="#151719">Separate open questions</text><rect x="306" y="294" width="188" height="34" rx="17" fill="#fff" stroke="#9fc9e6" /><g transform="translate(326 311)" fill="none" stroke="#0067b1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m-5 0 4 4 7-9" /></g><text x="410" y="317" text-anchor="middle" fill="#0067b1">Human review</text></g><g transform="translate(38 0)"><path d="M589 88H793L809 104V158H589Z" fill="white" stroke="#9fc9e6" /><path d="M793 88V104H809" fill="none" stroke="#9fc9e6" /><text x="603" y="116" text-anchor="start" fill="#0067b1" font-weight="700">Writing standards</text><text x="603" y="141" text-anchor="start" fill="#697177">Style · format · limits</text><path d="M589 170H793L809 186V240H589Z" fill="white" stroke="#9fc9e6" /><path d="M793 170V186H809" fill="none" stroke="#9fc9e6" /><text x="603" y="198" text-anchor="start" fill="#0067b1" font-weight="700">README.md</text><text x="603" y="223" text-anchor="start" fill="#697177">Roles · rules · decisions</text><path d="M589 252H793L809 268V322H589Z" fill="white" stroke="#9fc9e6" /><path d="M793 252V268H809" fill="none" stroke="#9fc9e6" /><text x="603" y="280" text-anchor="start" fill="#0067b1" font-weight="700">Workflow + TODO</text><text x="603" y="305" text-anchor="start" fill="#697177">Steps · handoffs · checks</text></g><g transform="translate(30 0)"><rect x="904" y="96" width="204" height="52" rx="8" fill="white" stroke="#bedac9" /><text x="1006" y="128" text-anchor="middle" fill="#19734b">Read current references</text><path d="M1006 148V170" stroke="#19734b" fill="none" marker-end="url(#ideas-map-arrow)" /><rect x="904" y="174" width="204" height="52" rx="8" fill="white" stroke="#bedac9" /><text x="1006" y="206" text-anchor="middle" fill="#19734b">Generate / update files</text><path d="M1006 226V248" stroke="#19734b" fill="none" marker-end="url(#ideas-map-arrow)" /><rect x="904" y="252" width="204" height="52" rx="8" fill="white" stroke="#bedac9" /><text x="1006" y="284" text-anchor="middle" fill="#19734b">Check and report</text></g><path d="M1036 348V376H420V346" fill="none" stroke="#0067b1" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#ideas-return-arrow)" /><rect x="493" y="361" width="388" height="31" rx="15" fill="#fbfcfc" /><text x="687" y="382" text-anchor="middle" fill="#0067b1">Review → clarify → update shared references</text></svg><div class="ai-two-uses"><p><b>First:</b> Ask AI to organize scattered ideas into clear roles, workflows, and shared standards.</p><p><b>Second:</b> Ask AI to generate and refine content step by step using the agreed files.</p></div><p class="source-label">Illustrative collaboration method. We review the organized ideas before treating them as shared rules. File generation is distinct from authorized agent runtime.</p></div></section>
 
-<section class="slide project-case" data-section="03 · FILE STRUCTURE">
-          <div class="topline">
-            <span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span>
-          </div>
-          <div class="content structure-reason registry-merged">
-            <h2>
-              Why this structure? Give each type of information a home
-            </h2>
-            <p class="story-note">
-              A design rationale derived from the current project, rather than a claim about its original creation order.
-            </p>
-            <div class="structure-with-registry"><div class="visual-stack">
-              <div class="visual-row">
-                <div class="visual-box">
-                  <strong>AI needs shared context</strong>Preserve goals and shared rules.
-                </div>
-                <div class="visual-link">
-                  →
-                </div>
-                <div class="visual-box">
-                  <strong>README.md</strong>Project-wide agreements
-                </div>
-              </div>
-              <div class="visual-row">
-                <div class="visual-box">
-                  <strong>Roles change independently</strong>Update one role independently.
-                </div>
-                <div class="visual-link">
-                  →
-                </div>
-                <div class="visual-box">
-                  <strong>Main / Functional / Business</strong>Separate TXT files by responsibility
-                </div>
-              </div>
-              <div class="visual-row">
-                <div class="visual-box">
-                  <strong>Finder needs a searchable directory</strong>Find and compare existing capabilities.
-                </div>
-                <div class="visual-link">
-                  →
-                </div>
-                <div class="visual-box">
-                  <strong>Agent-Registry.txt</strong>Discovery metadata aligned with TXT
-                </div>
-              </div>
-              <div class="visual-row">
-                <div class="visual-box">
-                  <strong>Progress and evidence need tracking</strong>Track tasks and verification separately.
-                </div>
-                <div class="visual-link">
-                  →
-                </div>
-                <div class="visual-box">
-                  <strong>TODO.md / submission-materials/</strong>Next actions and test evidence
-                </div>
-              </div>
-            </div><aside class="registry-summary"><b>172 definitions · 8 categories</b><svg class="registry-mini" viewBox="0 0 380 320" role="img" aria-label="Business agent definitions by category"><title>172 definitions in eight categories, counted from Registry</title><text x="0" y="32" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Knowledge / research</text><rect x="196" y="16" width="128" height="22" rx="2" fill="#0067b1"/><text x="332" y="32" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">32</text><text x="0" y="69" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Business operations</text><rect x="196" y="53" width="120" height="22" rx="2" fill="#0067b1"/><text x="324" y="69" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">30</text><text x="0" y="106" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Documents / content</text><rect x="196" y="90" width="100" height="22" rx="2" fill="#0067b1"/><text x="304" y="106" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">25</text><text x="0" y="143" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Data / analytics</text><rect x="196" y="127" width="80" height="22" rx="2" fill="#0067b1"/><text x="284" y="143" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">20</text><text x="0" y="180" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Compliance / quality</text><rect x="196" y="164" width="72" height="22" rx="2" fill="#0067b1"/><text x="276" y="180" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">18</text><text x="0" y="217" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Development / tech</text><rect x="196" y="201" width="72" height="22" rx="2" fill="#0067b1"/><text x="276" y="217" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">18</text><text x="0" y="254" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Communication</text><rect x="196" y="238" width="68" height="22" rx="2" fill="#0067b1"/><text x="272" y="254" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">17</text><text x="0" y="291" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">Specialized business</text><rect x="196" y="275" width="48" height="22" rx="2" fill="#0067b1"/><text x="252" y="291" font-family="Verdana,Arial,sans-serif" font-size="16" fill="#151719">12</text></svg><p class="source-label">Registry counts, cross-checked with TXT definitions. Labels shortened. Not deployed-agent counts.</p></aside></div>
-<div class="present-band">
-              Example prompt: “Propose the smallest file structure for these roles. Explain what each file owns and which files must stay synchronized.”
-            </div>
-          </div>
-        </section>
+<section class="slide" data-section="04 · REUSABLE FRAMEWORKS"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>Four reusable files, four clear jobs</h2><div class="file-framework-intro"><p>We save the agreed design in separate files, each with a clear purpose: <b>system design</b>, <b>definition standards</b>, <b>capability discovery</b>, or <b>next steps</b>. Tell AI which reference to read and which file to update so it can build on our agreement across tasks.</p></div><div class="framework-five"><div class="framework-file-card"><svg class="framework-file-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2h9l5 5v15H5zM14 2v6h5M8 12h8M8 16h8"/></svg><b>README.md</b><div class="framework-purpose">Shared Design</div><p>Roles · Rules · Decisions</p></div><div class="framework-file-card"><svg class="framework-file-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="18" height="20" rx="2"/><path d="M7 7h2M12 7h5M7 12h2M12 12h5M7 17h2M12 17h5"/></svg><b>Business README</b><div class="framework-purpose">Definition Pattern</div><p>Name · Description · Instructions</p></div><div class="framework-file-card"><svg class="framework-file-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="m15 15 7 7"/></svg><b>Registry</b><div class="framework-purpose">Find Capabilities</div><p>Tags · Fit · Availability</p></div><div class="framework-file-card"><svg class="framework-file-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 6 2 2 4-4M12 6h9M3 13l2 2 4-4M12 13h9M3 20h18"/></svg><b>TODO.md</b><div class="framework-purpose">Track Next Steps</div><p>Tasks · Checks · Open Items</p></div></div><p class="source-label">Project conventions summarized. Business README: business-subagents/README.md. Registry: Agent-Registry.txt.</p></div></section>
 
-<section class="slide" data-section="04 · FORMAT">
-          <div class="topline">
-            <span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>
-              From shared standards to one agent definition
-            </h2>
-            <div class="merge-layout">
-              <div class="merge-stack">
-                <div class="merge-block">
-                  <b>Root README</b>Shared structure, TXT format, length limits
-                </div>
-                <div class="merge-block">
-                  <b>Business folder README</b>Names, required inputs, metadata consistency
-                </div>
-                <div class="merge-block">
-                  <b>Return + presentation rules</b>Structured results upstream, clear output through Hub
-                </div>
-              </div>
-              <div class="merge-link">
-                →
-              </div>
-              <div class="compact-file">
-                <header>
-                  Example-Agent.txt
-                </header>
-                <div class="compact-row">
-                  <b>Name</b>Identify the capability.
-                </div>
-                <div class="compact-row">
-                  <b>Description</b>Explain when to choose it.
-                </div>
-                <div class="compact-row">
-                  <b>Instruction</b>
-                  <ul class="content-list">
-                    <li>
-                      <b>WHEN</b> Triggers and inputs
-                    </li>
-                    <li>
-                      <b>DO</b> Steps and boundaries
-                    </li>
-                    <li>
-                      <b>RETURN</b> Results, status, and missing fields
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="present-band">
-              Description ≤ 800 characters. Entire TXT &lt; 8,000 characters. Missing required input → clarify before dependent execution.
-            </div>
-          </div>
-        </section>
+<section class="slide" data-section="04 · SUMMARIZE INTO README"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content merged-readme-page"><h2>Ask AI to summarize our agreement, then inspect the README</h2><div class="merged-readme-layout"><div class="readme-conversation-panel"><h3>01 · Ask AI to summarize</h3><div class="example-dialogue"><div class="dialogue-bubble user"><b>USER · Summarize and save</b>Summarize our agreed roles, workflow, and rules in README.md. Preserve our decisions and flag unresolved questions.</div><div class="dialogue-bubble ai"><b>AI · Organize the agreement</b>I’ll group the content into the shared sections, record accepted choices in Decision Log, and keep unresolved items in Open Questions.</div></div></div><div class="readme-outline-panel"><h3>02 · Use a fixed framework</h3><div class="readme-framework-groups"><div><b>Responsibilities</b><div>Core Architecture</div><div class="framework-child">↳ Agent Hub</div><div class="framework-child">↳ Finder / Builder</div><div class="framework-child">↳ Executor / Creator</div></div><div><b>Workflow Rules</b><div>Task Routing Logic</div><div class="framework-child">↳ Browse / Recommend</div><div class="framework-child">↳ Simple / Complex</div></div><div><b>Decision Record</b><div>Decision Log</div><div class="framework-child">↳ Accepted Choices</div><div>Open Questions</div><div class="framework-child">↳ Unresolved Choices</div></div></div></div><div class="readme-document-panel"><h3>03 · Inspect the actual file</h3><div class="readme-browser"><header><b>agent hub / README.md</b><nav aria-label="README sections"><a href="assets/agent-hub-readme.html#core-architecture" target="project-readme-view">Architecture</a><a href="assets/agent-hub-readme.html#agent-finder" target="project-readme-view">Finder</a><a href="assets/agent-hub-readme.html#plain-text-agent-definition-standard" target="project-readme-view">Standard</a><a href="assets/agent-hub-readme.html#decision-log" target="project-readme-view">Decisions</a></nav></header><iframe name="project-readme-view" src="assets/agent-hub-readme.html#agent-finder" title="Scrollable rendered Agent Hub README"></iframe></div></div></div><p class="source-label">Illustrative dialogue. Outline abbreviated for display. Scrollable document is a local snapshot of the actual project README.</p></div></section>
 
 
 
-<section class="slide project-case" data-section="10 · WORKING WITH AI">
-          <div class="topline">
-            <span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>
-              One routing requirement: define → implement → challenge
-            </h2>
-            <div class="source-rule" style="background:#fff9e6;border-color:#d39b00">
-              <b>Request to AI · Example</b>If the user specifies an unsuitable agent, explain the issue and suggest an alternative.
-            </div>
-            <div class="present-flow">
-              <div class="present-node">
-                <b>Define the branch</b>
-                <ul class="content-list">
-                  <li>
-                    Valid → Confirm scope
-                  </li>
-                  <li>
-                    Invalid → Finder alternatives
-                  </li>
-                </ul>
-              </div>
-              <div class="present-arrow">
-                →
-              </div>
-              <div class="present-node">
-                <b>Record the rule</b>README.md
-                <div class="nested-detail">
-                  Subagent Selection Rules
-                </div>
-              </div>
-              <div class="present-arrow">
-                →
-              </div>
-              <div class="present-node">
-                <b>Implement it</b>Agent-Hub.txt
-                <div class="nested-detail">
-                  Routing and confirmation
-                </div>
-              </div>
-            </div>
-            <div class="merge-checks">
-              <div class="merge-check">
-                <b>Challenge 1 · “Use this unavailable agent.”</b>Explain the issue and recommend an alternative.
-              </div>
-              <div class="merge-check">
-                <b>Challenge 2 · “Use it. Files will follow.”</b>Validate the agent, then wait for required inputs.
-              </div>
-            </div>
-            <p class="source-label">
-              Based on current project rules. Reconstructed prompt and walkthrough examples, not original dialogue or verified runtime results.
-            </p>
-          </div>
-        </section>
+<section class="slide" data-section="04 · IMPLEMENT WITH AI"><div class="topline"><span class="section">04 · IMPLEMENT WITH AI</span><span class="num"></span></div><div class="content"><h2>Use the business-agent README as a generation standard</h2><div class="definition-example-layout business-definition-layout"><div class="business-standard-copy business-standard-outline"><h3>business-subagents/README.md</h3><div class="readme-framework-groups"><div><b>Definition Format</b><div>Name + Description</div><div class="framework-child">↳ English / Chinese Names</div><div class="framework-child">↳ Description ≤ 800 Characters</div><div>Instruction</div><div class="framework-child">↳ Roles / Triggers / Inputs</div><div class="framework-child">↳ Outputs / Rules / Limits</div></div><div><b>Shared Boundaries</b><div>Structured Results</div><div class="framework-child">↳ Return Upstream Only</div><div class="framework-child">↳ Missing Inputs: needs_clarification</div><div class="framework-child">↳ assumptions / missing_fields</div></div><div><b>Consistency Checks</b><div>Registry + TXT</div><div class="framework-child">↳ Keep Metadata Aligned</div></div></div></div><div class="definition-browser"><header>EXAMPLE · Presentation-Rehearsal-Coach-Agent.txt</header><iframe src="assets/business-agent-definition.html" title="Actual business-agent TXT definition"></iframe></div></div><p class="source-label">Rules summarized from business-subagents/README.md. Right: the actual project definition, available to scroll.</p></div></section>
 
-<section class="slide project-case" data-section="08 · ITERATION">
-          <div class="topline">
-            <span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>
-              A file dependency map: one request can affect several files
-            </h2>
-            <div class="source-rule">
-              <b>Example feedback</b>Use one English paragraph, within 800 characters. Keep capability, triggers, and essential limits.
-            </div>
-            <svg class="wide-diagram" viewBox="0 0 1160 380" role="img" aria-label="Dependency map for project changes">
-              <title>Dependency map for project changes</title>
-              <defs>
-                <marker id="Dependency-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0 0L10 5L0 10Z" fill="#697177" />
-                </marker>
-              </defs>
-              <path d="M580 72V95H200V126" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M580 72V126" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M580 72V95H960V126" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M200 184V210H580V248" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M580 184V248" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><path d="M960 184V210H580V248" fill="none" stroke="#697177" stroke-width="1.5" marker-end="url(#Dependency-arrow)" /><rect x="460.0" y="20.0" width="240" height="52" rx="6" fill="#fff9e6" stroke="#d39b00" /><text x="580" y="51.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Requirement change</text><rect x="60.0" y="126.0" width="280" height="58" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="200" y="151.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">README standards</text><text x="200" y="169.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">and accepted decisions</text><rect x="440.0" y="126.0" width="280" height="58" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="580" y="151.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Agent TXT definitions</text><text x="580" y="169.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">roles and instructions</text><rect x="820.0" y="126.0" width="280" height="58" rx="6" fill="#fff" stroke="#9fc9e6" /><text x="960" y="151.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Agent Registry</text><text x="960" y="169.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">discovery metadata</text><rect x="410.0" y="248.0" width="340" height="68" rx="6" fill="#eef7f1" stroke="#19734b" /><text x="580" y="278.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">Consistency + validation</text><text x="580" y="296.0" text-anchor="middle" font-size="14" fill="#151719" font-weight="400">fields, references, scenarios</text><text x="580" y="355" text-anchor="middle" font-size="14" fill="#697177" font-weight="400">A change can affect several files. Update only the relevant dependencies.</text>
-            </svg>
-            <p class="source-label">
-              Definitions and Registry metadata must agree. Relevant test scenarios and TODO items should reflect the changed rule.
-            </p>
-          </div>
-        </section>
+<section class="slide" data-section="05 · BUILD AND ITERATE"><div class="topline"><span class="section">05 · BUILD AND ITERATE</span><span class="num"></span></div><div class="content"><h2>Build one agreed step at a time, then update TODO</h2><div class="proposal-note"><b>USER · Control the implementation pace</b>Read the current README and TODO. Propose the implementation sequence first. This round, only refine the Hub and Finder definitions. Report checks and pending decisions before continuing.</div><div class="build-visual-flow"><div class="build-visual-card"><span class="build-step-number">01</span><svg viewBox="0 0 60 60" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7h20l10 10v34H13z M33 7v12h10 M21 29h14 M21 37h14"/></svg><h3>Read the references</h3><div class="build-file-chip">README + TODO</div><p>Roles · format · open tasks</p></div><div class="build-visual-card"><span class="build-step-number">02</span><svg viewBox="0 0 60 60" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="12" width="40" height="38" rx="5"/><path d="M18 24h22 M18 34h14 M18 43h18"/></svg><h3>Set this round’s scope</h3><div class="build-file-chip">Hub + Finder only</div><p>Name the files and outputs</p></div><div class="build-visual-card"><span class="build-step-number">03</span><svg viewBox="0 0 60 60" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="27" r="18"/><path d="m19 27 6 6 13-14 M41 41l12 12"/></svg><h3>Generate and review</h3><div class="build-file-chip">Draft → check → revise</div><p>Compare with agreed rules</p></div><div class="build-visual-card"><span class="build-step-number">04</span><svg viewBox="0 0 60 60" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 9h36v44H11z M19 9v15h20V9 M19 53V35h20v18"/></svg><h3>Save the next starting point</h3><div class="build-file-chip">Update TODO</div><p>Done · open · next action</p></div></div><div class="present-band">After each round, report the files changed, checks performed, and open questions. If the next step requires changing agreed responsibilities or rules, or expanding scope, raise the issue before proceeding.</div><p class="source-label">Illustrative build request based on README’s implementation plan and TODO. This concerns generating project files, not authorizing Agent Hub business-task execution.</p></div></section>
 
-<section class="slide" data-section="09 · VALIDATION">
-          <div class="topline">
-            <span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>
-              Active is a definition status, not runtime proof
-            </h2>
-            <div class="source-rule" style="background:#fff9e6;border-color:#d39b00">
-              <b>Documented correction · TODO, 2026-10-15</b>Active means the TXT definition is complete and discoverable. It does not mean deployed or runtime-validated.
-            </div>
-            <div class="validation-track" style="margin:4px 0">
-              <div class="validation-step">
-                <b>01 · Definition</b>
-                <ul class="content-list">
-                  <li>
-                    Roles and boundaries
-                  </li>
-                  <li>
-                    TXT and Registry agree
-                  </li>
-                </ul>
-                <br><span class="validation-badge">Active applies here</span>
-              </div>
-              <div class="validation-arrow">
-                →
-              </div>
-              <div class="validation-step pending">
-                <b>02 · Runtime</b>
-                <ul class="content-list">
-                  <li>
-                    Tools and permissions
-                  </li>
-                  <li>
-                    Actual agent calls
-                  </li>
-                </ul>
-                <br><span class="validation-badge">Requires run evidence</span>
-              </div>
-              <div class="validation-arrow">
-                →
-              </div>
-              <div class="validation-step pending">
-                <b>03 · Results</b>
-                <ul class="content-list">
-                  <li>
-                    Source support
-                  </li>
-                  <li>
-                    Acceptance criteria
-                  </li>
-                </ul>
-                <br><span class="validation-badge">Requires output review</span>
-              </div>
-            </div>
-            <p class="source-label">
-              The correction is recorded in TODO.md. These are separate validation gates, not a claim that all checks have passed.
-            </p>
-          </div>
-        </section>
+<section class="slide" data-section="05 · BUILD AND ITERATE"><div class="topline"><span class="section">05 · BUILD AND ITERATE</span><span class="num"></span></div><div class="content context-continuation-page"><h2>Resume without losing context or redesigning agreed work</h2><div class="context-continuation-layout"><aside class="context-risk-list"><h3>Why restore context?</h3><div class="context-risk-item"><span class="context-risk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10v5h4v13H7z M17 3l4 5 M10 12h8 M10 16h5"/></svg></span><div><b>Lost Context</b><p>Earlier decisions are missing from the next request.</p></div></div><div class="context-risk-item"><span class="context-risk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7a8 8 0 1 0 1 9 M19 3v5h-5"/></svg></span><div><b>Repeated Design</b><p>Agreed roles are proposed all over again.</p></div></div><div class="context-risk-item"><span class="context-risk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h7 M11 12l8-7 M11 12l8 7 M15 5h4v4 M15 19h4v-4"/></svg></span><div><b>Change Spreads</b><p>A small revision rewrites unrelated branches.</p></div></div></aside><div class="context-dialogue-column"><div class="framework-design-path context-continuation-path"><div><span>01</span><b>Read References</b></div><div><span>02</span><b>Restore Agreement</b></div><div><span>03</span><b>Locate the Change</b></div><div><span>04</span><b>Continue Within Scope</b></div></div><div class="context-reference-bar"><b>READ FIRST</b><span>README</span><span>Workflow</span><span>Agent TXT</span><span>TODO</span></div><div class="example-dialogue"><div class="dialogue-bubble user"><b>USER · Restore context</b>Read the current README, relevant workflow, Agent TXT, and TODO. Summarize the agreed roles, key rules, completed work, and open items before continuing.</div><div class="dialogue-bubble ai"><b>AI · Locate the change</b>I’ll locate the branch affected by this request, identify the files involved, and explain the proposed change. If the references conflict or a decision is missing, I’ll flag it first.</div><div class="dialogue-bubble user"><b>USER · Limit the revision</b>Update only the agreed scope and preserve unrelated branches. Report the files changed, checks performed, and remaining questions. Ask before changing an accepted role or rule.</div></div></div></div><p class="source-label">Illustrative follow-up. References must be explicitly supplied or accessible. They support consistency checks and do not guarantee retained memory.</p></div></section>
 
-<section class="slide" data-section="10 · WORKING WITH AI">
-          <div class="topline">
-            <span class="section">06 · COLLABORATION</span><span class="num"></span>
-          </div>
-          <div class="content">
-            <h2>
-              A visible loop: decide → develop → review → record
-            </h2>
-            <div class="chart-layout">
-              <svg class="chart-svg" viewBox="-40 0 680 410" role="img" aria-label="Clockwise collaboration cycle: human decides, AI develops, human reviews, project records">
-                <title>Clockwise collaboration cycle: human decides, AI develops, human reviews, project records</title>
-                <defs>
-                  <marker id="cycle-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                    <path d="M0 0L10 5L0 10Z" fill="#0067b1" />
-                  </marker>
-                </defs>
-                <path d="M340.79024325749305 79.46053984903973 A132 132 0 0 1 425.5394601509603 164.20975674250695" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><path d="M425.5394601509603 245.79024325749305 A132 132 0 0 1 340.79024325749305 330.5394601509603" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><path d="M259.20975674250695 330.5394601509603 A132 132 0 0 1 174.46053984903972 245.79024325749307" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><path d="M174.46053984903972 164.20975674250695 A132 132 0 0 1 259.2097567425069 79.46053984903973" fill="none" stroke="#0067b1" stroke-width="4" marker-end="url(#cycle-arrow)" /><circle cx="300" cy="205" r="67" fill="white" stroke="#d9dde0" /><image href="assets/agent-hub-icon.png" x="248" y="143" width="104" height="104" preserveAspectRatio="xMidYMid meet"><title>Agent Hub logo</title></image><text x="300" y="261" text-anchor="middle" font-size="11" fill="#697177"><tspan x="300" y="251">Shared project</tspan><tspan x="300" y="270">context</tspan></text><rect x="175" y="12" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="40" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">1 · Human decides</text><text x="300.0" y="64" text-anchor="middle" font-size="14" fill="#151719">Goal + boundaries</text><rect x="375" y="172" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="500.0" y="200" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">2 · AI develops</text><text x="500.0" y="224" text-anchor="middle" font-size="14" fill="#151719">Options + files</text><rect x="175" y="330" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="300.0" y="358" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">3 · Human reviews</text><text x="300.0" y="382" text-anchor="middle" font-size="14" fill="#151719">Intent + evidence</text><rect x="-25" y="172" width="250" height="66" rx="10" fill="#fff" stroke="#9fc9e6" /><text x="100.0" y="200" text-anchor="middle" font-size="18" fill="#0067b1" font-weight="700">4 · Project records</text><text x="100.0" y="224" text-anchor="middle" font-size="14" fill="#151719">Rules + next actions</text>
-              </svg>
-              <div class="chart-copy">
-                <h3>
-                  Each iteration leaves a trace
-                </h3>
-                <p>
-                  Decide what the project should achieve.
-                </p>
-                <p>
-                  Ask AI to expand and implement the design.
-                </p>
-                <p>
-                  Review the proposal and evidence.
-                </p>
-                <p>
-                  Save accepted changes so the next request starts with shared context.
-                </p>
-                <div class="present-band">
-                  A process loop, not a chart of time or effort.
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+<section class="slide" data-section="05 · BUILD AND ITERATE"><div class="topline"><span class="section">05 · BUILD AND ITERATE</span><span class="num"></span></div><div class="content aligned-walkthrough-page"><h2>Check a revision by walking one concrete request</h2><div class="framework-design-path review-method-path"><div><span>01</span><b>Choose a request</b></div><div><span>02</span><b>Trace the branch</b></div><div><span>03</span><b>Compare the files</b></div><div><span>04</span><b>Fix the mismatch</b></div></div><div class="walkthrough-example"><div class="walkthrough-input"><span>CHALLENGE REQUEST</span><h3>“Use this agent. I’ll send the files later.”</h3><p>The agent is selected, but required inputs are not ready.</p></div><div class="walkthrough-route"><div><b>Validate the agent</b><span>Suitable for this goal?</span></div><span>↓</span><div><b>Check required inputs</b><span>Missing materials → pause</span></div><span>↓</span><div><b>Return the missing fields</b><span>Hub obtains the needed input</span></div></div><div class="walkthrough-files"><h3>Compare the written rules</h3><div class="merge-block"><b>README + Hub</b>Does routing preserve the input check?</div><div class="merge-block"><b>Relevant agent TXT</b>Are missing fields and pause conditions explicit?</div></div><div class="walkthrough-feedback"><div class="definition-request"><b>Targeted feedback to AI</b>If the files disagree, identify the conflicting clauses and propose a focused correction.</div><p>Revise the affected files, then walk through the same request again.</p></div></div><p class="source-label">Illustrative design walkthrough, not an executed runtime test. Also check unavailable agents and changes in scope.</p></div></section>
 
-<section class="slide" data-section="06 · REAL FEEDBACK"><div class="topline"><span class="section">06 · REAL FEEDBACK</span><span class="num"></span></div><div class="content"><h2>Real feedback from this conversation changed the presentation</h2><div class="history-examples"><div class="history-example"><header>01 · Correct the scope</header><div class="history-quote">“Isn’t Agent Hub itself the case that runs through the whole 1020 presentation?”</div><div class="history-response"><b>Resulting revision</b>Removed the separate SOP case section. Reconnected requirements, roles, workflow, files, and iteration to Agent Hub.</div></div><div class="history-example"><header>02 · Ask for the reasoning</header><div class="history-quote">“The key is how we came up with this file structure.”</div><div class="history-response"><b>Resulting revision</b>Replaced a directory listing with need → design rationale → file responsibility.</div></div></div><div class="present-band">Useful feedback identifies the mismatch, restates the intent, and asks for a concrete change.</div><p class="source-label">Translated excerpts from this presentation-preparation conversation. These are real editorial corrections, not evidence of the original Agent Hub development history or runtime behavior.</p></div></section>
+<section class="slide" data-section="05 · BUILD AND ITERATE"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content"><h2>A new idea: fewer repeated prompts, clearer confirmation rules</h2><div class="change-discussion-layout"><div class="proposal-comparison situation-action-comparison"><h3>Two situations need different handling</h3><div class="situation-action"><span class="situation-number">01</span><div><b>The user has already requested the task</b><p>“Summarize the text below.”</p><div class="situation-action-result"><b>What we want</b>With the input ready and scope clear, avoid asking “Should I start?” again.</div></div></div><div class="situation-action"><span class="situation-number">02</span><div><b>The user adds an external action</b><p>“Send the summary to my team.”</p><div class="situation-action-result"><b>What we want</b>Clarify recipients and content, then confirm the specific sending action.</div></div></div><p class="situation-design-goal">Design goal: remove redundant prompts while keeping necessary clarification and confirmation.</p></div><div class="example-dialogue"><div class="dialogue-label">ILLUSTRATIVE CHANGE DISCUSSION</div><div class="dialogue-bubble user"><b>USER · Explain the two situations</b>If users already ask for a summary and provide the text, I don’t want another “Should I start?” But sending it to others is a different action.</div><div class="dialogue-bubble ai"><b>AI · Translate the idea into a rule</b>I’ll distinguish an already requested task from a new external action, then identify where the current confirmation flow would need revision.</div><div class="dialogue-bubble user"><b>USER · Request a reviewable proposal</b>Show the proposed branches and affected files first. Keep clarification for missing inputs and confirmation for the sending action. Don’t change files yet.</div></div></div><p class="source-label">Proposed behavior, not implemented. Existing project confirmation rules remain in effect until a revision is accepted.</p></div></section>
 
-<section class="slide" data-section="06 · KEEPING CONTEXT"><div class="topline"><span class="section">06 · KEEPING CONTEXT</span><span class="num"></span></div><div class="content"><h2>When AI revisits the project: use the diagram as a checkpoint</h2><div class="evidence-layout"><div><img class="original-flow" src="assets/agent-finder-excerpt.svg" alt="Actual Finder flowchart excerpt showing goal, tags, and candidate retrieval"><p class="source-label">Original Finder diagram, cropped to its first three steps. <a href="assets/agent-finder-original.svg" target="_blank" rel="noopener">Open the complete diagram</a>.</p></div><div><div class="return-step"><b>1</b><span>Read the current README, relevant diagram, and agent instructions.</span></div><div class="return-step"><b>2</b><span>Locate the affected node or branch before changing the design.</span></div><div class="return-step"><b>3</b><span>Update the rule, diagram, and affected TXT or Registry together.</span></div><div class="return-step"><b>4</b><span>Walk through the changed branch. Report conflicts and missing decisions.</span></div></div></div><div class="present-band">Example: “Keep the Finder sequence: identify tags → retrieve candidates → evaluate fit. Explain any proposed deviation before applying it.”</div><p class="source-label">These artifacts help expose inconsistencies. They do not guarantee that AI reads them automatically or that runtime behavior is correct.</p></div></section>
+
+
+<section class="slide" data-section="05 · BUILD AND ITERATE"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content "><h2>If accepted, carry the change through the project files</h2><div class="proposal-note"><b>USER — AI · Apply the accepted change consistently</b>Record the decision, locate every affected rule and file, update them together, and report checks and open questions.</div><div class="framework-design-path revision-file-path"><div><span>01</span><b>Record the decision</b></div><div><span>02</span><b>Update shared rules</b></div><div><span>03</span><b>Revise the workflow</b></div><div><span>04</span><b>Check and save progress</b></div></div><div class="revision-file-grid"><div><b>Decision Log</b><p>Accepted boundary, reason, and unresolved items.</p></div><div><b>README</b><p>Confirmation conditions and shared routing rules.</p></div><div><b>Diagram<br>Hub / Executor TXT</b><p>Affected branches, returns, and execution checks.</p></div><div><b>Checks<br>TODO</b><p>Direct task, missing input, external action, and scope change.</p></div></div><div class="present-band">Change the agreed boundary consistently. Preserve unrelated responsibilities and permissions.</div><p class="source-label">Proposed update process. Agent Hub source files and current confirmation policy have not been modified.</p></div></section>
+
+<section class="slide" data-section="05 · BUILD AND ITERATE"><div class="topline"><span class="section">05 · ITERATE & VALIDATE</span><span class="num"></span></div><div class="content "><h2>After updating the files, verify what is actually complete</h2><p class="validation-transition">Updating all the files does not mean the feature is ready. Distinguish a completed definition from verified execution and results.</p><div class="validation-track"><div class="validation-step"><b>01 · Definition</b><ul class="content-list"><li>Roles and rules are consistent</li><li>TXT and Registry agree</li></ul><span class="validation-badge">Written definition checked</span></div><div class="validation-arrow">→</div><div class="validation-step pending"><b>02 · Runtime</b><ul class="content-list"><li>Tools and permissions configured</li><li>Actual agent calls observed</li></ul><span class="validation-badge">Run evidence needed</span></div><div class="validation-arrow">→</div><div class="validation-step pending"><b>03 · Results</b><ul class="content-list"><li>Outputs supported by evidence</li><li>Acceptance criteria reviewed</li></ul><span class="validation-badge">Output review needed</span></div></div><div class="validation-real-example"><b>Actual project correction · TODO, 2026-10-15</b><p><code>Active</code> means the TXT definition is complete and discoverable. It does not establish deployment or runtime validation.</p></div><p class="source-label">Slide 17 checks written-rule consistency. This page distinguishes definition, runtime, and result evidence. No claim that all gates have passed.</p></div></section>
+
+<section class="slide" data-section="10 · WORKING WITH AI"><div class="topline"><span class="section">06 · COLLABORATION</span><span class="num"></span></div><div class="content unified-collaboration-page"><h2>Human judgment and AI assistance at each iteration</h2><svg class="collaboration-conversation-swimlane" viewBox="0 128 1120 262" role="img" aria-label="Human and AI dialogue swimlane with Define, Develop, Review and Record exchanges"><title>Human–AI collaboration: define, develop, review, record</title><defs><marker id="human-ai-dialogue-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#0067b1"/></marker></defs><circle cx="55" cy="269" r="43" fill="#fff9e6"/><g transform="translate(30 243) scale(2.1)" fill="none" stroke="#8a6500" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/></g><text x="55" y="336" text-anchor="middle" fill="#8a6500" font-weight="700">HUMAN</text><circle cx="1065" cy="269" r="43" fill="#edf5fb"/><g transform="translate(1040 242.65) scale(2.1 2.216667)" fill="none" stroke="#0067b1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="4"/><path d="M12 7V3M1 12v5M23 12v5M8 17h8"/><circle cx="8" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></g><text x="1065" y="336" text-anchor="middle" fill="#0067b1" font-weight="700">AI</text><text x="260" y="162" text-anchor="start" fill="#151719">Set the goal, role boundaries, and requirements.</text><path d="M252 176H868" fill="none" stroke="#0067b1" stroke-width="2" marker-end="url(#human-ai-dialogue-arrow)"/><text x="860" y="224" text-anchor="end" fill="#151719">Organize ideas, propose options, and draft the files.</text><path d="M868 238H252" fill="none" stroke="#0067b1" stroke-width="2" marker-end="url(#human-ai-dialogue-arrow)"/><text x="260" y="286" text-anchor="start" fill="#151719">Check meaning and evidence, then give revision feedback.</text><path d="M252 300H868" fill="none" stroke="#0067b1" stroke-width="2" marker-end="url(#human-ai-dialogue-arrow)"/><text x="860" y="348" text-anchor="end" fill="#151719">Save agreed decisions, updated files, and next steps for review.</text><path d="M868 362H252" fill="none" stroke="#0067b1" stroke-width="2" marker-end="url(#human-ai-dialogue-arrow)"/><rect x="120" y="159" width="100" height="30" rx="4" fill="#fbfcfc"/><text x="170" y="181" text-anchor="middle" fill="#8a6500" font-weight="700">Define</text><rect x="900" y="221" width="100" height="30" rx="4" fill="#fbfcfc"/><text x="950" y="243" text-anchor="middle" fill="#0067b1" font-weight="700">Develop</text><rect x="120" y="283" width="100" height="30" rx="4" fill="#fbfcfc"/><text x="170" y="305" text-anchor="middle" fill="#8a6500" font-weight="700">Review</text><rect x="900" y="345" width="100" height="30" rx="4" fill="#fbfcfc"/><text x="950" y="367" text-anchor="middle" fill="#0067b1" font-weight="700">Record</text></svg><div class="collaboration-closing"><p><b style="color:#8a6500">Human</b> judgment guides each iteration.</p><p><b style="color:#0067b1">AI</b> helps organize, develop, and record the work.</p></div></div></section>
 
 <section class="slide" data-section="06 · PRACTICAL TAKEAWAYS">
   <div class="topline"><span class="section">06 · PRACTICAL TAKEAWAYS</span><span class="num"></span></div>
   <div class="content reusable-template-page">
     <h2>A reusable communication template: design the workflow and README</h2>
     <div class="communication-template-layout">
-      <div class="communication-elements">
-        <div><b>01 · Goal</b><p>What should the project achieve?</p></div>
-        <div><b>02 · Context</b><p>Which ideas, files, and decisions should AI use?</p></div>
-        <div><b>03 · Scope</b><p>Which workflow and README sections should it produce?</p></div>
-        <div><b>04 · Constraints</b><p>Which boundaries must remain? What is still undecided?</p></div>
-        <div><b>05 · Acceptance</b><p>What outputs and checks will make the result reviewable?</p></div>
-      </div>
-      <div class="complete-prompt">
+      <div class="communication-elements template-step-index"><div><span class="template-step-number">01</span><div><b>Goal</b><p>What should this achieve?</p></div></div><div><span class="template-step-number">02</span><div><b>Context</b><p>Which ideas and files should AI use?</p></div></div><div><span class="template-step-number">03</span><div><b>Scope</b><p>What should AI produce this round?</p></div></div><div><span class="template-step-number">04</span><div><b>Constraints</b><p>Which rules and boundaries must remain?</p></div></div><div><span class="template-step-number">05</span><div><b>Acceptance</b><p>What outputs and checks define completion?</p></div></div></div><div class="complete-prompt">
         <header>EXAMPLE · ONE COMPLETE REQUEST TO AI</header>
         <div class="complete-prompt-text">
           <p><b>Goal.</b> Help me design Agent Hub, a single entry point for finding and coordinating business agents.</p>
@@ -1386,7 +1395,7 @@ p,li,blockquote,.msg,.manager-message,.info-card,.core-point,.compact-list div,.
   </div>
 </section>
 
-<section class="slide conclusion-slide" data-section="Conclusion"><div class="topline"><span class="section">TAKEAWAY</span></div><div class="content closing-summary"><h2>From a conversation to a shared, reviewable design</h2><div class="closing-three"><div><span>01</span><b>Design the logic</b><p>Define roles, decisions, and handoffs before expanding the system.</p></div><div><span>02</span><b>Keep a shared reference</b><p>Capture accepted rules in README, diagrams, and agent instructions.</p></div><div><span>03</span><b>Review every change</b><p>Check affected files and separate written definitions from verified execution.</p></div></div><div class="closing-lines"><p>Capture the idea as <span class="blue">context</span>.</p><p>Capture requirements as <span class="blue">standards</span>.</p><p>Use files to guide AI through <span class="blue">implementation and review</span>.</p></div></div></section>
+<section class="slide conclusion-slide" data-section="Conclusion"><div class="topline"><span class="section">TAKEAWAY</span></div><div class="content closing-summary"><h2>From a conversation to a shared, reviewable design</h2><div class="closing-centered-body"><div class="closing-three"><div><span>01</span><b>Design the logic</b><p>Define roles, decisions, and handoffs before expanding the system.</p></div><div><span>02</span><b>Keep a shared reference</b><p>Capture accepted rules in README, diagrams, and agent instructions.</p></div><div><span>03</span><b>Review every change</b><p>Check affected files and separate written definitions from verified execution.</p></div></div><div class="closing-lines"><p>Capture the idea as <span class="blue">context</span>.</p><p>Capture requirements as <span class="blue">standards</span>.</p><p>Use files to guide AI through <span class="blue">implementation and review</span>.</p></div></div></div></section>
 
 
         <img class="deck-logo" src="logo.png" alt="Logo">
