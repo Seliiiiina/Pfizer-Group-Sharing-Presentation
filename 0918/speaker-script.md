@@ -16,7 +16,9 @@
 - 在 Context 变得混乱之前，我们应该怎么管理它？
 - 我们怎么把有效的 AI 交互，变成可以重复执行的 Workflow，甚至进一步变成 Agent？
 
-今天这一部分主要涉及在前面这段Prompt、Context 和 Output 这部分
+今天这一部分主要涉及在前面这段Prompt、Context 和 Output 这部分。
+
+页面下面还有一个颜色说明：白色是讲解用的 case dialogue 或输出示例；灰色是已经填入具体案例内容的 structured prompt；浅蓝色是可以调整后复用的 prompt。后面看到浅蓝色，就可以把它当成一个实际操作的入口，再根据自己的任务修改。
 
 ## Page 3｜From Chat to Structured Prompt
 
@@ -36,11 +38,15 @@
 
 ## Page 4｜From Vague Request to Structured Prompt
 
-这页左边把刚才省略的东西拆成了五部分：Context、Task、Input、Rules 和 Output。我们先沿着这个 case 看一遍，再看右边完整的 prompt。
+**讲图提示：**先出现左侧 CTIRO，再出现中间说明和短例子，然后出现右侧完整 prompt；继续点击依次高亮 C、T、I、R、O 的对应段落，最后出现 AI 的省略号。右侧 prompt 出现时 C 已高亮，也可点击左侧条目切换。
+
+这页左边把刚才省略的东西拆成了五部分：Context、Task、Input、Rules 和 Output。我们先看左边这五项，再看中间这个简单例子，最后把它们放回右边完整的 prompt 里面。
 
 Context 是为什么要做。这里就是为了明天的 deliverable review。Task 是具体做什么：核对 AE summary，找出能够确认的问题和不一致。Input 则要把刚才那五个文件的角色说清楚，不能默认 AI 知道哪个是 source，哪个是 output，哪个决定统计规则。
 
 中间这句话想表达的就是，我们平时默认的一些工作规则，需要主动告诉 AI。比如下面这句“Check whether the AE summary is correct.”看起来很明确，但 correct 到底怎么判断？这就要落到 Rules 上。
+
+现在看右边这段灰色的 prompt，它是刚才这个 AE case 的完整写法。左边每一项都能在右边找到对应的位置。讲到 Context，就看它有没有说明 review 的目的；讲到 Input，就看五个文件有没有分清角色。到了 Rules，我们再把这个 case 具体过一下。
 
 我们先过一下 denominator。按照这个 case 的 spec，safety population 要用 SAFFL=Y。ADSL 里面 Placebo 一共有六个 subject，但 SUBJ012 的 SAFFL=N，所以 safety denominator 应该是五，而 RTF 表头写的是六。这里我们就可以给出一个具体 finding：Placebo N=6，应该改成 N=5，依据是 ADSL 和 specification。
 
@@ -74,68 +80,118 @@ Context 是为什么要做。这里就是为了明天的 deliverable review。Ta
 
 ## Page 6｜Context — AI Responds to More Than Your Last Message
 
-随着任务越来越复杂、对话越来越长，我们会不断加入新的文件、新的信息、新的要求，甚至不断修改前面的要求。我们的整个 conversation 还是可能越来越 messy。这里还有就会出现一个很常见的问题：Prompt 已经清楚了，为什么随着文件、修改和对话越来越多，AI 又开始忘记要求、使用旧版本，甚至越聊越乱？这其实就和 Context 有关。
+**讲图提示：**先展示用户短消息和 Context Container，再出现下方说明、右侧 Common Problems，最后出现总结。
 
-我们先看一个很简单的例子。现在我们只对 AI 说了一句“Make the summary shorter.”从我们的角度看，这个 Prompt 非常短，好像只有几个词。但 AI 在回答这句话的时候，它看到的通常不只是这几个词。它可能还在处理前面的 System Instructions、最开始的 Original Task、之前的Conversation History、我们上传过的Files、它前面生成的 Outputs、我们后来乡它的 Corrections，甚至还有 Tool Results 和现在最新的 Requirements。
+前面我们已经把 task 说清楚了，但在实际工作里，我们还会继续上传文件、修改要求、追问结果。所以接下来还有一个问题：为什么最开始说清楚的事情，聊到后面又可能变乱？这里就要看 Context。
 
-所以说一个短的input 并不意味着一个小的 small context。我们输入的可能只有一句话，但它实际上是放在一个更大的 Context 里面被理解的。AI 会基于当前系统提供给它的 Context 来回答，而不同的产品，也可能通过不同的方式去保留、检索、总结或者截断之前的历史信息。这也意味着，当任务越来越长的时候，我们真正需要管理的已经不只是 Prompt 本身了。这也是为什么我们经常感觉到还没有怎么使用github copilot就token消耗很快的原因。
+比如我们现在只说一句：“Make the AE QC brief shorter.”从我们输入的内容看，这句话很短。但 AI 理解它的时候，可能还会参考最开始的 AE review 任务、上传的五个文件、前面生成的 findings、我们后来修改的要求，以及工具的输出。
 
-问题开始从“How do we write a better prompt?”变成“How do we manage context before it becomes messy?”
+所以大家看中间这个 container，里面不只有最后一句话。Original Task、Conversation History、Uploaded Files、Previous Outputs、User Corrections，这些都可能影响接下来怎么回答。不同产品实际保留、检索、总结或者截断历史信息的方式也会不同，不是说每次都一定会把全部聊天原样放进去。
+
+这也意味着，一个短的 input，不一定对应一个很小的 context。输入消息长度和系统实际使用的上下文是两回事，不能只看我们打了几个字，就判断这次调用的 token 用量或产品的计费。
+
+右边是可能出现的几种表现。比如我们本来要求先看 counts 和 percentages，后面却主要在讨论 formatting；或者已经换成当前的 AE table，它又用了之前的版本；又或者前面说好 one-page，后来这个限制不见了。
+
+所以问题有时候不是信息不够，而是信息太多以后，当前真正重要的内容没有被突出出来。下一页我们就沿着同一个 AE review，看这些信息是怎么一步一步混在一起的，以及发现以后具体可以做什么。
 
 ## Page 7｜How Context Gets Polluted
 
-其实很多时候，Context 是在正常工作的过程中一点一点变乱的。最开始任务可能很简单，比如 “Summarize current project risks.” 但随着任务推进，我们会不断补充新的要求，中间还可能穿插其他任务。到了 Round 21，我们只说一句 “Go back to the summary and revise it.”
+**讲图提示：**第一次点击显示左侧全部对话。之后依次出现 Round 后的标签和颜色；有对应方法时，右侧同步出现。最后出现 Clean Up Context Prompt。不需要逐字朗读每个气泡。
 
-对我们来说，现在要什么其实很清楚。但对 AI 来说，整个 conversation 里可能同时存在旧要求、新要求、不同版本的文件、已经被推翻的决定、无关的讨论，以及大量中间输出。
+我们先看左边整段对话。最开始只是让 AI 用 source files review AE summary，后来补充说先检查 counts 和 percentages，不要把重点放在 formatting。接下来又提到 appendix、旧版 AE table、当前文件，中间还插了一句给团队写邮件。到了最后，我们只是说，回到 AE QC brief 再改一下。
 
-于是我们就会看到这些问题：已经删掉的 Budget 又回来了；上传了今天的文件，却又用了上周的版本；前面要求 one-page，聊了十几轮以后这个限制消失了。
+站在我们的角度，好像一直在推进同一个任务。但对于 AI 来说，哪些要求仍然有效，哪些是之前的版本，哪些只是另外一件事，就需要被明确区分。
 
-所以很多时候，问题并不是 lack of information。恰恰相反，是信息很多，但真正重要的信息不够 prominent。那 Context Management 实际可以做什么？这页我把它归纳成四个动作。
+我们再一步一步看这些标签。前两轮是原始任务和补充要求，都是理解当前目标的重要信息。到了 Round 6，关于 formatting 的补充可以整理成一条当前规则，比如主体先讲数据问题，formatting 放 appendix，不需要每次都重新解释整段讨论。这对应右边的 Compress。
 
-第一，Remove：把已经过时的要求、旧文件、被否决的方案和无关内容移出去。
+Round 9 提到了旧表，Round 12 又说只用当前文件。这时候要确认最新的 source of truth 是什么。已经被替代的版本，可以从当前工作依据中移出去，这对应 Remove；如果版本或要求之间仍有冲突，就要 Resolve，不能让 AI 自己随便挑一个。
 
-第二，Resolve：如果两个要求互相冲突，不要让两个版本一直并存，要明确现在的 source of truth 是什么。
+再看 Round 16，给团队写邮件是另一项任务，不应该一直混在 AE QC 的主任务里。这里的 Remove 是不再把它作为当前 review 的有效要求，不是让 AI 删除原文件或聊天记录。
 
-第三，Compress：把很长的历史讨论压缩成一个结构化的 Working Context，而不是让 AI 每次重新理解几十轮对话。
+Round 19 提到 earlier tool output。我们需要保留的是已经核实的 counts、计算依据和来源，较长的原始输出可以压缩成可检查的结论；真的需要细节时，再回到对应文件。这也就是 Compress 和 Retrieve 的配合。到最后一个当前请求，我们要让 AI 根据当前有效规则继续，按需要读取支持材料。
 
-最后是 Retrieve：不是所有东西都要一直塞在 Context 里面。真正需要的时候，再把相关文件或者信息拿进来。
+那了解这些方法以后，我们可以实际对 AI 说什么？右下这个浅蓝色的 Clean Up Context Prompt，就是可以拿走用的。
 
-Context Engineering 的重点不是怎么把所有信息都给 AI，而是“怎么确保 AI 在正确的时间看到正确的信息。我们管理的不只是 Prompt，而是 AI 工作的整个信息环境。
+它要求 AI 先检查当前能看到的 conversation 和 files，整理一份简短的 Working Context：现在的 goal、source-of-truth files、confirmed rules、verified findings、open issues、哪些信息已经失效，以及 next step。这里我们还特别要求保留 source references，不要编造决定，不要擅自解决有歧义的冲突。如果仍然判断不了，再问我们。
+
+放回这个 AE case，整理出来以后应该能够看清楚：当前 review 哪份 RTF，统计规则来自哪个 spec，Placebo safety N=5 这个 finding 依据什么，以及哪些代码问题还没有验证。我们先看这份 brief 是否准确，再继续 analysis，避免它一边整理、一边又沿着旧理解往下做。
+
+所以这个 prompt 适合在当前 conversation 开始跑偏时，用来重新明确有效信息。下一页则更进一步：如果想换一个新的 conversation，怎样把必要的状态交接过去？
 
 ## Page 8｜The Context Reset Protocol
 
-如果 Context 已经变得很 messy 了，那我们可以用一个简单的很简单的 STOP method。首先Stop，不要在已经很乱的 conversation 里面继续加新的要求，然后 Take Stock，看一下我们现在的目标是什么、已经做到哪里、还有什么问题。接下来 Organize，把现在仍然有效的信息、已经过时的信息，以及还没有决定的问题分开。最后再 Proceed Cleanly，用一个干净的 Structured Handoff 继续工作。
+**讲图提示：**旧对话卡片 → STOP 四步 → Create a Handoff Prompt → 白色案例简报 → 同位置切换为 Resume from a Handoff Prompt。两个蓝色 prompt 是先后使用的两次指令。
 
-下面就是一个例子。前面可能已经聊了 21 轮，用过 3 个版本的数据，改过 5 次要求，中间还穿插了其他问题。这个时候与其让 AI 自己从几千字的 conversation 里面判断什么还有效，不如直接重新整理当前状态。
+左上这些叠起来的卡片，表示一个可能已经聊了很多轮、改过几次要求、引用过多个版本的 conversation。这里的 21 rounds、3 file versions 是讲解整理前状态的示意，不是说我们这个 mock case 真正发生过这么多轮。
 
-比如这里我们只保留六件事现在的 Goal 是什么，Current State 到哪里了，哪些 Decisions 已经确定，哪些 Open Issues 还没有决定，哪些旧信息需要 Ignore，以及 Next Step 是什么。
+如果已经很 messy，我们可以先用左边这个 STOP method。Stop，先不要继续加要求；Take Stock，确认目标、进度和问题；Organize，把有效信息、过时内容和未决问题分开；最后 Proceed Cleanly，带着清楚的当前状态继续工作。
 
-这里我觉得 Open Issues 和 Ignore 特别重要。因为 Context Management 不只是告诉 AI “你要记住什么”，还要告诉它什么已经决定了，什么还没有决定，以及什么已经失效尤其是 Open Issues 很有价值。因为 AI 一个很常见的问题不是“忘记信息”，而是会把尚未决定的事情自动补成一个决定。
+那具体怎么让 AI 帮我们做？先看右上的 Create a Handoff Prompt。它要求 AI 为一个 fresh conversation 整理六个部分：Goal、Current State、Decisions、Open Issues、Ignore 和 Next Step。还要说明当前依据哪些文件，保留已经验证的数值和来源，不要把 open issues 自动补成 decisions。此时只返回 brief，不继续做任务。
 
-当然，这个 Structured Handoff 更多是在我们已经发现 Context 变 messy 之后做的一次 reset。对于真正复杂、周期比较长的任务，其实没必要等到 Round 21 才来整理。我们完全可以从一开始就建立一个类似的 memory.md，持续记录当前进度、已经做出的决定、Open Issues 和 Next Step，让它成为任务的动态状态。
+下面白色这块，就是用 AE summary 展开的示例。Goal 是完成这份 AE QC brief。Current State 里面写清楚五个文件，以及已经核实的 Placebo safety N=5，但 table 写的是 N=6。Decisions 保留 SAFFL=Y、subject-level counting、分母和排序这些已有规则。
 
-所以 Context Reset 并不是简单地“总结一下之前聊了什么”。它真正要做的是把历史 conversation 转换成当前任务真正需要继续的 state。
+Open Issues 则明确：具体代码缺陷还需要 programmer 检查，corrected output 和 rerun log 还没有拿到，release approval 也没有完成。Ignore 里写清楚旧表、失效规则和单独的邮件任务，不要把它们带回当前分析。最后 Next Step 才是继续修订 QC brief，保留证据，代码修改和 release decision 仍然等待确认。
 
-如果是一个长期项目，我们当然也可以把这种 Structured Handoff 保存下来，持续更新。但核心原则不变稳定的信息单独维护，变化的状态持续更新，不要把整个聊天记录当成唯一的 memory。
+我觉得 Open Issues 和 Ignore 很重要。我们交接的不只是要记住什么，也包括什么还没有决定、什么不再有效。否则新对话很容易把一句建议理解成已经确认的结论。
 
-## Page 9
+接下来，右上换成第二个 prompt：Resume from a Handoff。这一段是到了新 conversation 以后使用的。我们把刚才检查过的 brief，以及实际需要的文件或可访问的引用交给它，让它先读，再确认当前 goal、accepted decisions、open issues 和 next step。
 
-前面我们解决了 Prompt 和 Context 的问题，但即使 AI 用对了信息，最后还有一个很实际的问题，就是它的 Output 到底好不好用。我们经常会觉得 AI 写得太长、太啰嗦，但很多时候，问题不只是字太多，而是它不知道这些信息最后是给谁看的。
+这里还要提醒它：文件缺失或者内容冲突，要先指出；不要把未决问题当成决定，也不要在没有验证需要的情况下重复已经完成的工作。先把理解和准备做的下一步说出来，等我们确认后再执行。只贴一份 brief，并不意味着新对话已经自动拿到了旧对话里的附件，所以文件是否实际可访问也要检查。
 
-比如上面这个例子，AI review AE summary 以后发现 Placebo group 的 denominator 有问题。它把问题本身、program 要检查什么、统计上需要确认什么，以及这个问题会不会影响最终 deliverable，全部写在了一段话里面。这些信息本身可能都有用，但不同角色关心的层级其实不一样。
+这两个 prompt 的分工就是：第一个帮我们生成交接内容，第二个帮接手的 AI 根据这份内容恢复任务。第七页偏向在当前对话里清理上下文，这页偏向把状态带到一个新的起点。
 
-Output Design 的核心不是简单地让 AI “写短一点”，而是根据使用者重新组织 information hierarchy。通过这个Output Contract就是把这件事情提前定义Audience、Purpose、Priority、Format、Length，这样 AI 才知道什么应该放在最前面，什么可以简化，什么甚至可以直接省略。
+如果是周期比较长的项目，也可以从一开始维护类似 memory.md 的工作记录，持续更新进度、决定、open issues 和 next step。核心是把历史 conversation 整理成当前任务需要继续的 state，而不是简单把所有聊天再复制一遍。
 
-当然如果已经拿到一个很长的 Output，也可以用下面这个 Output Repair Prompt，让 AI 保留已经验证过的结果，只重新组织内容，而不是重新做 analysis。所以我们真正需要的不是单纯 shorter，而是对正确的人，提供正确层级的信息。
+## Page 9｜Output Design — Same Finding, Different Audiences
 
-## Page 10
+**讲图提示：**原始 AI 输出 → 信息层级的说明 → 三张白色受众示例卡片 → 蓝色 Output Contract Prompt → 同位置切换为 Output Repair Prompt。
 
-但是 usable 不等于 reliable。那 Output 看起来清楚以后，还有一个更重要的问题，就是这些结论到底能不能相信。比如这里，我们从 Table 里面看到 denominator 是 40，而从 analysis dataset 里面确认符合 analysis population 的是 38。那我们能够确定的 Fact 其实只有一个，就是这里存在 denominator inconsistency。但 AI 很容易继续往下推一步，比如说，“这个问题是因为 program 用错了 population filter。”这个解释听起来非常合理，但问题是，我们现在的文件并没有直接证明这一点。
+前面解决了任务和上下文的问题，但即使 AI 用对了信息，最后还有一个很实际的问题：这个 Output 到底好不好用？
 
-所以我觉得这里一个很实用的方法，就是要求 AI 把自己的 key claims 分成三类Fact、Inference 和 Unknown。我们可以直接把这个规则放进 Prompt，让 AI 在输出结果以后，再做一次 Evidence Check。Fact 要告诉我 Evidence 在哪里，Inference 要告诉我还缺什么验证，证据不足的就保留为 Unknown，不要自己补成一个 Conclusion。
+上面这段 AI 输出，把 Placebo denominator、Any AE、GI 和 Nausea 的 counts，以及 PT sorting 放在一起。里面的信息可能都有价值，但 programmer、statistician 和 Leader，不一定需要按照同一个顺序看它们。
 
-当然，这并不是说 AI 给自己标了一个 Fact，我们就可以直接相信。真正的作用是让它把 Claim 和 Evidence 之间的关系显式地展示出来，这样我们才能回到 source 去验证，也能更快发现 AI 是在哪一步从 Evidence 跳到了 Assumption。
+我们用同一个 finding 对照下面三张白色卡片：Placebo Any AE，table 是 5 (83.3%)，独立 QC 算出来是 4 (80.0%)。这三张是面向不同受众的示例输出，不是可以直接复制给 AI 的 prompt，也不表示这些交付已经真实发送或审批过。
 
-Structured Prompt 决定 AI 知不知道该做什么；Managed Context 决定 AI 有没有看到正确的信息；Verifiable Output 决定我们能不能知道它的结论从哪里来。
+Programmer 先需要知道 discrepancy 在哪里。哪张表、哪个 treatment group、哪一行，现在是多少，QC 应该是多少？后面给出依据：ADSL 的 safety N=5，ADAE 里符合规则、有 AE 的 distinct subjects 是四个。然后说明 next step：检查 population 和 counting logic，重新生成 table，再核对 output 和 log。
 
-这三个放在一起，i才开始从简单的 Chatting with AI，变成意义上的 Working with AI的第一个步骤。
+Statistician 更先关注这个比较使用了什么定义。是否按照 spec 使用 safety population，Any AE 是否按 subject 去重？在这个定义下，4/5 对应 80.0%。后面还要核对 corrected table 是否符合 spec，不能从这组很小的 mock data 直接推导 treatment effect 或因果结论。
+
+Leader 则更需要知道这件事对 deliverable 有什么影响。现在存在已经确认的差异，programming correction、rerun 和 QC reconciliation 还没有完成。接下来需要确认由谁处理、什么时候 review，再决定是否批准交付。这里是把需要的 action 和 decision 放在前面，没有自己编一个 owner 或日期。
+
+所以 Output Design 的重点不是简单地缩短，而是同一份 evidence，根据使用者重新组织 information hierarchy。
+
+下面先出现的是 Output Contract Prompt，用在生成之前。里面的方括号是要替换的内容：Audience 是谁，Purpose 或 Decision 是什么，优先哪些信息，用什么 Format，控制在什么 Length。同时保留 verified values 和 source references，把 findings、interpretation 和 unresolved questions 分开。
+
+放回这个 case，如果给 programmer，我们就把 Audience 换成 statistical programmer，优先级设成 location、discrepancy、evidence、action，格式用 issue list。如果给 Leader，就先讲 deliverable impact、pending work 和 decision needed。我们先定义这个 contract，AI 才知道什么应该放前面。
+
+再点击，换成 Output Repair Prompt。这个是在已经有了一份 verified analysis、但表达方式不合适的时候用的。它要求保留已经核实的数值，重排内容，把重要 findings 放前面，细节放 appendix，未知项单独标明，不重新做 analysis，也不自行添加原因。
+
+这两段分别解决生成前和生成后的问题：先把输出要求定义好；如果现有内容不好用，就针对表达方式修订。但不管整理得多清楚，最后还要问，它的结论有没有依据？
+
+## Page 10｜Evidence Check — Fact, Inference, Unknown
+
+**讲图提示：**AI 原话 → 证据对照和解释 → 三类结论 → 核查表 → Evidence Check Prompt。第一句红色文字是待检查的过度结论，不要作为事实朗读。
+
+我们看上面 AI 这句话。它说 Placebo percentage 不对，接着就说“已经确认具体的 SAS code defect”。前半句和后半句，需要的 evidence 其实不一样。
+
+这里继续用同一组 AE 数据。Table 里面 Placebo Headache 是 2/6，也就是 33.3%。按照 ADSL 里的 SAFFL=Y，Placebo safety N 应该是五；ADAE 里有 Headache 的 safety subjects 是两个人，所以重算应该是 2/5，也就是 40.0%。因此我们可以直接确认：这里的 denominator 和 percentage 不一致。
+
+但这不等于已经确认了具体源码缺陷。这个 case 的 log 确实提示 Placebo denominator 是在 SAFFL filter 之前生成的，这条 warning 是存在的，也给了我们检查方向。但我们没有在这些文件里看到 SAS source code，也还没有拿到修正后的 rerun 结果，所以不能进一步说具体哪行代码有错、其他 count 的问题也都是同一个原因，或者修复已经成功。
+
+这时候就可以把 key claims 分成三类。Fact 是有直接 evidence 的内容，比如 table 用 N=6，而 ADSL safety population 是 N=5。Inference 是合理但仍需验证的解释，比如 logged warning 可能解释一部分 percentage errors。Unknown 则是当前证据还不能确定的具体 code defect 和修正效果。
+
+下面这个小表，实际是在把 statement 和 evidence 的关系摊开。你说 denominator inconsistent，可以回到 table 和 dataset 核对；你说 exact code defect confirmed，就要问，source code 在哪里，缺的验证是什么？
+
+最后这个浅蓝色的 Evidence Check Prompt，就可以放在准备交付之前，让 AI 对每个 key claim 标出 FACT、INFERENCE 或 UNKNOWN。Fact 要给出 source，Inference 要说明还需要验证什么，证据不足就保留为 Unknown，不要补成一个 conclusion。
+
+当然，AI 自己标了 Fact，不等于这句话就已经通过 QC。这个 prompt 的作用，是把它的 claim 和 evidence 显示出来，方便我们回到 source 去检查，找到它是从哪一步开始做了没有依据的推断。
+
+## Page 11｜Conclusion
+
+最后把今天这部分连起来看：Structured Prompt 帮我们说明该做什么，Managed Context 帮我们整理当前应该依据哪些信息，Verifiable Output 则让我们能够回到 source，检查结论从哪里来。
+
+放在这个 AE case 里面，就是先明确文件角色和统计规则，接着在反复讨论时维护当前有效的要求，最后把 findings 整理成不同读者可以使用、也可以核查的结果。
+
+今天这些浅蓝色 prompt，不需要每次全部用一遍。任务还不清楚，就先整理需求；对话开始跑偏，就清理 context；要换 conversation，就先做 handoff 再恢复；要生成结果，就先定义 output contract；已有结果不好用，再做 output repair；交付前，最后检查 evidence。
+
+我们希望留下的，是这几种情况下可以采取的具体动作。从和 AI 来回聊天，开始走向一个能够继续、能够检查，也能逐步复用的工作方式。
