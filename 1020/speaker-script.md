@@ -22,7 +22,7 @@
 
 对应页面：From reliable AI work to Agent Hub
 
-**讲图提示：**先指左侧灰色的前三个节点，再沿箭头指向右侧蓝色的 Workflow、Agent 和 Agent Hub。最后落到下方的问题，不必逐项解释所有概念。
+**讲图提示：**进入页面先讲 0918 区域；按一次翻页显示 This Time，再按一次显示 Today’s Question。逐段讲完后继续下一页。
 
 上次 0918，我们用 AE summary review 讲了怎样让一次 AI 任务更可靠：从 Chat 开始，用 structured prompt 交代目标、输入、规则和交付要求，再通过 context 管理保留当前有效的信息，让结果带着可以核对的依据。左边这部分就是上次的重点。
 
@@ -50,7 +50,7 @@
 
 对应页面：Why Agent Hub? From too many options to coordinated work
 
-**讲图提示：**按左、中、右三幅图讲：散落的 Agent 表示选择困难，中间是带理由的候选排序，右边经过黄色确认节点才进入执行。候选 A/B/C 是示意，不是真实评分结果。
+**讲图提示：**先呈现 01 · Too many agents，讲清选择困难；按一次翻页后再讲 02 推荐解释和 03 协同执行。候选 A/B/C 是示意。
 
 这一页回答为什么要做 Agent Hub。先看左边：公司 Agent 越来越多，用户知道想完成什么任务，但不一定知道该用哪个。光看名称也很难判断适不适合，自己比较的成本就变高了。这是我们的设计问题假设，不是已经做完用户调研的结论。
 
@@ -60,31 +60,7 @@
 
 所以我们不是只做一个 Agent 名单，而是希望串起发现、选择和授权执行。下一页再看，为了提供这样的体验，Hub、Finder、Builder 和 Executor 的职责应该怎样分。
 
-## 第 5 页｜用临床编程流程理解术语
-
-对应页面：Agent concepts through a clinical-programming analogy
-
-**讲图提示：**页面沿用原始术语图的中文类比，先讲 Agent 和 Registry，再沿 Hub → Finder → Builder → Blueprint → Executor 讲。约 3 分钟，用同一个请求串起来。
-
-这张对照表可以帮助我们用熟悉的 clinical programming 来理解概念，但这些是职责类比，不代表实现完全相同。
-
-Agent 可以先类比成一个有清楚 header 的标准 macro：写明用途、需要什么输入、返回什么、适用范围是什么。但 Agent 不只是 macro 或一段 prompt；真实工作还需要模型运行环境、工具、权限和状态处理。边界也需要检查和验证，不能只写一句“范围外不处理”就当作已经保证。
-
-Registry 像 macro library 的 catalog。它记录状态、功能、输入和适用范围，比如是否支持 ADaM、是否需要 spec 和 define.xml。查得到只说明有这个定义，不能证明已经在当前 study 验证，也不能保证当前环境能直接运行。尤其这里的 Active 表示定义完整、可被发现，不代表部署和运行验证完成。
-
-假设用户说：“准备 DMC delivery，核对 spec 变更、比较新旧输出，整理说明。”Hub 像统一接需求的 programming lead：先理解目标和材料，再协调角色，把推荐或方案带回来确认。这个比喻强调协调职责，不是说 Hub 有人类 lead 的全部判断力或审批权限。
-
-Finder 像从库里找合适 macro：解释推荐理由、限制，还缺哪份 spec。它做推荐，不负责执行。Builder 像写 programming plan，把步骤、依赖和交接组织起来；有多个阶段才需要显式规划，单 Agent 任务可以直接走相应路径，不必为了凑流程经过所有角色。
-
-Builder 产出的 Blueprint 是 run-order 计划：每一步由谁做、用什么输入、产出什么、依赖哪一步。这里建议类比 batch-driver 的设计说明，而不是可直接运行的 driver program，因为 Blueprint 本身是计划，不是执行程序。
-
-Executor 才像执行已经批准的 batch job，按确认后的范围调度并报告 completed、failed、skipped。失败后返回状态和问题，不会因为失败就自动得到重跑全部流程的授权。这里是在解释设计规则，实际行为仍需要运行验证。
-
-还有一个容易混淆的点：Registry 和 Blueprint 都不是 Agent 角色。前者是能力目录，后者是规划产物。五个角色是 Hub、Finder、Builder、Executor，以及处理能力缺口和复用建议的 Creator；Creator 下一页会出现，这张图主要帮助理解常见调用路径。
-
-最后区分两种身份：Designer 是现在和 AI 一起设计系统的我们；User 是未来向 Hub 提需求并确认方案的人。设计对话用 Designer，运行泳道保留 User。同一个人也可能在不同阶段承担这两种身份。
-
-## 第 6 页｜和 AI 一起确定主体框架
+## 第 5 页｜和 AI 一起确定主体框架
 
 对应页面：How we shaped the main-agent framework with AI
 
@@ -98,13 +74,13 @@ Executor 才像执行已经批准的 batch job，按确认后的范围调度并�
 
 这一页的重点是想法怎样变成职责划分。下一页先用泳道图核对交接，再推导初步 Workflow，并从用户角度追问补分支。气泡是依据现有项目整理的示例，不是原始对话记录。
 
-## 第 7 页｜用泳道图和 AI 核对职责与交接
+## 第 6 页｜用泳道图和 AI 核对职责与交接
 
 对应页面：From role design to runtime handoffs: who does what?
 
-**讲图提示：**页面保留 Owner、Handoff、Boundary 三个问题。讲的时候沿泳道指向对应节点，用下面的例子展开。
+**讲图提示：**进入页面先看黄色框里的 Owner、Handoff、Boundary 三个问题；按一次翻页，再沿出现的泳道图讲责任和交接。
 
-角色框架确定后，先用这一页核对：这一步到底谁负责，做完以后交出什么。我会让 AI 把步骤放到对应角色的泳道，再说明输入、输出和下一位接手者。
+角色框架确定后，先看黄色框：我们请 AI 把每一步的负责人、交接内容和暂停边界说清楚。按一次翻页，泳道图出现，再沿着图核对每一步谁负责、交出什么，以及谁接手。
 
 先看 **Owner**。Finder 负责匹配和推荐，Builder 负责规划，Executor 负责执行已经确认的任务。这样可以检查有没有两个角色都在做同一件事，或者某一步没有人负责。
 
@@ -118,7 +94,7 @@ Executor 才像执行已经批准的 batch job，按确认后的范围调度并�
 
 所以我和 AI 沟通时，不只问“几个 Agent 怎么配合”，而是逐步问：谁负责、交出什么、谁接手、什么时候停。泳道图帮助我们把这些约定摆在同一张图里核对。这里展示的是典型路径，完整判断与返回分支会在后面的完整流程页展开。
 
-## 第 8 页｜有了角色，再推导初步 Workflow
+## 第 7 页｜有了角色，再推导初步 Workflow
 
 对应页面：From roles to an initial workflow
 
@@ -127,6 +103,18 @@ Executor 才像执行已经批准的 batch job，按确认后的范围调度并�
 角色确定后，我会请 AI 先画从请求到结果的主线，明确角色怎样交接。先得到理解、匹配或核验、必要时规划、确认、执行、审核这条路径。
 
 但这只是初步主线，还没有从用户各种问法检查完整性。接下来我会让 AI 从用户角度考虑：只是浏览怎么办、已经指定 Agent 怎么办、任务需要多个角色怎么办。接下来三页就是通过这些追问补分支。
+
+## 第 8 页｜有了角色，再推导初步 Workflow
+
+对应页面：From roles to an initial workflow
+
+**讲图提示：**左侧流程图与上一页保持同一位置。按顺序讲 Hub、Finder、Builder、Executor，右侧对应颜色的类比说明会同步逐行出现。
+
+角色确定后，我会请 AI 先画从请求到结果的主线，明确角色怎样交接。先得到理解、匹配或核验、必要时规划、确认、执行、审核这条路径。
+
+主线框旁直接标出每一步的负责人：Hub 理解需求，Finder 查找或核验 Agent，Builder 在需要时安排 Workflow，Executor 执行确认后的任务。右侧每一行用不同颜色对应左边的角色，按讲解顺序同步出现。类比仍沿用前面的术语：Hub 像 programming lead，接收请求、协调角色并把方案带回确认；Finder 像 macro library search，说明匹配理由和限制、指出缺少的输入，但不执行；Builder 像 programming planner，在多步骤任务中安排步骤、输入、输出和依赖，简单任务可以跳过规划；Executor 像 batch-job runner，只运行确认过的步骤，并报告完成、失败或跳过，失败时不会自动重跑整个流程。
+
+这只是初步主线，还没有按用户的不同问法检查完整性。接下来会从用户角度追问：只是浏览怎么办、已经指定 Agent 怎么办、任务需要多个角色怎么办，再逐步补上分支。
 
 ## 第 9 页｜判断用户意图
 
@@ -216,13 +204,13 @@ Executor 才像执行已经批准的 batch job，按确认后的范围调度并�
 
 对应页面：Four reusable files, four clear jobs
 
-**讲图提示：**从左到右指四个文件图标，每个只讲一个核心用途，详细字段不要在这一页展开。
+**讲图提示：**先从左到右讲四类文件的用途，再看 Registry 卡片内的详细说明，依次介绍四类字段和可检索与已验证的区别。
 
 04 部分先看看项目里已经有哪些可重复使用的总结框架。Root README 保存整体约定，业务目录 README 保存业务 Agent 的格式与边界，Registry 统一能力元数据，TODO 保存进度和验证任务。
 
-这些不是凭空加的一套标准，而是从项目已有文件中提炼出来的组织方式。以后交给 AI 新任务时，可以明确指定它应该遵循哪一类文档，而不必把所有要求重新描述一遍。
+Registry 像 macro library 的 catalog。Registry 卡片内列出每条记录的状态、能力、必需输入和适用范围，例如是否能核对 spec 与 define.xml、是否只支持 ADaM 而不支持 SDTM。列在 catalog 里只说明可以被找到，不等于已经在某个 study 验证过，也不代表现在就能直接运行。
 
-比如新增业务 Agent，要按业务目录的 Name、Description、Instruction 组织，同时同步 Registry。继续测试时，则回到输入、步骤、预期结果、通过标准和记录的框架。
+这些不是凭空加的一套标准，而是从项目已有文件中提炼出来的组织方式。以后交给 AI 新任务时，可以明确指定它应该遵循哪一类文档，而不必把所有要求重新描述一遍。比如新增业务 Agent，要按业务目录的 Name、Description、Instruction 组织，同时同步 Registry。
 
 ## 第 15 页｜对话、固定框架与实际 README
 
@@ -286,7 +274,7 @@ README 和格式明确以后，怎样让 AI 把项目继续做出来？这里要
 
 对应页面：Human judgment and AI assistance at each iteration
 
-**讲图提示：**顶部是人和机器人两个图标。从上到下沿四条箭头讲，每次直接结合动作和说明，不再分左右介绍。
+**讲图提示：**进入页面先显示 Define。之后每按一次翻页，依次出现 Develop、Review、Record；每次连同对应的说明文字和箭头一起讲。
 
 第一轮是 **Define，人到 AI**：我们提出目标、职责边界和要求，先把方向说清楚。
 
