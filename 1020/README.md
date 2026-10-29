@@ -1,50 +1,44 @@
 # Building Agent Hub with AI
 
-A 23-slide English deck with a mainly Chinese speaker script. The running case is the design and construction of Agent Hub.
+23 页英文幻灯片，配套中文演讲稿。重点为 Agent Hub 的概念、角色、流程及与 AI 协作的设计方法。
 
-## Files
+## 文件
 
-- index.html: interactive presentation.
-- speaker-script.md: aligned Chinese narration.
-- shared-frameworks.md: source-based reusable documentation patterns.
-- logic-chain.md: current Chinese narrative.
-- assets/: local viewers, document previews, logos, and source diagrams.
-- Agent-Hub-Presentation.pdf: current 23-slide PDF export of index.html.
+- index.html：当前演示版本。
+- speaker-script.md：与当前 23 页逐页对应的中文讲述。
+- assets/：原始流程图及文档预览。
+- Agent-Hub-Presentation.pdf：旧版导出，尚未同步本次修改；请以 HTML 为准。
 
-## Slide outline
+## 当前页序
 
-1. Opening
-2. From Chat to Agent Hub: the whole journey at a glance
-3. Why Agent Hub? From too many options to coordinated work
-4. How we shaped the main-agent framework with AI
-5. From roles to an initial workflow
-6. User perspective 1: “I am only browsing.”
-7. User perspective 2: “I already chose an agent.”
-8. User perspective 3: “My task needs several agents.”
-9. Ask AI to connect the main path, branches, and return paths
-10. Use a swimlane diagram to clarify who does what
-11. Use AI twice: organize our ideas, then work from the agreed files
-12. Four reusable files, four clear jobs
-13. Ask AI to summarize our agreement, then inspect the README
-14. Use the business-agent README as a generation standard
-15. Build one agreed step at a time, then update TODO
-16. Resume without losing context or redesigning agreed work
-17. Check a revision by walking one concrete request
-18. A new idea: fewer repeated prompts, clearer confirmation rules
-19. If accepted, carry the change through the project files
+1. Building Agent Hub with AI
+2. From reliable AI work to Agent Hub
+3. From Chat to Agent Hub: the whole journey at a glance
+4. Why Agent Hub? From too many options to coordinated work
+5. Agent concepts through a clinical-programming analogy
+6. How we shaped the main-agent framework with AI
+7. From role design to runtime handoffs: who does what?
+8. From roles to an initial workflow
+9. User perspective 1: “I am only browsing.”
+10. User perspective 2: “I already chose an agent.”
+11. User perspective 3: “My task needs several agents.”
+12. Ask AI to connect the main path, branches, and return paths
+13. Use AI twice: organize our ideas, then work from the agreed files
+14. Four reusable files, four clear jobs
+15. Ask AI to summarize our agreement, then inspect the README
+16. Use the business-agent README as a generation standard
+17. Build one agreed step at a time, then update TODO
+18. Resume without losing context or redesigning agreed work
+19. Check a revision by walking one concrete request
 20. After updating the files, verify what is actually complete
 21. Human judgment and AI assistance at each iteration
 22. A reusable communication template: design the workflow and README
 23. From a conversation to a shared, reviewable design
 
-## Build and iteration sequence
+## 本轮调整
 
-Generate a bounded step → check the written rules → read current context before changing → assess a new idea → define a proposed boundary → if accepted, synchronize files and regression checks → distinguish definition readiness from runtime evidence.
+新增 0918 过渡与临床编程术语对照；原第十页泳道图移至角色框架后；设计对话使用 Designer，运行角色保留 User；原第十八、十九页未实施提议已从幻灯片和讲稿移除。完整流程页展示完整图预览，点击可展开并缩放；讲稿补充正常路径和异常分支。Practical takeaway 增补复用方法及 AE review 例子。
 
-The new confirmation-policy discussion is a proposal only. The existing Agent Hub requirement for execution confirmation remains unchanged in source files. Task simplicity alone does not establish authorization. Existing authorization, inputs, scope, and concrete external-action confirmation must be considered separately.
+## 操作
 
-## Controls and evidence
-
-Arrow keys navigate, F requests full screen. Embedded documents scroll independently. The complete flowchart has a zoomable viewer. No N-key notes overlay is present.
-
-Reconstructed dialogue is labeled. Current source excerpts are real file content, but do not prove historical prompt/output correspondence or runtime deployment. The fixed 1280 × 720 canvas scales as a unit.
+方向键翻页，F 全屏。完整流程图点击展开，使用 + / − 缩放、滚动查看，Close 返回。设计走查与实际运行验证分别表述。
